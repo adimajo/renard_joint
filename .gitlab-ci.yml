@@ -1,0 +1,28 @@
+default:
+  image: python:3.8-slim
+
+stages:
+  - lint
+  - test
+
+.before_script_template:
+  before_script:
+    - pip3 install pipenv
+
+lint:
+  extends: .before_script_template
+  stage: lint
+  script:
+  - pipenv run pip install flake8
+  # stop the build if there are Python syntax errors or undefined names
+  - pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+  # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+  - pipenv run flake8 --ignore=W504 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
+
+test:
+  extends: .before_script_template
+  stage: test
+  script:
+  - pipenv install -d
+  - pipenv run coverage run --source parser -m pytest
+  - pipenv run coverage report

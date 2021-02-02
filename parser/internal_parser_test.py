@@ -4,12 +4,12 @@ import internal_parser
 print("Checking the dataset...")
 internal_parser.check_data()
 
-### TEST
+# -- TEST ------------------------------------------------------------------------------------------------------------ #
 # Verify [UNK] token
 print("Verify [UNK] token")
 assert internal_parser.get_token_id(["[UNK]"]) == [[internal_parser.UNK_TOKEN]]
 
-### TEST
+# -- TEST ------------------------------------------------------------------------------------------------------------ #
 test_doc = internal_parser.get_record()[0]["id"]
 print("The first document is:", test_doc)
 assert test_doc == "143f9e00-34c4-11eb-a28a-8b07c9b15060-0"
@@ -35,7 +35,7 @@ test_entity_position, test_entity_embedding = internal_parser.get_entity_doc(tes
 test_relation_position = internal_parser.get_relation_doc(test_doc, test_entity_position)
 # print("Relation position:", test_relation_position)
 
-### TEST
+# -- TEST ------------------------------------------------------------------------------------------------------------ #
 assert len(test_words) \
     == len(test_token_ids) \
     == len(test_begins) \
