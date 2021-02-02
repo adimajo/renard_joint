@@ -5,12 +5,16 @@ print("Checking the dataset...")
 internal_parser.check_data()
 
 ### TEST
-# Verify [UNK] token
+# Verify tokens
 print("Verify [UNK] token")
 assert internal_parser.get_token_id(["[UNK]"]) == [[internal_parser.UNK_TOKEN]]
+print("Verify [CLS] token")
+assert internal_parser.get_token_id(["[CLS]"]) == [[internal_parser.CLS_TOKEN]]
+print("Verify [SEP] token")
+assert internal_parser.get_token_id(["[SEP]"]) == [[internal_parser.SEP_TOKEN]]
 
 ### TEST
-test_doc = internal_parser.get_record()[0]["id"]
+test_doc = internal_parser.get_docs("All")[0]
 print("The first document is:", test_doc)
 assert test_doc == "143f9e00-34c4-11eb-a28a-8b07c9b15060-0"
 
@@ -74,9 +78,21 @@ for first, second in test_relation_position.values():
 
 # The next part test main functions on the whole dataset (will take a minute) 
 
-# print("Testing data parser and checking parsed data...")
-# data = internal_parser.extract_data()
-# internal_parser.check_extracted_data(data)
+print("---------------------------------------------------------")
+print("Testing data parser and checking parsed all data...")
+data = internal_parser.extract_data()
+internal_parser.check_extracted_data(data)
 
-# print("Describing the dataset...")
-# internal_parser.describe_data()
+print("---------------------------------------------------------")
+print("Testing data parser and checking parsed training data...")
+training_data = internal_parser.extract_data(internal_parser.get_docs("Training"))
+internal_parser.check_extracted_data(training_data)
+
+print("---------------------------------------------------------")
+print("Testing data parser and checking parsed test data...")
+test_data = internal_parser.extract_data(internal_parser.get_docs("Test"))
+internal_parser.check_extracted_data(test_data)
+
+print("---------------------------------------------------------")
+print("Describing the dataset...")
+internal_parser.describe_data()

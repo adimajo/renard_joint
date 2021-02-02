@@ -4,7 +4,6 @@ USAGE:
 Adapt the constants:
 RECORD_PATH is the record file that contains the names(ids) of all documents,
 DATA_PATH is the folder that contains the documents
-UNK_TOKEN is the id of the unknown token (only for describing data)
 
 Main functions:
 check_data(): Check if the record and the documents are consistent
@@ -27,27 +26,35 @@ import torch
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 # Constants
-RECORD_PATH = "C:\\Users\\NGUYEMI\\Work\\data\\documents.json"
-DATA_PATH = "C:\\Users\\NGUYEMI\\Work\\data\\gt\\"
+RECORD_PATH = "..\\data\\sets.json"
+DATA_PATH = "..\\data\\gt\\"
 UNK_TOKEN = 100
+CLS_TOKEN = 101
+SEP_TOKEN = 102
 
 ### Functions
 
 # Getters
-def get_record():
-    """Read the document record file"""
+def get_docs(group="All"):
+    """Read the record and return a list of document names
+    'group' is either "All", "Training", or "Test"
+    """
     record_file = open(RECORD_PATH, "r", encoding="utf8")
     record = json.load(record_file)
-    return record
+    for docs in record:
+        if docs["name"] == group:
+            return docs["documents"]
+    print("No '", group, "' data group found!")
+    return []
 
 def get_doc(document_name):
     """Given a name, return the corresponding document"""
     return json.load(open(DATA_PATH + document_name + ".json", "r", encoding="utf8"))
 
 # Data checkers
-def check_record(record=get_record()):
-    """Check if the number of documents in the record matches the number of data files"""
-    assert len(record) == len(os.listdir(DATA_PATH))
+def check_docs(docs=get_docs("All")):
+    """Check if the number of documents in the "All" group in the record matches the number of data files"""
+    assert len(docs) == len(os.listdir(DATA_PATH))
     
 def check_doc(document_name):
     """Check if extracted sentences and words have correct location tags
@@ -70,13 +77,13 @@ def check_doc(document_name):
         except:
             print("Error in doc", document_name, "relation", relation["id"], "has", len(relation["args"]), "arguments")
             
-def check_data(record=get_record()):
+def check_data(docs=get_docs("All")):
     """Check if the dataset is in good shape
-    Refer to check_record() and check_doc()
+    Refer to check_docs() and check_doc()
     """
-    check_record(record)
-    for document in record:
-        check_doc(document["id"])
+    check_docs(docs)
+    for document in docs:
+        check_doc(document)
         
 # Describers
 def get_text_length_doc(document_name):
@@ -101,12 +108,12 @@ def describe_list(lst, name):
     plt.show()
     print()
     
-def describe_text_length(record=get_record()):
+def describe_text_length(docs=get_docs("All")):
     """Show information about the length of text and sentences in the dataset"""
     text_lengths = []
     sentence_lengths = []
-    for document in record:
-        txt_len, snt_len = get_text_length_doc(document["id"])
+    for document in docs:
+        txt_len, snt_len = get_text_length_doc(document)
         text_lengths.append(txt_len)
         sentence_lengths += snt_len
     describe_list(text_lengths, "Text length")
@@ -123,11 +130,11 @@ def count_type_doc(document_name, type_name):
             count[item["type"]] += 1
     return count
 
-def describe_type(type_name, record=get_record(), describe=True):
+def describe_type(type_name, docs=get_docs("All"), describe=True):
     """Describe the types of a property in the dataset"""
     count = {}
-    for document in record:
-        cnt = count_type_doc(document["id"], type_name)
+    for document in docs:
+        cnt = count_type_doc(document, type_name)
         for key in cnt:
             if key not in count:
                 count[key] = cnt[key]
@@ -230,11 +237,11 @@ def extract_doc(document_name):
     relation_position = get_relation_doc(document_name, entity_position)
     return {"document": document_name, "data_frame": data_frame, "entity_position": entity_position, "relation_position": relation_position}
 
-def extract_data(record=get_record()):
+def extract_data(docs=get_docs("All")):
     """Extract all documents to a dataset for training"""
     data = []
-    for document in record:
-        data.append(extract_doc(document["id"]))
+    for document in docs:
+        data.append(extract_doc(document))
     return data
 
 # Checkers
@@ -358,23 +365,24 @@ def describe_relation(data):
     #sns.countplot(cross_sentence)
     plt.show()
     
-def describe_data(record=get_record()):
+def describe_data(docs=get_docs("All")):
     """Show information about the dataset
     Refer to describe_text_length(), describe_type(), and describe_token()
     """
-    describe_text_length(record)
+    describe_text_length(docs)
     print()
     
-    entity_encode = describe_type("mentions", record)
+    entity_encode = describe_type("mentions", docs)
     print("Entity encoding:", entity_encode)
     print()
     
-    relation_encode = describe_type("relations", record)
+    relation_encode = describe_type("relations", docs)
     print("Relation encoding:", relation_encode)
     print()
     
-    data = extract_data(record)
+    data = extract_data(docs)
     describe_token(data)
     print()
     describe_relation(data)
     print()
+    
