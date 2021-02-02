@@ -58,19 +58,41 @@ def check_doc(document_name):
     doc = get_doc(document_name)
     for sentence in doc["sentences"]:
         try:
-            assert sentence["text"] == doc["text"][sentence["begin"] : sentence["end"]]
+            assert sentence["text"] == doc["text"][sentence["begin"]:sentence["end"]]
         except AssertionError:
-            print("Error in doc", document_name, "sentence", sentence["id"], "'", sentence["text"], "' does not match '", doc["text"][sentence["begin"] : sentence["end"]])
+            print("Error in doc",
+                  document_name,
+                  "sentence",
+                  sentence["id"],
+                  "'",
+                  sentence["text"],
+                  "' does not match '",
+                  doc["text"][sentence["begin"]:sentence["end"]])
         for word in sentence["tokens"]:
             try:
-                assert word["text"] == doc["text"][word["begin"] : word["end"]]
+                assert word["text"] == doc["text"][word["begin"]:word["end"]]
             except AssertionError:
-                print("Error in doc", document_name, "sentence", sentence["id"], "word", word["id"], "'", word["text"], "' does not match '", doc["text"][word["begin"] : word["end"]])
+                print("Error in doc",
+                      document_name,
+                      "sentence",
+                      sentence["id"],
+                      "word",
+                      word["id"],
+                      "'",
+                      word["text"],
+                      "' does not match '",
+                      doc["text"][word["begin"]:word["end"]])
     for relation in doc["relations"]:
         try:
             assert len(relation["args"]) == 2
         except AssertionError:
-            print("Error in doc", document_name, "relation", relation["id"], "has", len(relation["args"]), "arguments")
+            print("Error in doc",
+                  document_name,
+                  "relation",
+                  relation["id"],
+                  "has",
+                  len(relation["args"]),
+                  "arguments")
 
 
 def check_data(record=get_record()):
@@ -88,7 +110,7 @@ def get_text_length_doc(document_name):
     text_length = 0
     sentence_lengths = []
     doc = get_doc(document_name)
-    for sentence in doc["sentences"]: 
+    for sentence in doc["sentences"]:
         text_length += len(sentence["tokens"])
         sentence_lengths.append(len(sentence["tokens"]))
     return text_length, sentence_lengths
@@ -123,7 +145,7 @@ def count_type_doc(document_name, type_name):
     """Count the number of each type of a property in a document"""
     doc = get_doc(document_name)
     count = {}
-    for item in doc[type_name]: 
+    for item in doc[type_name]:
         if item["type"] not in count:
             count[item["type"]] = 1
         else:
@@ -212,7 +234,7 @@ def expand_token_id(token_id, words, begins, ends, sentence_embedding):
 
 def get_entity_doc(document_name, begins):
     """Extract entities from a document (only use AFTER token id has been expanded)"""
-    doc = get_doc(document_name) 
+    doc = get_doc(document_name)
     entity_embedding = [0] * len(begins)
     entity_position = {}
     for mention in doc["mentions"]:
@@ -220,7 +242,7 @@ def get_entity_doc(document_name, begins):
         high = bisect.bisect_left(begins, mention["end"])
         entity_position[mention["id"]] = (low, high)
         for i in range(low, high):
-            entity_embedding[i] = entity_encode[mention["type"]]      
+            entity_embedding[i] = entity_encode[mention["type"]]
     return entity_position, entity_embedding
 
 
@@ -238,12 +260,15 @@ def extract_doc(document_name):
     data_frame = pd.DataFrame()
     words, begins, ends, sentence_embedding = get_word_doc(document_name)
     token_ids = get_token_id(words)
-    data_frame["token_ids"], data_frame["words"], data_frame["begins"], data_frame["ends"], data_frame["sentence_embedding"] \
-        = expand_token_id(token_ids, words, begins, ends, sentence_embedding)
+    data_frame["token_ids"], data_frame["words"], data_frame["begins"], data_frame["ends"], \
+        data_frame["sentence_embedding"] = expand_token_id(token_ids, words, begins, ends, sentence_embedding)
     data_frame["tokens"] = tokenizer.convert_ids_to_tokens(data_frame["token_ids"])
     entity_position, data_frame["entity_embedding"] = get_entity_doc(document_name, list(data_frame["begins"]))
     relation_position = get_relation_doc(document_name, entity_position)
-    return {"document": document_name, "data_frame": data_frame, "entity_position": entity_position, "relation_position": relation_position}
+    return {"document": document_name,
+            "data_frame": data_frame,
+            "entity_position": entity_position,
+            "relation_position": relation_position}
 
 
 def extract_data(record=get_record()):
@@ -256,52 +281,54 @@ def extract_data(record=get_record()):
 
 # Checkers
 def check_extracted_data(data):
-    """Check if all extracted data is valid"""
+    """
+    .. todo: too complex (26)
+    Check if all extracted data is valid"""
     for item in data:
         document_name = item["document"]
         data_frame = item["data_frame"]
         entity_position = item["entity_position"]
         relation_position = item["relation_position"]
-        
+
         # Check if begins is increasing
         begins = data_frame["begins"].tolist()
         for i in range(1, len(begins)):
             try:
-                assert begins[i] >= begins[i-1]
+                assert begins[i] >= begins[i - 1]
             except AssertionError:
-                print("Check failed at document", document_name, "in 'begins' at position", i-1, \
-                      "(value", begins[i-1], ") >", i, "(value", begins[i], ")")
+                print("Check failed at document", document_name, "in 'begins' at position", i - 1,
+                      "(value", begins[i - 1], ") >", i, "(value", begins[i], ")")
 
         # Check if ends is increasing
         ends = data_frame["ends"].tolist()
         for i in range(1, len(ends)):
             try:
-                assert ends[i] >= ends[i-1]
+                assert ends[i] >= ends[i - 1]
             except AssertionError:
-                print("Check failed at document", document_name, "in 'ends' at position", i-1, \
-                      "(value", ends[i-1], ") >", i, "(value", ends[i], ")")
+                print("Check failed at document", document_name, "in 'ends' at position", i - 1,
+                      "(value", ends[i - 1], ") >", i, "(value", ends[i], ")")
 
         # Check if ends are always greater than begins
         for i in range(len(begins)):
             try:
                 assert begins[i] < ends[i]
             except AssertionError:
-                print("Check failed at document", document_name, "in 'begins' & 'ends' at position", \
+                print("Check failed at document", document_name, "in 'begins' & 'ends' at position",
                       i, "(begin", begins[i], ">= end", ends[i], ")")
 
         # Check if sentence embedding are correct
         sentence_embedding = data_frame["sentence_embedding"].tolist()
         for i in range(1, len(sentence_embedding)):
             try:
-                assert 0 <= sentence_embedding[i] - sentence_embedding[i-1] <= 1
+                assert 0 <= sentence_embedding[i] - sentence_embedding[i - 1] <= 1
             except AssertionError:
-                print("Check failed at document", document_name, "in 'sentence_embedding' at position", \
-                      i, "sentence_embedding[i] - sentence_embedding[i-1] =", \
-                      sentence_embedding[i] - sentence_embedding[i-1])
+                print("Check failed at document", document_name, "in 'sentence_embedding' at position",
+                      i, "sentence_embedding[i] - sentence_embedding[i-1] =",
+                      sentence_embedding[i] - sentence_embedding[i - 1])
         try:
             assert sentence_embedding[-1] == len(get_doc(document_name)["sentences"]) - 1
         except AssertionError:
-            print("Check failed at document", document_name, ", expected", \
+            print("Check failed at document", document_name, ", expected",
                   len(get_doc(document_name)["sentences"]), "sentences but", sentence_embedding[-1] + 1, "found")
 
         # Check if entities correctly embedded
@@ -313,12 +340,12 @@ def check_extracted_data(data):
             try:
                 assert min(entity_embedding[low:high]) == max(entity_embedding[low:high])
             except AssertionError:
-                print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key, \
+                print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key,
                       ", values from", low, "to", high, ":", entity_embedding[low:high], "are inconsistent")
         try:
             assert cnt == (np.array(entity_embedding) != 0).astype(int).sum()
         except AssertionError:
-            print("Check failed at document", document_name, "in total entity embedded tokens", \
+            print("Check failed at document", document_name, "in total entity embedded tokens",
                   (np.array(entity_embedding) != 0).astype(int).sum(), "does not match the record", cnt)
 
         # Check if all relations are valid
@@ -326,12 +353,12 @@ def check_extracted_data(data):
             try:
                 assert first in entity_position
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relation_position',", first, \
+                print("Check failed at document", document_name, "in 'relation_position',", first,
                       "is not found in record")
             try:
                 assert second in entity_position
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relation_position',", second, \
+                print("Check failed at document", document_name, "in 'relation_position',", second,
                       "is not found in record")
 
 
@@ -347,7 +374,7 @@ def describe_token(data):
         token_count += data_frame["token_ids"].count()
         entity_token_count += data_frame[data_frame["entity_embedding"] > 0]["token_ids"].count()
         unknown_token_count += data_frame[data_frame["token_ids"] == UNK_TOKEN]["token_ids"].count()
-        unknown_entity_token_count += data_frame[(data_frame["entity_embedding"] > 0) & \
+        unknown_entity_token_count += data_frame[(data_frame["entity_embedding"] > 0) &
                                                  (data_frame["token_ids"] == UNK_TOKEN)]["token_ids"].count()
     print("Token count:", token_count)
     print("Entity token count:", entity_token_count)
@@ -358,7 +385,7 @@ def describe_token(data):
 def describe_relation(data):
     """Describe the relation in the dataset"""
     relation_count = 0
-    reverse_relation_count = 0 
+    reverse_relation_count = 0
     cross_sentence = []
     for item in data:
         sentence_embedding = item["data_frame"]["sentence_embedding"].tolist()
@@ -369,12 +396,12 @@ def describe_relation(data):
             if entity_position[first][0] > entity_position[second][0]:
                 reverse_relation_count += 1
             if sentence_embedding[entity_position[first][0]] != sentence_embedding[entity_position[second][0]]:
-                cross_sentence.append(abs(sentence_embedding[entity_position[first][0]] \
-                                          - sentence_embedding[entity_position[second][0]]))
+                cross_sentence.append(abs(sentence_embedding[entity_position[first][0]] -
+                                          sentence_embedding[entity_position[second][0]]))
     print("Relation count:", relation_count)
     print("Reverse relation count:", reverse_relation_count)
     print("Cross sentence count:", sum(cross_sentence))
-    #sns.countplot(cross_sentence)
+    # sns.countplot(cross_sentence)
     plt.show()
 
 
@@ -384,15 +411,15 @@ def describe_data(record=get_record()):
     """
     describe_text_length(record)
     print()
-    
+
     entity_encode = describe_type("mentions", record)
     print("Entity encoding:", entity_encode)
     print()
-    
+
     relation_encode = describe_type("relations", record)
     print("Relation encoding:", relation_encode)
     print()
-    
+
     data = extract_data(record)
     describe_token(data)
     print()

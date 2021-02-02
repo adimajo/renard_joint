@@ -17,7 +17,6 @@ codecov = "*"
 numpy = "*"
 pandas = ">=0.25.1"
 # scikit-learn = "*"
-matplotlib
-seaborn
-bisect
-transformers
+matplotlib = "*"
+seaborn = "*"
+transformers = "*"
