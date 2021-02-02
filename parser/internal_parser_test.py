@@ -4,8 +4,9 @@ import internal_parser
 print("Checking the dataset...")
 internal_parser.check_data()
 
-### TEST
-# Verify tokens
+
+# -- TEST ------------------------------------------------------------------------------------------------------------ #
+# Verify token
 print("Verify [UNK] token")
 assert internal_parser.get_token_id(["[UNK]"]) == [[internal_parser.UNK_TOKEN]]
 print("Verify [CLS] token")
@@ -13,7 +14,8 @@ assert internal_parser.get_token_id(["[CLS]"]) == [[internal_parser.CLS_TOKEN]]
 print("Verify [SEP] token")
 assert internal_parser.get_token_id(["[SEP]"]) == [[internal_parser.SEP_TOKEN]]
 
-### TEST
+
+# -- TEST ------------------------------------------------------------------------------------------------------------ #
 test_doc = internal_parser.get_docs("All")[0]
 print("The first document is:", test_doc)
 assert test_doc == "143f9e00-34c4-11eb-a28a-8b07c9b15060-0"
@@ -35,11 +37,11 @@ test_entity_position, test_entity_embedding = internal_parser.get_entity_doc(tes
 # print("Entity tokens:")
 # for low, high in test_entity_position.values():
 #     print(test_words[low:high], test_token_ids[low:high], test_entity_embedding[low:high])
-    
+
 test_relation_position = internal_parser.get_relation_doc(test_doc, test_entity_position)
 # print("Relation position:", test_relation_position)
 
-### TEST
+# -- TEST ------------------------------------------------------------------------------------------------------------ #
 assert len(test_words) \
     == len(test_token_ids) \
     == len(test_begins) \
@@ -49,21 +51,21 @@ assert len(test_words) \
 
 # Test if begins is increasing
 for i in range(1, len(test_begins)):
-    assert test_begins[i] >= test_begins[i-1]
-    
+    assert test_begins[i] >= test_begins[i - 1]
+
 # Test if ends is increasing
 for i in range(1, len(test_ends)):
-    assert test_ends[i] >= test_ends[i-1]
-    
+    assert test_ends[i] >= test_ends[i - 1]
+
 # Test if ends are always greater than begins
 for i in range(len(test_begins)):
     assert test_begins[i] < test_ends[i]
-    
+
 # Test if sentence embedding are correct
 for i in range(1, len(test_sentence_embedding)):
-    assert 0 <= test_sentence_embedding[i] - test_sentence_embedding[i-1] <= 1
+    assert 0 <= test_sentence_embedding[i] - test_sentence_embedding[i - 1] <= 1
 assert test_sentence_embedding[-1] == len(internal_parser.get_doc(test_doc)["sentences"]) - 1
-    
+
 # Test if entities correctly embedded
 cnt = 0
 for low, high in test_entity_position.values():
@@ -76,7 +78,7 @@ for first, second in test_relation_position.values():
     assert first in test_entity_position
     assert second in test_entity_position
 
-# The next part test main functions on the whole dataset (will take a minute) 
+# The next part test main functions on the whole dataset (will take a minute)
 
 print("---------------------------------------------------------")
 print("Testing data parser and checking parsed all data...")
