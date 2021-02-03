@@ -34,7 +34,7 @@ assert internal_parser.get_token_id(["[SEP]"]) == [[internal_parser.SEP_TOKEN]]
 
 
 # -- TEST ------------------------------------------------------------------------------------------------------------ #
-internal_parser.DATA_PATH = os.path.dirname(__file__) + ("\\" if len(os.path.dirname(__file__)) > 0 else "")
+internal_parser.DATA_PATH = os.path.dirname(__file__) + ("/" if len(os.path.dirname(__file__)) > 0 else "")
 test_doc = "internal_test_doc"
 
 print("Test parsing the test document...")
