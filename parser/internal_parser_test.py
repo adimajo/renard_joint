@@ -1,9 +1,27 @@
+import os
 import numpy as np
 import internal_parser
 
-print("Checking the dataset...")
-internal_parser.check_data()
-
+# # Test main functions on the whole dataset (will take a minute)
+# print("-------------------------------------------------------------------------------------------------------------")
+# print("Checking the dataset...")
+# internal_parser.check_data(internal_parser.get_docs("All"))
+# print("-------------------------------------------------------------------------------------------------------------")
+# print("Testing data parser and checking parsed all data...")
+# data = internal_parser.extract_data(internal_parser.get_docs("All"))
+# internal_parser.check_extracted_data(data)
+# print("-------------------------------------------------------------------------------------------------------------")
+# print("Testing data parser and checking parsed training data...")
+# training_data = internal_parser.extract_data(internal_parser.get_docs("Training"))
+# internal_parser.check_extracted_data(training_data)
+# print("-------------------------------------------------------------------------------------------------------------")
+# print("Testing data parser and checking parsed test data...")
+# test_data = internal_parser.extract_data(internal_parser.get_docs("Test"))
+# internal_parser.check_extracted_data(test_data)
+# print("-------------------------------------------------------------------------------------------------------------")
+# print("Describing the dataset...")
+# internal_parser.describe_data(internal_parser.get_docs("All"))
+# print("-------------------------------------------------------------------------------------------------------------")
 
 # -- TEST ------------------------------------------------------------------------------------------------------------ #
 # Verify token
@@ -16,11 +34,10 @@ assert internal_parser.get_token_id(["[SEP]"]) == [[internal_parser.SEP_TOKEN]]
 
 
 # -- TEST ------------------------------------------------------------------------------------------------------------ #
-test_doc = internal_parser.get_docs("All")[0]
-print("The first document is:", test_doc)
-assert test_doc == "143f9e00-34c4-11eb-a28a-8b07c9b15060-0"
+internal_parser.DATA_PATH = os.path.dirname(__file__) + ("\\" if len(os.path.dirname(__file__)) > 0 else "")
+test_doc = "internal_test_doc"
 
-print("Test parsing this document...")
+print("Test parsing the test document...")
 test_words, test_begins, test_ends, test_sentence_embedding = internal_parser.get_word_doc(test_doc)
 test_token_ids = internal_parser.get_token_id(test_words)
 # print("Words:", test_words)
@@ -77,24 +94,3 @@ assert cnt == (np.array(test_entity_embedding) != 0).astype(int).sum()
 for first, second in test_relation_position.values():
     assert first in test_entity_position
     assert second in test_entity_position
-
-# The next part test main functions on the whole dataset (will take a minute)
-
-print("---------------------------------------------------------")
-print("Testing data parser and checking parsed all data...")
-data = internal_parser.extract_data()
-internal_parser.check_extracted_data(data)
-
-print("---------------------------------------------------------")
-print("Testing data parser and checking parsed training data...")
-training_data = internal_parser.extract_data(internal_parser.get_docs("Training"))
-internal_parser.check_extracted_data(training_data)
-
-print("---------------------------------------------------------")
-print("Testing data parser and checking parsed test data...")
-test_data = internal_parser.extract_data(internal_parser.get_docs("Test"))
-internal_parser.check_extracted_data(test_data)
-
-print("---------------------------------------------------------")
-print("Describing the dataset...")
-internal_parser.describe_data()

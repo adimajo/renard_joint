@@ -1,15 +1,18 @@
 """
 USAGE:
 
-Adapt the constants:
+1. Adapt the constants:
 RECORD_PATH is the record file that contains the names(ids) of all documents,
 DATA_PATH is the folder that contains the documents
 
-Main functions:
-check_data(): Check if the record and the documents are consistent
-extract_data(): Parse and return the dataset
+2. Obtain the list of documents
+docs = get_docs("All", "Training", or "Test")
+
+3. Main functions:
+check_data(docs): Check if the record and the documents are consistent
+data = extract_data(docs): Parse and return the dataset
 check_extracted_data(data): Check if the parsed data is consistent
-describe_data(): Describe the dataset
+describe_data(docs): Describe the dataset
 
 """
 
@@ -30,7 +33,8 @@ DATA_PATH = "..\\data\\gt\\"
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102
-
+entity_encode = {'None': 0, 'EnvironmentalIssues': 1, 'Date': 2, 'Organisation': 3, 'CommitmentLevel': 4, 'Location': 5, 'CoalActivity': 6, 'SocialIssues': 7, 'SocialOfficialTexts': 8}
+relation_encode = {'None': 0, 'Makes': 1, 'Of': 2, 'IsRelatedTo': 3, 'HasActivity': 4, 'Recognizes': 5, 'In': 6, 'IsInvolvedIn': 7}
 
 # -- Functions ------------------------------------------------------------------------------------------------------- #
 # Getters
@@ -53,7 +57,7 @@ def get_doc(document_name):
 
 	
 # Data checkers
-def check_docs(docs=get_docs("All")):
+def check_docs(docs):
     """Check if the number of documents in the "All" group in the record matches the number of data files"""
     assert len(docs) == len(os.listdir(DATA_PATH))
     
@@ -102,7 +106,7 @@ def check_doc(document_name):
                   "arguments")
 
 
-def check_data(docs=get_docs("All")):
+def check_data(docs):
     """Check if the dataset is in good shape
     Refer to check_docs() and check_doc()
     """
@@ -136,7 +140,7 @@ def describe_list(lst, name):
     print()
 	
     
-def describe_text_length(docs=get_docs("All")):
+def describe_text_length(docs):
     """Show information about the length of text and sentences in the dataset"""
     text_lengths = []
     sentence_lengths = []
@@ -160,7 +164,7 @@ def count_type_doc(document_name, type_name):
     return count
 
 
-def describe_type(type_name, docs=get_docs("All"), describe=True):
+def describe_type(type_name, docs, describe=True):
     """Describe the types of a property in the dataset"""
     count = {}
     for document in docs:
@@ -182,8 +186,8 @@ def describe_type(type_name, docs=get_docs("All"), describe=True):
 
 
 # Parsers
-entity_encode = describe_type("mentions", describe=False)
-relation_encode = describe_type("relations", describe=False)
+# entity_encode = describe_type("mentions", describe=False)
+# relation_encode = describe_type("relations", describe=False)
 
 
 def get_word_doc(document_name):
@@ -278,7 +282,7 @@ def extract_doc(document_name):
             "relation_position": relation_position}
 
 
-def extract_data(docs=get_docs("All")):
+def extract_data(docs):
     """Extract all documents to a dataset for training"""
     data = []
     for document in docs:
@@ -416,7 +420,7 @@ def describe_relation(data):
     plt.show()
 
     
-def describe_data(docs=get_docs("All")):
+def describe_data(docs):
     """Show information about the dataset
     Refer to describe_text_length(), describe_type(), and describe_token()
     """

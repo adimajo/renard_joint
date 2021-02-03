@@ -1,5 +1,6 @@
-data/
-playground/
+/data/
+/playground/
+/classifier/128_by_128/
 .ipynb_checkpoints/
 
 # Byte-compiled / optimized / DLL files

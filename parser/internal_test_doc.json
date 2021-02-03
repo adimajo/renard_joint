@@ -1,0 +1,4234 @@
+{
+  "id" : "1c6fd5d0-3a2e-11eb-aae8-83b4f4e6d8e3-0",
+  "name" : "Boliden_12_2019_FINALE_part1.txt",
+  "createdDate" : 0,
+  "version" : 3,
+  "text" : "Sustainable \nmetal production\nBoliden provides metals for the development of modern \n societies, and is one of the leaders in the industry in terms of \ntaking responsibility for safety, environment and climate work \nas well as reclamation of mining areas.\nBolidens sustainability topics\nFinancial, environmental and social \n responsibility is of highest priority in \nBoliden. The business model extends \nalong several parts of a metals value \nchain, from the mining operation to \nrecycling. Through investments in modern \n technology, development of low emission \nprocesses and responsible company \nmanagement the sustainability perfor-\nmance is continuously improved. Global \nmacro trends, stretching from the climate \nissue to urbanization, digitalization and \ntechnological development alter condi-\ntions for the business. Bolidens success \nis dependant upon its ability to create \nvalue in a way that meets stakeholder \nneeds, while also taking into considera-\ntion financial, environmental and social \nconsequences. Sustainability is part of the \ncompanys strategy and business planning. \nGovernance of Bolidens \nsustainability work \nThe Board is responsible for ensuring \nan appropriate company structure and \n a sustainable strategy. The CEO is \n responsible for implementing Bolidens \nsustainability work and for ensuring \nthat a management system is in place. \n Sustainability topics are addressed at every \nGroup management and Board meeting. \nThe business areas Mines and Smelters are \nresponsible for integrating sustainability \ninto their operational work. Bolidens \nsustainability work is based on own \nstandards, stakeholders expectations, the \nUN Global Compact and the UNs global \ngoals for sustainable development. Boliden \nalso supports the Task Force on Climate- \nrelated Financial Disclosures (TCFD) and \nhas a management system that complies \nwith the ISO standards for environmental, \nEvery sustainability topic has a long-term \ndirection that shall support and guide \nthe structure and efforts at every level \nin the company. Bolidens sustainability \ntopics and directions are presented in the \n companys Sustainability Index. \nBoliden has identified its sustainability \ntopics by analyzing technology and \n consumption trends as well as maintaining \na close dialogue with customers, suppliers \nand other stakeholders. Every year, a \nworkshop and a materiality analyze are \ncarried out with representatives from the \nentire operation, where the significant \nsustainability topics have been identified. \nThe prioritized topics then form part of \nthe companys strategy work. Climate \nchange was identified as one of Bolidens \nsignificant topics in 2019, which led to the \noverall goal of a 40% reduction in carbon \ndioxide intensity by 2030.\nBoliden Annual and Sustainability Report 2019\n30 SUSTAINABLE DEVELOPMENT\nHigh levels of skills and \nsustainable work environments\nBoliden seeks to offer meaningful, safe and healthy jobs in stimulating work \nenvironments. Innovation and modern technology support the day-to-day \nwork. Sustainable work environments lead to increased job satisfaction, \nstrong commitment and improved conditions for attracting and developing \nemployees.\nWork environment, health and safety\nAll employees, contractors and others \nworking at or visiting Bolidens production \nunits and offices are entitled to a safe and \nhealthy working environment. \nThe goal is an accident-free, healthy \n operation where people are healthy \nand feel well. Safety is largely created in \nindividual situations in day-to-day work \nand depends on everyone taking respons-\nibility before they carry out their tasks.",
+  "docLength" : 0,
+  "language" : "EN",
+  "status" : "SUBMITTED",
+  "modifiedDate" : 1607528496076,
+  "documentSet" : [ ],
+  "preannotation" : [ "PRE_LW", "PRE_SIRE" ],
+  "sentences" : [ {
+    "id" : "s0",
+    "begin" : 0,
+    "end" : 255,
+    "text" : "Sustainable \nmetal production\nBoliden provides metals for the development of modern \n societies, and is one of the leaders in the industry in terms of \ntaking responsibility for safety, environment and climate work \nas well as reclamation of mining areas.",
+    "tokens" : [ {
+      "id" : "s0-t0",
+      "begin" : 0,
+      "end" : 11,
+      "text" : "Sustainable",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t1",
+      "begin" : 13,
+      "end" : 18,
+      "text" : "metal",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t2",
+      "begin" : 19,
+      "end" : 29,
+      "text" : "production",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t3",
+      "begin" : 30,
+      "end" : 37,
+      "text" : "Boliden",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t4",
+      "begin" : 38,
+      "end" : 46,
+      "text" : "provides",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t5",
+      "begin" : 47,
+      "end" : 53,
+      "text" : "metals",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t6",
+      "begin" : 54,
+      "end" : 57,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t7",
+      "begin" : 58,
+      "end" : 61,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t8",
+      "begin" : 62,
+      "end" : 73,
+      "text" : "development",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t9",
+      "begin" : 74,
+      "end" : 76,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t10",
+      "begin" : 77,
+      "end" : 83,
+      "text" : "modern",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t11",
+      "begin" : 86,
+      "end" : 95,
+      "text" : "societies",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t12",
+      "begin" : 95,
+      "end" : 96,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t13",
+      "begin" : 97,
+      "end" : 100,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t14",
+      "begin" : 101,
+      "end" : 103,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t15",
+      "begin" : 104,
+      "end" : 107,
+      "text" : "one",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t16",
+      "begin" : 108,
+      "end" : 110,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t17",
+      "begin" : 111,
+      "end" : 114,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t18",
+      "begin" : 115,
+      "end" : 122,
+      "text" : "leaders",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t19",
+      "begin" : 123,
+      "end" : 125,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t20",
+      "begin" : 126,
+      "end" : 129,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t21",
+      "begin" : 130,
+      "end" : 138,
+      "text" : "industry",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t22",
+      "begin" : 139,
+      "end" : 141,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t23",
+      "begin" : 142,
+      "end" : 147,
+      "text" : "terms",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t24",
+      "begin" : 148,
+      "end" : 150,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t25",
+      "begin" : 152,
+      "end" : 158,
+      "text" : "taking",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t26",
+      "begin" : 159,
+      "end" : 173,
+      "text" : "responsibility",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t27",
+      "begin" : 174,
+      "end" : 177,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t28",
+      "begin" : 178,
+      "end" : 184,
+      "text" : "safety",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t29",
+      "begin" : 184,
+      "end" : 185,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t30",
+      "begin" : 186,
+      "end" : 197,
+      "text" : "environment",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t31",
+      "begin" : 198,
+      "end" : 201,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t32",
+      "begin" : 202,
+      "end" : 209,
+      "text" : "climate",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t33",
+      "begin" : 210,
+      "end" : 214,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t34",
+      "begin" : 216,
+      "end" : 218,
+      "text" : "as",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t35",
+      "begin" : 219,
+      "end" : 223,
+      "text" : "well",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t36",
+      "begin" : 224,
+      "end" : 226,
+      "text" : "as",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t37",
+      "begin" : 227,
+      "end" : 238,
+      "text" : "reclamation",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t38",
+      "begin" : 239,
+      "end" : 241,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t39",
+      "begin" : 242,
+      "end" : 248,
+      "text" : "mining",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t40",
+      "begin" : 249,
+      "end" : 254,
+      "text" : "areas",
+      "whiteSpace" : false
+    }, {
+      "id" : "s0-t41",
+      "begin" : 254,
+      "end" : 255,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s1",
+    "begin" : 256,
+    "end" : 375,
+    "text" : "Bolidens sustainability topics\nFinancial, environmental and social \n responsibility is of highest priority in \nBoliden.",
+    "tokens" : [ {
+      "id" : "s1-t0",
+      "begin" : 256,
+      "end" : 264,
+      "text" : "Bolidens",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t1",
+      "begin" : 265,
+      "end" : 279,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t2",
+      "begin" : 280,
+      "end" : 286,
+      "text" : "topics",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t3",
+      "begin" : 287,
+      "end" : 296,
+      "text" : "Financial",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t4",
+      "begin" : 296,
+      "end" : 297,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t5",
+      "begin" : 298,
+      "end" : 311,
+      "text" : "environmental",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t6",
+      "begin" : 312,
+      "end" : 315,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t7",
+      "begin" : 316,
+      "end" : 322,
+      "text" : "social",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t8",
+      "begin" : 325,
+      "end" : 339,
+      "text" : "responsibility",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t9",
+      "begin" : 340,
+      "end" : 342,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t10",
+      "begin" : 343,
+      "end" : 345,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t11",
+      "begin" : 346,
+      "end" : 353,
+      "text" : "highest",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t12",
+      "begin" : 354,
+      "end" : 362,
+      "text" : "priority",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t13",
+      "begin" : 363,
+      "end" : 365,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t14",
+      "begin" : 367,
+      "end" : 374,
+      "text" : "Boliden",
+      "whiteSpace" : false
+    }, {
+      "id" : "s1-t15",
+      "begin" : 374,
+      "end" : 375,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s2",
+    "begin" : 376,
+    "end" : 490,
+    "text" : "The business model extends \nalong several parts of a metals value \nchain, from the mining operation to \nrecycling.",
+    "tokens" : [ {
+      "id" : "s2-t0",
+      "begin" : 376,
+      "end" : 379,
+      "text" : "The",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t1",
+      "begin" : 380,
+      "end" : 388,
+      "text" : "business",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t2",
+      "begin" : 389,
+      "end" : 394,
+      "text" : "model",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t3",
+      "begin" : 395,
+      "end" : 402,
+      "text" : "extends",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t4",
+      "begin" : 404,
+      "end" : 409,
+      "text" : "along",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t5",
+      "begin" : 410,
+      "end" : 417,
+      "text" : "several",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t6",
+      "begin" : 418,
+      "end" : 423,
+      "text" : "parts",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t7",
+      "begin" : 424,
+      "end" : 426,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t8",
+      "begin" : 427,
+      "end" : 428,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t9",
+      "begin" : 429,
+      "end" : 435,
+      "text" : "metals",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t10",
+      "begin" : 436,
+      "end" : 441,
+      "text" : "value",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t11",
+      "begin" : 443,
+      "end" : 448,
+      "text" : "chain",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t12",
+      "begin" : 448,
+      "end" : 449,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t13",
+      "begin" : 450,
+      "end" : 454,
+      "text" : "from",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t14",
+      "begin" : 455,
+      "end" : 458,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t15",
+      "begin" : 459,
+      "end" : 465,
+      "text" : "mining",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t16",
+      "begin" : 466,
+      "end" : 475,
+      "text" : "operation",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t17",
+      "begin" : 476,
+      "end" : 478,
+      "text" : "to",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t18",
+      "begin" : 480,
+      "end" : 489,
+      "text" : "recycling",
+      "whiteSpace" : false
+    }, {
+      "id" : "s2-t19",
+      "begin" : 489,
+      "end" : 490,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s3",
+    "begin" : 491,
+    "end" : 668,
+    "text" : "Through investments in modern \n technology, development of low emission \nprocesses and responsible company \nmanagement the sustainability perfor-\nmance is continuously improved.",
+    "tokens" : [ {
+      "id" : "s3-t0",
+      "begin" : 491,
+      "end" : 498,
+      "text" : "Through",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t1",
+      "begin" : 499,
+      "end" : 510,
+      "text" : "investments",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t2",
+      "begin" : 511,
+      "end" : 513,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t3",
+      "begin" : 514,
+      "end" : 520,
+      "text" : "modern",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t4",
+      "begin" : 523,
+      "end" : 533,
+      "text" : "technology",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t5",
+      "begin" : 533,
+      "end" : 534,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t6",
+      "begin" : 535,
+      "end" : 546,
+      "text" : "development",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t7",
+      "begin" : 547,
+      "end" : 549,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t8",
+      "begin" : 550,
+      "end" : 553,
+      "text" : "low",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t9",
+      "begin" : 554,
+      "end" : 562,
+      "text" : "emission",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t10",
+      "begin" : 564,
+      "end" : 573,
+      "text" : "processes",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t11",
+      "begin" : 574,
+      "end" : 577,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t12",
+      "begin" : 578,
+      "end" : 589,
+      "text" : "responsible",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t13",
+      "begin" : 590,
+      "end" : 597,
+      "text" : "company",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t14",
+      "begin" : 599,
+      "end" : 609,
+      "text" : "management",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t15",
+      "begin" : 610,
+      "end" : 613,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t16",
+      "begin" : 614,
+      "end" : 628,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t17",
+      "begin" : 629,
+      "end" : 635,
+      "text" : "perfor",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t18",
+      "begin" : 635,
+      "end" : 636,
+      "text" : "-",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t19",
+      "begin" : 637,
+      "end" : 642,
+      "text" : "mance",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t20",
+      "begin" : 643,
+      "end" : 645,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t21",
+      "begin" : 646,
+      "end" : 658,
+      "text" : "continuously",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t22",
+      "begin" : 659,
+      "end" : 667,
+      "text" : "improved",
+      "whiteSpace" : false
+    }, {
+      "id" : "s3-t23",
+      "begin" : 667,
+      "end" : 668,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s4",
+    "begin" : 669,
+    "end" : 825,
+    "text" : "Global \nmacro trends, stretching from the climate \nissue to urbanization, digitalization and \ntechnological development alter condi-\ntions for the business.",
+    "tokens" : [ {
+      "id" : "s4-t0",
+      "begin" : 669,
+      "end" : 675,
+      "text" : "Global",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t1",
+      "begin" : 677,
+      "end" : 682,
+      "text" : "macro",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t2",
+      "begin" : 683,
+      "end" : 689,
+      "text" : "trends",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t3",
+      "begin" : 689,
+      "end" : 690,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t4",
+      "begin" : 691,
+      "end" : 701,
+      "text" : "stretching",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t5",
+      "begin" : 702,
+      "end" : 706,
+      "text" : "from",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t6",
+      "begin" : 707,
+      "end" : 710,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t7",
+      "begin" : 711,
+      "end" : 718,
+      "text" : "climate",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t8",
+      "begin" : 720,
+      "end" : 725,
+      "text" : "issue",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t9",
+      "begin" : 726,
+      "end" : 728,
+      "text" : "to",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t10",
+      "begin" : 729,
+      "end" : 741,
+      "text" : "urbanization",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t11",
+      "begin" : 741,
+      "end" : 742,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t12",
+      "begin" : 743,
+      "end" : 757,
+      "text" : "digitalization",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t13",
+      "begin" : 758,
+      "end" : 761,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t14",
+      "begin" : 763,
+      "end" : 776,
+      "text" : "technological",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t15",
+      "begin" : 777,
+      "end" : 788,
+      "text" : "development",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t16",
+      "begin" : 789,
+      "end" : 794,
+      "text" : "alter",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t17",
+      "begin" : 795,
+      "end" : 800,
+      "text" : "condi",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t18",
+      "begin" : 800,
+      "end" : 801,
+      "text" : "-",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t19",
+      "begin" : 802,
+      "end" : 807,
+      "text" : "tions",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t20",
+      "begin" : 808,
+      "end" : 811,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t21",
+      "begin" : 812,
+      "end" : 815,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t22",
+      "begin" : 816,
+      "end" : 824,
+      "text" : "business",
+      "whiteSpace" : false
+    }, {
+      "id" : "s4-t23",
+      "begin" : 824,
+      "end" : 825,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s5",
+    "begin" : 826,
+    "end" : 1020,
+    "text" : "Bolidens success \nis dependant upon its ability to create \nvalue in a way that meets stakeholder \nneeds, while also taking into considera-\ntion financial, environmental and social \nconsequences.",
+    "tokens" : [ {
+      "id" : "s5-t0",
+      "begin" : 826,
+      "end" : 834,
+      "text" : "Bolidens",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t1",
+      "begin" : 835,
+      "end" : 842,
+      "text" : "success",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t2",
+      "begin" : 844,
+      "end" : 846,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t3",
+      "begin" : 847,
+      "end" : 856,
+      "text" : "dependant",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t4",
+      "begin" : 857,
+      "end" : 861,
+      "text" : "upon",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t5",
+      "begin" : 862,
+      "end" : 865,
+      "text" : "its",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t6",
+      "begin" : 866,
+      "end" : 873,
+      "text" : "ability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t7",
+      "begin" : 874,
+      "end" : 876,
+      "text" : "to",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t8",
+      "begin" : 877,
+      "end" : 883,
+      "text" : "create",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t9",
+      "begin" : 885,
+      "end" : 890,
+      "text" : "value",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t10",
+      "begin" : 891,
+      "end" : 893,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t11",
+      "begin" : 894,
+      "end" : 895,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t12",
+      "begin" : 896,
+      "end" : 899,
+      "text" : "way",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t13",
+      "begin" : 900,
+      "end" : 904,
+      "text" : "that",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t14",
+      "begin" : 905,
+      "end" : 910,
+      "text" : "meets",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t15",
+      "begin" : 911,
+      "end" : 922,
+      "text" : "stakeholder",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t16",
+      "begin" : 924,
+      "end" : 929,
+      "text" : "needs",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t17",
+      "begin" : 929,
+      "end" : 930,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t18",
+      "begin" : 931,
+      "end" : 936,
+      "text" : "while",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t19",
+      "begin" : 937,
+      "end" : 941,
+      "text" : "also",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t20",
+      "begin" : 942,
+      "end" : 948,
+      "text" : "taking",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t21",
+      "begin" : 949,
+      "end" : 953,
+      "text" : "into",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t22",
+      "begin" : 954,
+      "end" : 963,
+      "text" : "considera",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t23",
+      "begin" : 963,
+      "end" : 964,
+      "text" : "-",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t24",
+      "begin" : 965,
+      "end" : 969,
+      "text" : "tion",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t25",
+      "begin" : 970,
+      "end" : 979,
+      "text" : "financial",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t26",
+      "begin" : 979,
+      "end" : 980,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t27",
+      "begin" : 981,
+      "end" : 994,
+      "text" : "environmental",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t28",
+      "begin" : 995,
+      "end" : 998,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t29",
+      "begin" : 999,
+      "end" : 1005,
+      "text" : "social",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t30",
+      "begin" : 1007,
+      "end" : 1019,
+      "text" : "consequences",
+      "whiteSpace" : false
+    }, {
+      "id" : "s5-t31",
+      "begin" : 1019,
+      "end" : 1020,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s6",
+    "begin" : 1021,
+    "end" : 1092,
+    "text" : "Sustainability is part of the \ncompanys strategy and business planning.",
+    "tokens" : [ {
+      "id" : "s6-t0",
+      "begin" : 1021,
+      "end" : 1035,
+      "text" : "Sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t1",
+      "begin" : 1036,
+      "end" : 1038,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t2",
+      "begin" : 1039,
+      "end" : 1043,
+      "text" : "part",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t3",
+      "begin" : 1044,
+      "end" : 1046,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t4",
+      "begin" : 1047,
+      "end" : 1050,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t5",
+      "begin" : 1052,
+      "end" : 1060,
+      "text" : "companys",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t6",
+      "begin" : 1061,
+      "end" : 1069,
+      "text" : "strategy",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t7",
+      "begin" : 1070,
+      "end" : 1073,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t8",
+      "begin" : 1074,
+      "end" : 1082,
+      "text" : "business",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t9",
+      "begin" : 1083,
+      "end" : 1091,
+      "text" : "planning",
+      "whiteSpace" : false
+    }, {
+      "id" : "s6-t10",
+      "begin" : 1091,
+      "end" : 1092,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s7",
+    "begin" : 1094,
+    "end" : 1240,
+    "text" : "Governance of Bolidens \nsustainability work \nThe Board is responsible for ensuring \nan appropriate company structure and \n a sustainable strategy.",
+    "tokens" : [ {
+      "id" : "s7-t0",
+      "begin" : 1094,
+      "end" : 1104,
+      "text" : "Governance",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t1",
+      "begin" : 1105,
+      "end" : 1107,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t2",
+      "begin" : 1108,
+      "end" : 1116,
+      "text" : "Bolidens",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t3",
+      "begin" : 1118,
+      "end" : 1132,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t4",
+      "begin" : 1133,
+      "end" : 1137,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t5",
+      "begin" : 1139,
+      "end" : 1142,
+      "text" : "The",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t6",
+      "begin" : 1143,
+      "end" : 1148,
+      "text" : "Board",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t7",
+      "begin" : 1149,
+      "end" : 1151,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t8",
+      "begin" : 1152,
+      "end" : 1163,
+      "text" : "responsible",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t9",
+      "begin" : 1164,
+      "end" : 1167,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t10",
+      "begin" : 1168,
+      "end" : 1176,
+      "text" : "ensuring",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t11",
+      "begin" : 1178,
+      "end" : 1180,
+      "text" : "an",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t12",
+      "begin" : 1181,
+      "end" : 1192,
+      "text" : "appropriate",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t13",
+      "begin" : 1193,
+      "end" : 1200,
+      "text" : "company",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t14",
+      "begin" : 1201,
+      "end" : 1210,
+      "text" : "structure",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t15",
+      "begin" : 1211,
+      "end" : 1214,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t16",
+      "begin" : 1217,
+      "end" : 1218,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t17",
+      "begin" : 1219,
+      "end" : 1230,
+      "text" : "sustainable",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t18",
+      "begin" : 1231,
+      "end" : 1239,
+      "text" : "strategy",
+      "whiteSpace" : false
+    }, {
+      "id" : "s7-t19",
+      "begin" : 1239,
+      "end" : 1240,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s8",
+    "begin" : 1241,
+    "end" : 1368,
+    "text" : "The CEO is \n responsible for implementing Bolidens \nsustainability work and for ensuring \nthat a management system is in place.",
+    "tokens" : [ {
+      "id" : "s8-t0",
+      "begin" : 1241,
+      "end" : 1244,
+      "text" : "The",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t1",
+      "begin" : 1245,
+      "end" : 1248,
+      "text" : "CEO",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t2",
+      "begin" : 1249,
+      "end" : 1251,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t3",
+      "begin" : 1254,
+      "end" : 1265,
+      "text" : "responsible",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t4",
+      "begin" : 1266,
+      "end" : 1269,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t5",
+      "begin" : 1270,
+      "end" : 1282,
+      "text" : "implementing",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t6",
+      "begin" : 1283,
+      "end" : 1291,
+      "text" : "Bolidens",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t7",
+      "begin" : 1293,
+      "end" : 1307,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t8",
+      "begin" : 1308,
+      "end" : 1312,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t9",
+      "begin" : 1313,
+      "end" : 1316,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t10",
+      "begin" : 1317,
+      "end" : 1320,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t11",
+      "begin" : 1321,
+      "end" : 1329,
+      "text" : "ensuring",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t12",
+      "begin" : 1331,
+      "end" : 1335,
+      "text" : "that",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t13",
+      "begin" : 1336,
+      "end" : 1337,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t14",
+      "begin" : 1338,
+      "end" : 1348,
+      "text" : "management",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t15",
+      "begin" : 1349,
+      "end" : 1355,
+      "text" : "system",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t16",
+      "begin" : 1356,
+      "end" : 1358,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t17",
+      "begin" : 1359,
+      "end" : 1361,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t18",
+      "begin" : 1362,
+      "end" : 1367,
+      "text" : "place",
+      "whiteSpace" : false
+    }, {
+      "id" : "s8-t19",
+      "begin" : 1367,
+      "end" : 1368,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s9",
+    "begin" : 1371,
+    "end" : 1452,
+    "text" : "Sustainability topics are addressed at every \nGroup management and Board meeting.",
+    "tokens" : [ {
+      "id" : "s9-t0",
+      "begin" : 1371,
+      "end" : 1385,
+      "text" : "Sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t1",
+      "begin" : 1386,
+      "end" : 1392,
+      "text" : "topics",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t2",
+      "begin" : 1393,
+      "end" : 1396,
+      "text" : "are",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t3",
+      "begin" : 1397,
+      "end" : 1406,
+      "text" : "addressed",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t4",
+      "begin" : 1407,
+      "end" : 1409,
+      "text" : "at",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t5",
+      "begin" : 1410,
+      "end" : 1415,
+      "text" : "every",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t6",
+      "begin" : 1417,
+      "end" : 1422,
+      "text" : "Group",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t7",
+      "begin" : 1423,
+      "end" : 1433,
+      "text" : "management",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t8",
+      "begin" : 1434,
+      "end" : 1437,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t9",
+      "begin" : 1438,
+      "end" : 1443,
+      "text" : "Board",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t10",
+      "begin" : 1444,
+      "end" : 1451,
+      "text" : "meeting",
+      "whiteSpace" : false
+    }, {
+      "id" : "s9-t11",
+      "begin" : 1451,
+      "end" : 1452,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s10",
+    "begin" : 1454,
+    "end" : 1569,
+    "text" : "The business areas Mines and Smelters are \nresponsible for integrating sustainability \ninto their operational work.",
+    "tokens" : [ {
+      "id" : "s10-t0",
+      "begin" : 1454,
+      "end" : 1457,
+      "text" : "The",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t1",
+      "begin" : 1458,
+      "end" : 1466,
+      "text" : "business",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t2",
+      "begin" : 1467,
+      "end" : 1472,
+      "text" : "areas",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t3",
+      "begin" : 1473,
+      "end" : 1478,
+      "text" : "Mines",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t4",
+      "begin" : 1479,
+      "end" : 1482,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t5",
+      "begin" : 1483,
+      "end" : 1491,
+      "text" : "Smelters",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t6",
+      "begin" : 1492,
+      "end" : 1495,
+      "text" : "are",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t7",
+      "begin" : 1497,
+      "end" : 1508,
+      "text" : "responsible",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t8",
+      "begin" : 1509,
+      "end" : 1512,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t9",
+      "begin" : 1513,
+      "end" : 1524,
+      "text" : "integrating",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t10",
+      "begin" : 1525,
+      "end" : 1539,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t11",
+      "begin" : 1541,
+      "end" : 1545,
+      "text" : "into",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t12",
+      "begin" : 1546,
+      "end" : 1551,
+      "text" : "their",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t13",
+      "begin" : 1552,
+      "end" : 1563,
+      "text" : "operational",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t14",
+      "begin" : 1564,
+      "end" : 1568,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s10-t15",
+      "begin" : 1568,
+      "end" : 1569,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s11",
+    "begin" : 1570,
+    "end" : 1732,
+    "text" : "Bolidens \nsustainability work is based on own \nstandards, stakeholders expectations, the \nUN Global Compact and the UNs global \ngoals for sustainable development.",
+    "tokens" : [ {
+      "id" : "s11-t0",
+      "begin" : 1570,
+      "end" : 1578,
+      "text" : "Bolidens",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t1",
+      "begin" : 1580,
+      "end" : 1594,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t2",
+      "begin" : 1595,
+      "end" : 1599,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t3",
+      "begin" : 1600,
+      "end" : 1602,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t4",
+      "begin" : 1603,
+      "end" : 1608,
+      "text" : "based",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t5",
+      "begin" : 1609,
+      "end" : 1611,
+      "text" : "on",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t6",
+      "begin" : 1612,
+      "end" : 1615,
+      "text" : "own",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t7",
+      "begin" : 1617,
+      "end" : 1626,
+      "text" : "standards",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t8",
+      "begin" : 1626,
+      "end" : 1627,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t9",
+      "begin" : 1628,
+      "end" : 1640,
+      "text" : "stakeholders",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t10",
+      "begin" : 1641,
+      "end" : 1653,
+      "text" : "expectations",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t11",
+      "begin" : 1653,
+      "end" : 1654,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t12",
+      "begin" : 1655,
+      "end" : 1658,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t13",
+      "begin" : 1660,
+      "end" : 1662,
+      "text" : "UN",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t14",
+      "begin" : 1663,
+      "end" : 1669,
+      "text" : "Global",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t15",
+      "begin" : 1670,
+      "end" : 1677,
+      "text" : "Compact",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t16",
+      "begin" : 1678,
+      "end" : 1681,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t17",
+      "begin" : 1682,
+      "end" : 1685,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t18",
+      "begin" : 1686,
+      "end" : 1689,
+      "text" : "UNs",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t19",
+      "begin" : 1690,
+      "end" : 1696,
+      "text" : "global",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t20",
+      "begin" : 1698,
+      "end" : 1703,
+      "text" : "goals",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t21",
+      "begin" : 1704,
+      "end" : 1707,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t22",
+      "begin" : 1708,
+      "end" : 1719,
+      "text" : "sustainable",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t23",
+      "begin" : 1720,
+      "end" : 1731,
+      "text" : "development",
+      "whiteSpace" : false
+    }, {
+      "id" : "s11-t24",
+      "begin" : 1731,
+      "end" : 1732,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s12",
+    "begin" : 1733,
+    "end" : 2049,
+    "text" : "Boliden \nalso supports the Task Force on Climate- \nrelated Financial Disclosures (TCFD) and \nhas a management system that complies \nwith the ISO standards for environmental, \nEvery sustainability topic has a long-term \ndirection that shall support and guide \nthe structure and efforts at every level \nin the company.",
+    "tokens" : [ {
+      "id" : "s12-t0",
+      "begin" : 1733,
+      "end" : 1740,
+      "text" : "Boliden",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t1",
+      "begin" : 1742,
+      "end" : 1746,
+      "text" : "also",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t2",
+      "begin" : 1747,
+      "end" : 1755,
+      "text" : "supports",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t3",
+      "begin" : 1756,
+      "end" : 1759,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t4",
+      "begin" : 1760,
+      "end" : 1764,
+      "text" : "Task",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t5",
+      "begin" : 1765,
+      "end" : 1770,
+      "text" : "Force",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t6",
+      "begin" : 1771,
+      "end" : 1773,
+      "text" : "on",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t7",
+      "begin" : 1774,
+      "end" : 1781,
+      "text" : "Climate",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t8",
+      "begin" : 1781,
+      "end" : 1782,
+      "text" : "-",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t9",
+      "begin" : 1784,
+      "end" : 1791,
+      "text" : "related",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t10",
+      "begin" : 1792,
+      "end" : 1801,
+      "text" : "Financial",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t11",
+      "begin" : 1802,
+      "end" : 1813,
+      "text" : "Disclosures",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t12",
+      "begin" : 1814,
+      "end" : 1815,
+      "text" : "(",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t13",
+      "begin" : 1815,
+      "end" : 1819,
+      "text" : "TCFD",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t14",
+      "begin" : 1819,
+      "end" : 1820,
+      "text" : ")",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t15",
+      "begin" : 1821,
+      "end" : 1824,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t16",
+      "begin" : 1826,
+      "end" : 1829,
+      "text" : "has",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t17",
+      "begin" : 1830,
+      "end" : 1831,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t18",
+      "begin" : 1832,
+      "end" : 1842,
+      "text" : "management",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t19",
+      "begin" : 1843,
+      "end" : 1849,
+      "text" : "system",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t20",
+      "begin" : 1850,
+      "end" : 1854,
+      "text" : "that",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t21",
+      "begin" : 1855,
+      "end" : 1863,
+      "text" : "complies",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t22",
+      "begin" : 1865,
+      "end" : 1869,
+      "text" : "with",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t23",
+      "begin" : 1870,
+      "end" : 1873,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t24",
+      "begin" : 1874,
+      "end" : 1877,
+      "text" : "ISO",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t25",
+      "begin" : 1878,
+      "end" : 1887,
+      "text" : "standards",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t26",
+      "begin" : 1888,
+      "end" : 1891,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t27",
+      "begin" : 1892,
+      "end" : 1905,
+      "text" : "environmental",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t28",
+      "begin" : 1905,
+      "end" : 1906,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t29",
+      "begin" : 1908,
+      "end" : 1913,
+      "text" : "Every",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t30",
+      "begin" : 1914,
+      "end" : 1928,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t31",
+      "begin" : 1929,
+      "end" : 1934,
+      "text" : "topic",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t32",
+      "begin" : 1935,
+      "end" : 1938,
+      "text" : "has",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t33",
+      "begin" : 1939,
+      "end" : 1940,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t34",
+      "begin" : 1941,
+      "end" : 1950,
+      "text" : "long-term",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t35",
+      "begin" : 1952,
+      "end" : 1961,
+      "text" : "direction",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t36",
+      "begin" : 1962,
+      "end" : 1966,
+      "text" : "that",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t37",
+      "begin" : 1967,
+      "end" : 1972,
+      "text" : "shall",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t38",
+      "begin" : 1973,
+      "end" : 1980,
+      "text" : "support",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t39",
+      "begin" : 1981,
+      "end" : 1984,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t40",
+      "begin" : 1985,
+      "end" : 1990,
+      "text" : "guide",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t41",
+      "begin" : 1992,
+      "end" : 1995,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t42",
+      "begin" : 1996,
+      "end" : 2005,
+      "text" : "structure",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t43",
+      "begin" : 2006,
+      "end" : 2009,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t44",
+      "begin" : 2010,
+      "end" : 2017,
+      "text" : "efforts",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t45",
+      "begin" : 2018,
+      "end" : 2020,
+      "text" : "at",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t46",
+      "begin" : 2021,
+      "end" : 2026,
+      "text" : "every",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t47",
+      "begin" : 2027,
+      "end" : 2032,
+      "text" : "level",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t48",
+      "begin" : 2034,
+      "end" : 2036,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t49",
+      "begin" : 2037,
+      "end" : 2040,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t50",
+      "begin" : 2041,
+      "end" : 2048,
+      "text" : "company",
+      "whiteSpace" : false
+    }, {
+      "id" : "s12-t51",
+      "begin" : 2048,
+      "end" : 2049,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s13",
+    "begin" : 2050,
+    "end" : 2150,
+    "text" : "Bolidens sustainability \ntopics and directions are presented in the \n companys Sustainability Index.",
+    "tokens" : [ {
+      "id" : "s13-t0",
+      "begin" : 2050,
+      "end" : 2058,
+      "text" : "Bolidens",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t1",
+      "begin" : 2059,
+      "end" : 2073,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t2",
+      "begin" : 2075,
+      "end" : 2081,
+      "text" : "topics",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t3",
+      "begin" : 2082,
+      "end" : 2085,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t4",
+      "begin" : 2086,
+      "end" : 2096,
+      "text" : "directions",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t5",
+      "begin" : 2097,
+      "end" : 2100,
+      "text" : "are",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t6",
+      "begin" : 2101,
+      "end" : 2110,
+      "text" : "presented",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t7",
+      "begin" : 2111,
+      "end" : 2113,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t8",
+      "begin" : 2114,
+      "end" : 2117,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t9",
+      "begin" : 2120,
+      "end" : 2128,
+      "text" : "companys",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t10",
+      "begin" : 2129,
+      "end" : 2143,
+      "text" : "Sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t11",
+      "begin" : 2144,
+      "end" : 2149,
+      "text" : "Index",
+      "whiteSpace" : false
+    }, {
+      "id" : "s13-t12",
+      "begin" : 2149,
+      "end" : 2150,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s14",
+    "begin" : 2152,
+    "end" : 2342,
+    "text" : "Boliden has identified its sustainability \ntopics by analyzing technology and \n consumption trends as well as maintaining \na close dialogue with customers, suppliers \nand other stakeholders.",
+    "tokens" : [ {
+      "id" : "s14-t0",
+      "begin" : 2152,
+      "end" : 2159,
+      "text" : "Boliden",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t1",
+      "begin" : 2160,
+      "end" : 2163,
+      "text" : "has",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t2",
+      "begin" : 2164,
+      "end" : 2174,
+      "text" : "identified",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t3",
+      "begin" : 2175,
+      "end" : 2178,
+      "text" : "its",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t4",
+      "begin" : 2179,
+      "end" : 2193,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t5",
+      "begin" : 2195,
+      "end" : 2201,
+      "text" : "topics",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t6",
+      "begin" : 2202,
+      "end" : 2204,
+      "text" : "by",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t7",
+      "begin" : 2205,
+      "end" : 2214,
+      "text" : "analyzing",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t8",
+      "begin" : 2215,
+      "end" : 2225,
+      "text" : "technology",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t9",
+      "begin" : 2226,
+      "end" : 2229,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t10",
+      "begin" : 2232,
+      "end" : 2243,
+      "text" : "consumption",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t11",
+      "begin" : 2244,
+      "end" : 2250,
+      "text" : "trends",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t12",
+      "begin" : 2251,
+      "end" : 2253,
+      "text" : "as",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t13",
+      "begin" : 2254,
+      "end" : 2258,
+      "text" : "well",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t14",
+      "begin" : 2259,
+      "end" : 2261,
+      "text" : "as",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t15",
+      "begin" : 2262,
+      "end" : 2273,
+      "text" : "maintaining",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t16",
+      "begin" : 2275,
+      "end" : 2276,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t17",
+      "begin" : 2277,
+      "end" : 2282,
+      "text" : "close",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t18",
+      "begin" : 2283,
+      "end" : 2291,
+      "text" : "dialogue",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t19",
+      "begin" : 2292,
+      "end" : 2296,
+      "text" : "with",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t20",
+      "begin" : 2297,
+      "end" : 2306,
+      "text" : "customers",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t21",
+      "begin" : 2306,
+      "end" : 2307,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t22",
+      "begin" : 2308,
+      "end" : 2317,
+      "text" : "suppliers",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t23",
+      "begin" : 2319,
+      "end" : 2322,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t24",
+      "begin" : 2323,
+      "end" : 2328,
+      "text" : "other",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t25",
+      "begin" : 2329,
+      "end" : 2341,
+      "text" : "stakeholders",
+      "whiteSpace" : false
+    }, {
+      "id" : "s14-t26",
+      "begin" : 2341,
+      "end" : 2342,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s15",
+    "begin" : 2343,
+    "end" : 2525,
+    "text" : "Every year, a \nworkshop and a materiality analyze are \ncarried out with representatives from the \nentire operation, where the significant \nsustainability topics have been identified.",
+    "tokens" : [ {
+      "id" : "s15-t0",
+      "begin" : 2343,
+      "end" : 2348,
+      "text" : "Every",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t1",
+      "begin" : 2349,
+      "end" : 2353,
+      "text" : "year",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t2",
+      "begin" : 2353,
+      "end" : 2354,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t3",
+      "begin" : 2355,
+      "end" : 2356,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t4",
+      "begin" : 2358,
+      "end" : 2366,
+      "text" : "workshop",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t5",
+      "begin" : 2367,
+      "end" : 2370,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t6",
+      "begin" : 2371,
+      "end" : 2372,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t7",
+      "begin" : 2373,
+      "end" : 2384,
+      "text" : "materiality",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t8",
+      "begin" : 2385,
+      "end" : 2392,
+      "text" : "analyze",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t9",
+      "begin" : 2393,
+      "end" : 2396,
+      "text" : "are",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t10",
+      "begin" : 2398,
+      "end" : 2405,
+      "text" : "carried",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t11",
+      "begin" : 2406,
+      "end" : 2409,
+      "text" : "out",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t12",
+      "begin" : 2410,
+      "end" : 2414,
+      "text" : "with",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t13",
+      "begin" : 2415,
+      "end" : 2430,
+      "text" : "representatives",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t14",
+      "begin" : 2431,
+      "end" : 2435,
+      "text" : "from",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t15",
+      "begin" : 2436,
+      "end" : 2439,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t16",
+      "begin" : 2441,
+      "end" : 2447,
+      "text" : "entire",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t17",
+      "begin" : 2448,
+      "end" : 2457,
+      "text" : "operation",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t18",
+      "begin" : 2457,
+      "end" : 2458,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t19",
+      "begin" : 2459,
+      "end" : 2464,
+      "text" : "where",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t20",
+      "begin" : 2465,
+      "end" : 2468,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t21",
+      "begin" : 2469,
+      "end" : 2480,
+      "text" : "significant",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t22",
+      "begin" : 2482,
+      "end" : 2496,
+      "text" : "sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t23",
+      "begin" : 2497,
+      "end" : 2503,
+      "text" : "topics",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t24",
+      "begin" : 2504,
+      "end" : 2508,
+      "text" : "have",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t25",
+      "begin" : 2509,
+      "end" : 2513,
+      "text" : "been",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t26",
+      "begin" : 2514,
+      "end" : 2524,
+      "text" : "identified",
+      "whiteSpace" : false
+    }, {
+      "id" : "s15-t27",
+      "begin" : 2524,
+      "end" : 2525,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s16",
+    "begin" : 2527,
+    "end" : 2596,
+    "text" : "The prioritized topics then form part of \nthe companys strategy work.",
+    "tokens" : [ {
+      "id" : "s16-t0",
+      "begin" : 2527,
+      "end" : 2530,
+      "text" : "The",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t1",
+      "begin" : 2531,
+      "end" : 2542,
+      "text" : "prioritized",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t2",
+      "begin" : 2543,
+      "end" : 2549,
+      "text" : "topics",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t3",
+      "begin" : 2550,
+      "end" : 2554,
+      "text" : "then",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t4",
+      "begin" : 2555,
+      "end" : 2559,
+      "text" : "form",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t5",
+      "begin" : 2560,
+      "end" : 2564,
+      "text" : "part",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t6",
+      "begin" : 2565,
+      "end" : 2567,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t7",
+      "begin" : 2569,
+      "end" : 2572,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t8",
+      "begin" : 2573,
+      "end" : 2581,
+      "text" : "companys",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t9",
+      "begin" : 2582,
+      "end" : 2590,
+      "text" : "strategy",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t10",
+      "begin" : 2591,
+      "end" : 2595,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s16-t11",
+      "begin" : 2595,
+      "end" : 2596,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s17",
+    "begin" : 2597,
+    "end" : 2763,
+    "text" : "Climate \nchange was identified as one of Bolidens \nsignificant topics in 2019, which led to the \noverall goal of a 40% reduction in carbon \ndioxide intensity by 2030.",
+    "tokens" : [ {
+      "id" : "s17-t0",
+      "begin" : 2597,
+      "end" : 2604,
+      "text" : "Climate",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t1",
+      "begin" : 2606,
+      "end" : 2612,
+      "text" : "change",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t2",
+      "begin" : 2613,
+      "end" : 2616,
+      "text" : "was",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t3",
+      "begin" : 2617,
+      "end" : 2627,
+      "text" : "identified",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t4",
+      "begin" : 2628,
+      "end" : 2630,
+      "text" : "as",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t5",
+      "begin" : 2631,
+      "end" : 2634,
+      "text" : "one",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t6",
+      "begin" : 2635,
+      "end" : 2637,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t7",
+      "begin" : 2638,
+      "end" : 2646,
+      "text" : "Bolidens",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t8",
+      "begin" : 2648,
+      "end" : 2659,
+      "text" : "significant",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t9",
+      "begin" : 2660,
+      "end" : 2666,
+      "text" : "topics",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t10",
+      "begin" : 2667,
+      "end" : 2669,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t11",
+      "begin" : 2670,
+      "end" : 2674,
+      "text" : "2019",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t12",
+      "begin" : 2674,
+      "end" : 2675,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t13",
+      "begin" : 2676,
+      "end" : 2681,
+      "text" : "which",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t14",
+      "begin" : 2682,
+      "end" : 2685,
+      "text" : "led",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t15",
+      "begin" : 2686,
+      "end" : 2688,
+      "text" : "to",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t16",
+      "begin" : 2689,
+      "end" : 2692,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t17",
+      "begin" : 2694,
+      "end" : 2701,
+      "text" : "overall",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t18",
+      "begin" : 2702,
+      "end" : 2706,
+      "text" : "goal",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t19",
+      "begin" : 2707,
+      "end" : 2709,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t20",
+      "begin" : 2710,
+      "end" : 2711,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t21",
+      "begin" : 2712,
+      "end" : 2714,
+      "text" : "40",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t22",
+      "begin" : 2714,
+      "end" : 2715,
+      "text" : "%",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t23",
+      "begin" : 2716,
+      "end" : 2725,
+      "text" : "reduction",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t24",
+      "begin" : 2726,
+      "end" : 2728,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t25",
+      "begin" : 2729,
+      "end" : 2735,
+      "text" : "carbon",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t26",
+      "begin" : 2737,
+      "end" : 2744,
+      "text" : "dioxide",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t27",
+      "begin" : 2745,
+      "end" : 2754,
+      "text" : "intensity",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t28",
+      "begin" : 2755,
+      "end" : 2757,
+      "text" : "by",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t29",
+      "begin" : 2758,
+      "end" : 2762,
+      "text" : "2030",
+      "whiteSpace" : false
+    }, {
+      "id" : "s17-t30",
+      "begin" : 2762,
+      "end" : 2763,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s18",
+    "begin" : 2764,
+    "end" : 2985,
+    "text" : "Boliden Annual and Sustainability Report 2019\n30 SUSTAINABLE DEVELOPMENT\nHigh levels of skills and \nsustainable work environments\nBoliden seeks to offer meaningful, safe and healthy jobs in stimulating work \nenvironments.",
+    "tokens" : [ {
+      "id" : "s18-t0",
+      "begin" : 2764,
+      "end" : 2771,
+      "text" : "Boliden",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t1",
+      "begin" : 2772,
+      "end" : 2778,
+      "text" : "Annual",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t2",
+      "begin" : 2779,
+      "end" : 2782,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t3",
+      "begin" : 2783,
+      "end" : 2797,
+      "text" : "Sustainability",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t4",
+      "begin" : 2798,
+      "end" : 2804,
+      "text" : "Report",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t5",
+      "begin" : 2805,
+      "end" : 2809,
+      "text" : "2019",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t6",
+      "begin" : 2810,
+      "end" : 2812,
+      "text" : "30",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t7",
+      "begin" : 2813,
+      "end" : 2824,
+      "text" : "SUSTAINABLE",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t8",
+      "begin" : 2825,
+      "end" : 2836,
+      "text" : "DEVELOPMENT",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t9",
+      "begin" : 2837,
+      "end" : 2841,
+      "text" : "High",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t10",
+      "begin" : 2842,
+      "end" : 2848,
+      "text" : "levels",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t11",
+      "begin" : 2849,
+      "end" : 2851,
+      "text" : "of",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t12",
+      "begin" : 2852,
+      "end" : 2858,
+      "text" : "skills",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t13",
+      "begin" : 2859,
+      "end" : 2862,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t14",
+      "begin" : 2864,
+      "end" : 2875,
+      "text" : "sustainable",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t15",
+      "begin" : 2876,
+      "end" : 2880,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t16",
+      "begin" : 2881,
+      "end" : 2893,
+      "text" : "environments",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t17",
+      "begin" : 2894,
+      "end" : 2901,
+      "text" : "Boliden",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t18",
+      "begin" : 2902,
+      "end" : 2907,
+      "text" : "seeks",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t19",
+      "begin" : 2908,
+      "end" : 2910,
+      "text" : "to",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t20",
+      "begin" : 2911,
+      "end" : 2916,
+      "text" : "offer",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t21",
+      "begin" : 2917,
+      "end" : 2927,
+      "text" : "meaningful",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t22",
+      "begin" : 2927,
+      "end" : 2928,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t23",
+      "begin" : 2929,
+      "end" : 2933,
+      "text" : "safe",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t24",
+      "begin" : 2934,
+      "end" : 2937,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t25",
+      "begin" : 2938,
+      "end" : 2945,
+      "text" : "healthy",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t26",
+      "begin" : 2946,
+      "end" : 2950,
+      "text" : "jobs",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t27",
+      "begin" : 2951,
+      "end" : 2953,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t28",
+      "begin" : 2954,
+      "end" : 2965,
+      "text" : "stimulating",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t29",
+      "begin" : 2966,
+      "end" : 2970,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t30",
+      "begin" : 2972,
+      "end" : 2984,
+      "text" : "environments",
+      "whiteSpace" : false
+    }, {
+      "id" : "s18-t31",
+      "begin" : 2984,
+      "end" : 2985,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s19",
+    "begin" : 2986,
+    "end" : 3048,
+    "text" : "Innovation and modern technology support the day-to-day \nwork.",
+    "tokens" : [ {
+      "id" : "s19-t0",
+      "begin" : 2986,
+      "end" : 2996,
+      "text" : "Innovation",
+      "whiteSpace" : false
+    }, {
+      "id" : "s19-t1",
+      "begin" : 2997,
+      "end" : 3000,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s19-t2",
+      "begin" : 3001,
+      "end" : 3007,
+      "text" : "modern",
+      "whiteSpace" : false
+    }, {
+      "id" : "s19-t3",
+      "begin" : 3008,
+      "end" : 3018,
+      "text" : "technology",
+      "whiteSpace" : false
+    }, {
+      "id" : "s19-t4",
+      "begin" : 3019,
+      "end" : 3026,
+      "text" : "support",
+      "whiteSpace" : false
+    }, {
+      "id" : "s19-t5",
+      "begin" : 3027,
+      "end" : 3030,
+      "text" : "the",
+      "whiteSpace" : false
+    }, {
+      "id" : "s19-t6",
+      "begin" : 3031,
+      "end" : 3041,
+      "text" : "day-to-day",
+      "whiteSpace" : false
+    }, {
+      "id" : "s19-t7",
+      "begin" : 3043,
+      "end" : 3047,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s19-t8",
+      "begin" : 3047,
+      "end" : 3048,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s20",
+    "begin" : 3049,
+    "end" : 3199,
+    "text" : "Sustainable work environments lead to increased job satisfaction, \nstrong commitment and improved conditions for attracting and developing \nemployees.",
+    "tokens" : [ {
+      "id" : "s20-t0",
+      "begin" : 3049,
+      "end" : 3060,
+      "text" : "Sustainable",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t1",
+      "begin" : 3061,
+      "end" : 3065,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t2",
+      "begin" : 3066,
+      "end" : 3078,
+      "text" : "environments",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t3",
+      "begin" : 3079,
+      "end" : 3083,
+      "text" : "lead",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t4",
+      "begin" : 3084,
+      "end" : 3086,
+      "text" : "to",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t5",
+      "begin" : 3087,
+      "end" : 3096,
+      "text" : "increased",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t6",
+      "begin" : 3097,
+      "end" : 3100,
+      "text" : "job",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t7",
+      "begin" : 3101,
+      "end" : 3113,
+      "text" : "satisfaction",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t8",
+      "begin" : 3113,
+      "end" : 3114,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t9",
+      "begin" : 3116,
+      "end" : 3122,
+      "text" : "strong",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t10",
+      "begin" : 3123,
+      "end" : 3133,
+      "text" : "commitment",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t11",
+      "begin" : 3134,
+      "end" : 3137,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t12",
+      "begin" : 3138,
+      "end" : 3146,
+      "text" : "improved",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t13",
+      "begin" : 3147,
+      "end" : 3157,
+      "text" : "conditions",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t14",
+      "begin" : 3158,
+      "end" : 3161,
+      "text" : "for",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t15",
+      "begin" : 3162,
+      "end" : 3172,
+      "text" : "attracting",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t16",
+      "begin" : 3173,
+      "end" : 3176,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t17",
+      "begin" : 3177,
+      "end" : 3187,
+      "text" : "developing",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t18",
+      "begin" : 3189,
+      "end" : 3198,
+      "text" : "employees",
+      "whiteSpace" : false
+    }, {
+      "id" : "s20-t19",
+      "begin" : 3198,
+      "end" : 3199,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s21",
+    "begin" : 3200,
+    "end" : 3393,
+    "text" : "Work environment, health and safety\nAll employees, contractors and others \nworking at or visiting Bolidens production \nunits and offices are entitled to a safe and \nhealthy working environment.",
+    "tokens" : [ {
+      "id" : "s21-t0",
+      "begin" : 3200,
+      "end" : 3204,
+      "text" : "Work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t1",
+      "begin" : 3205,
+      "end" : 3216,
+      "text" : "environment",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t2",
+      "begin" : 3216,
+      "end" : 3217,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t3",
+      "begin" : 3218,
+      "end" : 3224,
+      "text" : "health",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t4",
+      "begin" : 3225,
+      "end" : 3228,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t5",
+      "begin" : 3229,
+      "end" : 3235,
+      "text" : "safety",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t6",
+      "begin" : 3236,
+      "end" : 3239,
+      "text" : "All",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t7",
+      "begin" : 3240,
+      "end" : 3249,
+      "text" : "employees",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t8",
+      "begin" : 3249,
+      "end" : 3250,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t9",
+      "begin" : 3251,
+      "end" : 3262,
+      "text" : "contractors",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t10",
+      "begin" : 3263,
+      "end" : 3266,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t11",
+      "begin" : 3267,
+      "end" : 3273,
+      "text" : "others",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t12",
+      "begin" : 3275,
+      "end" : 3282,
+      "text" : "working",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t13",
+      "begin" : 3283,
+      "end" : 3285,
+      "text" : "at",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t14",
+      "begin" : 3286,
+      "end" : 3288,
+      "text" : "or",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t15",
+      "begin" : 3289,
+      "end" : 3297,
+      "text" : "visiting",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t16",
+      "begin" : 3298,
+      "end" : 3306,
+      "text" : "Bolidens",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t17",
+      "begin" : 3307,
+      "end" : 3317,
+      "text" : "production",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t18",
+      "begin" : 3319,
+      "end" : 3324,
+      "text" : "units",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t19",
+      "begin" : 3325,
+      "end" : 3328,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t20",
+      "begin" : 3329,
+      "end" : 3336,
+      "text" : "offices",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t21",
+      "begin" : 3337,
+      "end" : 3340,
+      "text" : "are",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t22",
+      "begin" : 3341,
+      "end" : 3349,
+      "text" : "entitled",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t23",
+      "begin" : 3350,
+      "end" : 3352,
+      "text" : "to",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t24",
+      "begin" : 3353,
+      "end" : 3354,
+      "text" : "a",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t25",
+      "begin" : 3355,
+      "end" : 3359,
+      "text" : "safe",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t26",
+      "begin" : 3360,
+      "end" : 3363,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t27",
+      "begin" : 3365,
+      "end" : 3372,
+      "text" : "healthy",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t28",
+      "begin" : 3373,
+      "end" : 3380,
+      "text" : "working",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t29",
+      "begin" : 3381,
+      "end" : 3392,
+      "text" : "environment",
+      "whiteSpace" : false
+    }, {
+      "id" : "s21-t30",
+      "begin" : 3392,
+      "end" : 3393,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s22",
+    "begin" : 3395,
+    "end" : 3485,
+    "text" : "The goal is an accident-free, healthy \n operation where people are healthy \nand feel well.",
+    "tokens" : [ {
+      "id" : "s22-t0",
+      "begin" : 3395,
+      "end" : 3398,
+      "text" : "The",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t1",
+      "begin" : 3399,
+      "end" : 3403,
+      "text" : "goal",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t2",
+      "begin" : 3404,
+      "end" : 3406,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t3",
+      "begin" : 3407,
+      "end" : 3409,
+      "text" : "an",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t4",
+      "begin" : 3410,
+      "end" : 3418,
+      "text" : "accident",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t5",
+      "begin" : 3418,
+      "end" : 3419,
+      "text" : "-",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t6",
+      "begin" : 3419,
+      "end" : 3423,
+      "text" : "free",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t7",
+      "begin" : 3423,
+      "end" : 3424,
+      "text" : ",",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t8",
+      "begin" : 3425,
+      "end" : 3432,
+      "text" : "healthy",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t9",
+      "begin" : 3435,
+      "end" : 3444,
+      "text" : "operation",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t10",
+      "begin" : 3445,
+      "end" : 3450,
+      "text" : "where",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t11",
+      "begin" : 3451,
+      "end" : 3457,
+      "text" : "people",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t12",
+      "begin" : 3458,
+      "end" : 3461,
+      "text" : "are",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t13",
+      "begin" : 3462,
+      "end" : 3469,
+      "text" : "healthy",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t14",
+      "begin" : 3471,
+      "end" : 3474,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t15",
+      "begin" : 3475,
+      "end" : 3479,
+      "text" : "feel",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t16",
+      "begin" : 3480,
+      "end" : 3484,
+      "text" : "well",
+      "whiteSpace" : false
+    }, {
+      "id" : "s22-t17",
+      "begin" : 3484,
+      "end" : 3485,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  }, {
+    "id" : "s23",
+    "begin" : 3486,
+    "end" : 3640,
+    "text" : "Safety is largely created in \nindividual situations in day-to-day work \nand depends on everyone taking respons-\nibility before they carry out their tasks.",
+    "tokens" : [ {
+      "id" : "s23-t0",
+      "begin" : 3486,
+      "end" : 3492,
+      "text" : "Safety",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t1",
+      "begin" : 3493,
+      "end" : 3495,
+      "text" : "is",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t2",
+      "begin" : 3496,
+      "end" : 3503,
+      "text" : "largely",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t3",
+      "begin" : 3504,
+      "end" : 3511,
+      "text" : "created",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t4",
+      "begin" : 3512,
+      "end" : 3514,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t5",
+      "begin" : 3516,
+      "end" : 3526,
+      "text" : "individual",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t6",
+      "begin" : 3527,
+      "end" : 3537,
+      "text" : "situations",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t7",
+      "begin" : 3538,
+      "end" : 3540,
+      "text" : "in",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t8",
+      "begin" : 3541,
+      "end" : 3551,
+      "text" : "day-to-day",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t9",
+      "begin" : 3552,
+      "end" : 3556,
+      "text" : "work",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t10",
+      "begin" : 3558,
+      "end" : 3561,
+      "text" : "and",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t11",
+      "begin" : 3562,
+      "end" : 3569,
+      "text" : "depends",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t12",
+      "begin" : 3570,
+      "end" : 3572,
+      "text" : "on",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t13",
+      "begin" : 3573,
+      "end" : 3581,
+      "text" : "everyone",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t14",
+      "begin" : 3582,
+      "end" : 3588,
+      "text" : "taking",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t15",
+      "begin" : 3589,
+      "end" : 3596,
+      "text" : "respons",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t16",
+      "begin" : 3596,
+      "end" : 3597,
+      "text" : "-",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t17",
+      "begin" : 3598,
+      "end" : 3605,
+      "text" : "ibility",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t18",
+      "begin" : 3606,
+      "end" : 3612,
+      "text" : "before",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t19",
+      "begin" : 3613,
+      "end" : 3617,
+      "text" : "they",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t20",
+      "begin" : 3618,
+      "end" : 3623,
+      "text" : "carry",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t21",
+      "begin" : 3624,
+      "end" : 3627,
+      "text" : "out",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t22",
+      "begin" : 3628,
+      "end" : 3633,
+      "text" : "their",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t23",
+      "begin" : 3634,
+      "end" : 3639,
+      "text" : "tasks",
+      "whiteSpace" : false
+    }, {
+      "id" : "s23-t24",
+      "begin" : 3639,
+      "end" : 3640,
+      "text" : ".",
+      "whiteSpace" : false
+    } ]
+  } ],
+  "mentions" : [ {
+    "id" : "m38",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 30,
+    "end" : 37,
+    "inCoref" : true
+  }, {
+    "id" : "m41",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 178,
+    "end" : 184,
+    "inCoref" : false
+  }, {
+    "id" : "m44",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 186,
+    "end" : 197,
+    "inCoref" : false
+  }, {
+    "id" : "m45",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "ClimateTransition"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 202,
+    "end" : 209,
+    "inCoref" : false
+  }, {
+    "id" : "m46",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 256,
+    "end" : 264,
+    "inCoref" : true
+  }, {
+    "id" : "m47",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 298,
+    "end" : 311,
+    "inCoref" : false
+  }, {
+    "id" : "m48",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 316,
+    "end" : 322,
+    "inCoref" : false
+  }, {
+    "id" : "m49",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 367,
+    "end" : 374,
+    "inCoref" : true
+  }, {
+    "id" : "m50",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "ClimateTransition"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 550,
+    "end" : 562,
+    "inCoref" : false
+  }, {
+    "id" : "m51",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 590,
+    "end" : 597,
+    "inCoref" : true
+  }, {
+    "id" : "m52",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "ClimateTransition"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 711,
+    "end" : 725,
+    "inCoref" : false
+  }, {
+    "id" : "m53",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 826,
+    "end" : 834,
+    "inCoref" : true
+  }, {
+    "id" : "m54",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 981,
+    "end" : 994,
+    "inCoref" : false
+  }, {
+    "id" : "m55",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 999,
+    "end" : 1005,
+    "inCoref" : false
+  }, {
+    "id" : "m56",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Organisation",
+    "begin" : 1052,
+    "end" : 1060,
+    "inCoref" : true
+  }, {
+    "id" : "m57",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 1108,
+    "end" : 1116,
+    "inCoref" : true
+  }, {
+    "id" : "m58",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Organisation",
+    "begin" : 1193,
+    "end" : 1200,
+    "inCoref" : true
+  }, {
+    "id" : "m59",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 1283,
+    "end" : 1291,
+    "inCoref" : true
+  }, {
+    "id" : "m60",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Organisation",
+    "begin" : 1417,
+    "end" : 1422,
+    "inCoref" : true
+  }, {
+    "id" : "m61",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Organisation",
+    "begin" : 1570,
+    "end" : 1578,
+    "inCoref" : true
+  }, {
+    "id" : "m62",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialOfficialTexts",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialOfficialTexts",
+    "begin" : 1660,
+    "end" : 1677,
+    "inCoref" : false
+  }, {
+    "id" : "m63",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 1733,
+    "end" : 1740,
+    "inCoref" : true
+  }, {
+    "id" : "m64",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "ClimateTransition"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 1760,
+    "end" : 1813,
+    "inCoref" : false
+  }, {
+    "id" : "m65",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "ClimateTransition"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 1815,
+    "end" : 1819,
+    "inCoref" : false
+  }, {
+    "id" : "m66",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "CommitmentLevel",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "ActionPlan"
+    },
+    "type" : "CommitmentLevel",
+    "begin" : 1832,
+    "end" : 1849,
+    "inCoref" : false
+  }, {
+    "id" : "m67",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 1892,
+    "end" : 1905,
+    "inCoref" : false
+  }, {
+    "id" : "m68",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Organisation",
+    "begin" : 2041,
+    "end" : 2048,
+    "inCoref" : true
+  }, {
+    "id" : "m69",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Organisation",
+    "begin" : 2050,
+    "end" : 2058,
+    "inCoref" : true
+  }, {
+    "id" : "m70",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Organisation",
+    "begin" : 2120,
+    "end" : 2128,
+    "inCoref" : true
+  }, {
+    "id" : "m71",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 2152,
+    "end" : 2159,
+    "inCoref" : true
+  }, {
+    "id" : "m72",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 2308,
+    "end" : 2317,
+    "inCoref" : false
+  }, {
+    "id" : "m73",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Organisation",
+    "begin" : 2573,
+    "end" : 2581,
+    "inCoref" : true
+  }, {
+    "id" : "m74",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "ClimateTransition"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 2597,
+    "end" : 2612,
+    "inCoref" : false
+  }, {
+    "id" : "m75",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 2638,
+    "end" : 2646,
+    "inCoref" : true
+  }, {
+    "id" : "m76",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Date",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Date",
+    "begin" : 2670,
+    "end" : 2674,
+    "inCoref" : false
+  }, {
+    "id" : "m77",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "CommitmentLevel",
+      "SIRE_ENTITY_SUBTYPE" : "ActionPlan",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "CommitmentLevel",
+    "begin" : 2702,
+    "end" : 2706,
+    "inCoref" : false
+  }, {
+    "id" : "m78",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "CommitmentLevel",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "ActionPlan"
+    },
+    "type" : "CommitmentLevel",
+    "begin" : 2716,
+    "end" : 2725,
+    "inCoref" : false
+  }, {
+    "id" : "m79",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "EnvironmentalIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "ClimateTransition"
+    },
+    "type" : "EnvironmentalIssues",
+    "begin" : 2729,
+    "end" : 2744,
+    "inCoref" : false
+  }, {
+    "id" : "m80",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Date",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Date",
+    "begin" : 2758,
+    "end" : 2762,
+    "inCoref" : false
+  }, {
+    "id" : "m81",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 2764,
+    "end" : 2771,
+    "inCoref" : true
+  }, {
+    "id" : "m82",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "Date",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "Date",
+    "begin" : 2805,
+    "end" : 2809,
+    "inCoref" : false
+  }, {
+    "id" : "m83",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 2894,
+    "end" : 2901,
+    "inCoref" : true
+  }, {
+    "id" : "m84",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 2929,
+    "end" : 2945,
+    "inCoref" : false
+  }, {
+    "id" : "m85",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 3189,
+    "end" : 3198,
+    "inCoref" : false
+  }, {
+    "id" : "m86",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 3218,
+    "end" : 3235,
+    "inCoref" : false
+  }, {
+    "id" : "m87",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 3240,
+    "end" : 3249,
+    "inCoref" : false
+  }, {
+    "id" : "m88",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 3251,
+    "end" : 3262,
+    "inCoref" : false
+  }, {
+    "id" : "m89",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "Organisation",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "Organisation",
+    "begin" : 3298,
+    "end" : 3306,
+    "inCoref" : true
+  }, {
+    "id" : "m90",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 3355,
+    "end" : 3372,
+    "inCoref" : false
+  }, {
+    "id" : "m91",
+    "properties" : {
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_ENTITY_SUBTYPE" : "NONE",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC"
+    },
+    "type" : "SocialIssues",
+    "begin" : 3410,
+    "end" : 3423,
+    "inCoref" : false
+  }, {
+    "id" : "m92",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 3425,
+    "end" : 3432,
+    "inCoref" : false
+  }, {
+    "id" : "m93",
+    "properties" : {
+      "SIRE_ENTITY_CLASS" : "SPC",
+      "SIRE_ENTITY_LEVEL" : "NONE",
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 3462,
+    "end" : 3469,
+    "inCoref" : false
+  }, {
+    "id" : "m94",
+    "properties" : {
+      "SIRE_MENTION_CLASS" : "SPC",
+      "SIRE_MENTION_ROLE" : "SocialIssues",
+      "SIRE_MENTION_TYPE" : "NONE",
+      "SIRE_ENTITY_SUBTYPE" : "NONE"
+    },
+    "type" : "SocialIssues",
+    "begin" : 3486,
+    "end" : 3492,
+    "inCoref" : false
+  } ],
+  "relations" : [ {
+    "id" : "r1",
+    "properties" : { },
+    "type" : "Recognizes",
+    "args" : [ "m61", "m62" ]
+  }, {
+    "id" : "r2",
+    "properties" : { },
+    "type" : "Makes",
+    "args" : [ "m63", "m66" ]
+  }, {
+    "id" : "r3",
+    "properties" : { },
+    "type" : "Makes",
+    "args" : [ "m75", "m77" ]
+  }, {
+    "id" : "r4",
+    "properties" : { },
+    "type" : "Of",
+    "args" : [ "m77", "m79" ]
+  }, {
+    "id" : "r5",
+    "properties" : { },
+    "type" : "Of",
+    "args" : [ "m78", "m79" ]
+  }, {
+    "id" : "r6",
+    "properties" : { },
+    "type" : "Makes",
+    "args" : [ "m75", "m78" ]
+  } ],
+  "corefs" : [ {
+    "id" : "c1",
+    "originUser" : "leonardo.dasilva@ca-cib.com",
+    "properties" : { },
+    "mentions" : [ "m38", "m46", "m49", "m53", "m56", "m57", "m58", "m59", "m60", "m61", "m63", "m68", "m69", "m70", "m71", "m73", "m75", "m81", "m83", "m89", "m51" ]
+  } ],
+  "typeResolved" : true,
+  "userResolved" : false
+}
