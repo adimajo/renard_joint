@@ -55,8 +55,8 @@ test_entity_position, test_entity_embedding = internal_parser.get_entity_doc(tes
 # for low, high in test_entity_position.values():
 #     print(test_words[low:high], test_token_ids[low:high], test_entity_embedding[low:high])
 
-test_relation_position = internal_parser.get_relation_doc(test_doc, test_entity_position)
-# print("Relation position:", test_relation_position)
+test_relations = internal_parser.get_relation_doc(test_doc)
+# print("Relations:", test_relations)
 
 # -- TEST ------------------------------------------------------------------------------------------------------------ #
 assert len(test_words) \
@@ -91,6 +91,8 @@ for low, high in test_entity_position.values():
 assert cnt == (np.array(test_entity_embedding) != 0).astype(int).sum()
 
 # Test if all relations are valid
-for first, second in test_relation_position.values():
+for value in test_relations.values():
+    first = value["source"]
+    second = value["target"]
     assert first in test_entity_position
     assert second in test_entity_position

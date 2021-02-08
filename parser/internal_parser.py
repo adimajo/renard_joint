@@ -259,13 +259,15 @@ def get_entity_doc(document_name, begins):
     return entity_position, entity_embedding
 
 
-def get_relation_doc(document_name, entity_position):
+def get_relation_doc(document_name):
     """Extract relations from a document"""
     doc = get_doc(document_name)
-    relation_position = {}
+    relations = {}
     for relation in doc["relations"]:
-        relation_position[relation["id"]] = tuple(relation["args"])
-    return relation_position
+        relations[relation["id"]] = {"type": relation_encode[relation["type"]], 
+                                     "source": relation["args"][0],
+                                     "target": relation["args"][1]}
+    return relations
 
 
 def extract_doc(document_name):
@@ -277,11 +279,11 @@ def extract_doc(document_name):
         data_frame["sentence_embedding"] = expand_token_id(token_ids, words, begins, ends, sentence_embedding)
     data_frame["tokens"] = tokenizer.convert_ids_to_tokens(data_frame["token_ids"])
     entity_position, data_frame["entity_embedding"] = get_entity_doc(document_name, list(data_frame["begins"]))
-    relation_position = get_relation_doc(document_name, entity_position)
+    relations = get_relation_doc(document_name)
     return {"document": document_name,
             "data_frame": data_frame,
             "entity_position": entity_position,
-            "relation_position": relation_position}
+            "relations": relations}
 
 
 def extract_data(docs):
@@ -301,7 +303,7 @@ def check_extracted_data(data):
         document_name = item["document"]
         data_frame = item["data_frame"]
         entity_position = item["entity_position"]
-        relation_position = item["relation_position"]
+        relations = item["relations"]
 
         # Check if begins is increasing
         begins = data_frame["begins"].tolist()
@@ -366,16 +368,18 @@ def check_extracted_data(data):
                   (np.array(entity_embedding) != 0).astype(int).sum(), "does not match the record", cnt)
 
         # Check if all relations are valid
-        for first, second in relation_position.values():
+        for value in relations.values():
+            first = value["source"]
+            second = value["target"]
             try:
                 assert first in entity_position
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relation_position',", first,
+                print("Check failed at document", document_name, "in 'relations',", first,
                       "is not found in record")
             try:
                 assert second in entity_position
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relation_position',", second,
+                print("Check failed at document", document_name, "in 'relations',", second,
                       "is not found in record")
 
 
@@ -407,8 +411,10 @@ def describe_relation(data):
     for item in data:
         sentence_embedding = item["data_frame"]["sentence_embedding"].tolist()
         entity_position = item["entity_position"]
-        relation_position = item["relation_position"]
-        for first, second in relation_position.values():
+        relations = item["relations"]
+        for value in relations.values():
+            first = value["source"]
+            second = value["target"]
             relation_count += 1
             if entity_position[first][0] > entity_position[second][0]:
                 reverse_relation_count += 1
