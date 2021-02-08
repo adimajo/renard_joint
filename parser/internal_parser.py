@@ -28,13 +28,15 @@ from transformers import BertTokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 # Constants
-RECORD_PATH = "..\\data\\sets.json"
-DATA_PATH = "..\\data\\gt\\"
+RECORD_PATH = "..\\data\\internal_data\\sets.json"
+DATA_PATH = "..\\data\\internal_data\\gt\\"
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102
+
 entity_encode = {'None': 0, 'EnvironmentalIssues': 1, 'Date': 2, 'Organisation': 3, 'CommitmentLevel': 4, 'Location': 5, 'CoalActivity': 6, 'SocialIssues': 7, 'SocialOfficialTexts': 8}
 relation_encode = {'None': 0, 'Makes': 1, 'Of': 2, 'IsRelatedTo': 3, 'HasActivity': 4, 'Recognizes': 5, 'In': 6, 'IsInvolvedIn': 7}
+# These encodings can be obtained automatically instead of hard-coding by running describe_type(), see examples below
 
 # -- Functions ------------------------------------------------------------------------------------------------------- #
 # Getters
@@ -267,7 +269,7 @@ def get_relation_doc(document_name, entity_position):
 
 
 def extract_doc(document_name):
-    """Extract data from a document to a pandas dataset"""
+    """Extract data from a document"""
     data_frame = pd.DataFrame()
     words, begins, ends, sentence_embedding = get_word_doc(document_name)
     token_ids = get_token_id(words)
