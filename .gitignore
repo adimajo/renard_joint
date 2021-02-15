@@ -2,6 +2,7 @@
 /playground/
 /classifier/128_by_128/
 /classifier/sentence_by_sentence/
+/classifier/conll04/
 .ipynb_checkpoints/
 
 # Byte-compiled / optimized / DLL files
