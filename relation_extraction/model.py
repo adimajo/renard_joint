@@ -144,7 +144,7 @@ class BertForMre(nn.Module):
         if logits is not None and labels is not None:
             # print(logits.type(), labels.type())
             loss_fct = CrossEntropyLoss()
-            loss = loss_fct(logits.view(-1, self.num_labels), labels.long().view(-1))
+            loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1))
 
         if not return_dict:
             output = (logits,) + outputs[2:] if logits is not None else outputs[2:]
@@ -163,9 +163,9 @@ def generate_entity_mask(sequence_length, entity_position, relations):
     a bit mask for e2 (appended to e2_mask), and append the corresponding relation type of the pair to labels
     """
     relation_count = len(entity_position) * (len(entity_position) - 1)
-    e1_mask = torch.zeros((relation_count, sequence_length))
-    e2_mask = torch.zeros((relation_count, sequence_length))
-    labels = torch.zeros(relation_count)
+    e1_mask = torch.zeros((relation_count, sequence_length), dtype=torch.long)
+    e2_mask = torch.zeros((relation_count, sequence_length), dtype=torch.long)
+    labels = torch.zeros(relation_count, dtype=torch.long)
     i = 0
     for e1 in entity_position:
         for e2 in entity_position:
