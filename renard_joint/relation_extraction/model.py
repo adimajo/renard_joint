@@ -1,7 +1,7 @@
 """A pytorch module for multiple relation extraction (Wang et al. 2019)
 
 REFERENCE:
-Wang, H., Tan, M., Yu, M., Chang, S., Wang, D., Xu, K., ... & Potdar, S. (2019). 
+Wang, H., Tan, M., Yu, M., Chang, S., Wang, D., Xu, K., ... & Potdar, S. (2019).
 Extracting multiple-relations in one-pass with pre-trained transformers. arXiv preprint arXiv:1902.01030.
 
 SAMPLE USAGE:
@@ -12,8 +12,8 @@ model = BertForMre(#number_of_relation_classes)
 docs = conll04_parser.get_docs("train")
 extracted_doc = conll04_parser.extract_doc(docs[0])
 e1_mask, e2_mask, labels = generate_entity_mask(
-    extracted_doc["data_frame"].shape[0], 
-    extracted_doc["entity_position"], 
+    extracted_doc["data_frame"].shape[0],
+    extracted_doc["entity_position"],
     extracted_doc["relations"]
 )
 
@@ -21,9 +21,9 @@ e1_mask, e2_mask, labels = generate_entity_mask(
 from transformers import AdamW
 optimizer = AdamW(model.parameters(), lr=1e-5)
 outputs = model(
-    torch.tensor([extracted_doc["data_frame"]["token_ids"]]), 
-    e1_mask=e1_mask, 
-    e2_mask=e2_mask, 
+    torch.tensor([extracted_doc["data_frame"]["token_ids"]]),
+    e1_mask=e1_mask,
+    e2_mask=e2_mask,
     labels=labels
 )
 loss = outputs.loss
@@ -31,15 +31,11 @@ loss.backward()
 optimizer.step()
 """
 
-import math
-import os
 from typing import Optional, Tuple
-import numpy as np
 
 import torch
 from torch import nn
 from torch.nn import CrossEntropyLoss
-
 from transformers import BertModel
 from transformers.modeling_outputs import ModelOutput
 
@@ -70,24 +66,24 @@ class MreOutput(ModelOutput):
     logits: torch.FloatTensor = None
     hidden_states: Optional[Tuple[torch.FloatTensor]] = None
     attentions: Optional[Tuple[torch.FloatTensor]] = None
-        
+
 
 class BertForMre(nn.Module):
     """A pytorch module for multiple relation extraction (Wang et al. 2019)
-    
+
     Reference:
-    Wang, H., Tan, M., Yu, M., Chang, S., Wang, D., Xu, K., ... & Potdar, S. (2019). 
+    Wang, H., Tan, M., Yu, M., Chang, S., Wang, D., Xu, K., ... & Potdar, S. (2019).
     Extracting multiple-relations in one-pass with pre-trained transformers. arXiv preprint arXiv:1902.01030.
     """
     def __init__(
-        self, 
-        num_labels,  
-        model_name = "bert-base-uncased"
+        self,
+        num_labels,
+        model_name="bert-base-uncased"
     ):
         super(BertForMre, self).__init__()
         self.num_labels = num_labels
         self.bert = BertModel.from_pretrained(model_name)
-        self.bert.train() # Set BERT to training mode
+        self.bert.train()  # Set BERT to training mode
         self.dropout = nn.Dropout(self.bert.config.hidden_dropout_prob)
         self.classifier = nn.Linear(self.bert.config.hidden_size * 2, num_labels)
 
@@ -120,23 +116,23 @@ class BertForMre(nn.Module):
 
         sequence_output = outputs[0]
         sequence_output = self.dropout(sequence_output)
-        
+
         logits = None
         if e1_mask is not None and e2_mask is not None:
             num_relation = e1_mask.shape[0]
             seq_length = e1_mask.shape[1]
             sequence_output = torch.stack([sequence_output] * num_relation, dim=1)
-            
+
             e1_mask = torch.reshape(e1_mask, [-1, num_relation, seq_length, 1])
             e1 = torch.mul(sequence_output, e1_mask.float())
             e1 = torch.sum(e1, dim=-2) / torch.clamp(torch.sum(e1_mask.float(), dim=-2), min=1.0)
             e1 = torch.reshape(e1, [-1, self.bert.config.hidden_size])
-            
+
             e2_mask = torch.reshape(e2_mask, [-1, num_relation, seq_length, 1])
             e2 = torch.mul(sequence_output, e2_mask.float())
             e2 = torch.sum(e2, dim=-2) / torch.clamp(torch.sum(e2_mask.float(), dim=-2), min=1.0)
             e2 = torch.reshape(e2, [-1, self.bert.config.hidden_size])
-            
+
             sequence_output = torch.cat([e1, e2], dim=-1)
             logits = self.classifier(sequence_output)
 
@@ -156,8 +152,8 @@ class BertForMre(nn.Module):
             hidden_states=outputs.hidden_states,
             attentions=outputs.attentions,
         )
-    
-    
+
+
 def generate_entity_mask(sequence_length, entity_position, relations):
     """For each pair of entities e1 and e2 in a sentence, generate a bit mask for e1 (appended to e1_mask),
     a bit mask for e2 (appended to e2_mask), and append the corresponding relation type of the pair to labels

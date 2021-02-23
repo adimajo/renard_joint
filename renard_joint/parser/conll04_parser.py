@@ -17,29 +17,27 @@ describe_data(): Describe the whole dataset
 
 """
 
-import os
-import json
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
-
 from transformers import BertTokenizer
-import torch
+
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 # Constants
-TRAIN_PATH = "../data/CoNLL04/train.txt"
-DEV_PATH = "../data/CoNLL04/dev.txt"
-TEST_PATH = "../data/CoNLL04/test.txt"
+TRAIN_PATH = "../../data/CoNLL04/train.txt"
+DEV_PATH = "../../data/CoNLL04/dev.txt"
+TEST_PATH = "../../data/CoNLL04/test.txt"
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102
 
-entity_encode = {'O': 0, 'B-Loc': 1, 'I-Loc': 2, 'B-Peop': 3, 'I-Peop': 4, 
+entity_encode = {'O': 0, 'B-Loc': 1, 'I-Loc': 2, 'B-Peop': 3, 'I-Peop': 4,
                  'B-Org': 5, 'I-Org': 6, 'B-Other': 7, 'I-Other': 8}
 relation_encode = {'N': 0, 'Kill': 1, 'Located_In': 2, 'OrgBased_In': 3,
                    'Live_In': 4, 'Work_For': 5}
+
 
 # -- Functions ------------------------------------------------------------------------------------------------------- #
 # Getters
@@ -47,7 +45,6 @@ def get_docs(group):
     """Read the dataset group and return a list of documents
     'group' is either "train", "dev", or "test"
     """
-    dataset = None
     if group == "train":
         dataset = open(TRAIN_PATH, "r", encoding="utf8").readlines()
     elif group == "dev":
@@ -64,6 +61,7 @@ def get_docs(group):
         docs[-1].append(line)
     return docs
 
+
 # Data checkers
 def check_doc(document):
     """Check if the data in the document is consistent"""
@@ -77,8 +75,9 @@ def check_doc(document):
         try:
             assert int(line.split()[0]) == i - 1
         except (ValueError, AssertionError):
-            print("Document", doc_id, "line", i, ":", line, "expect line index", 
+            print("Document", doc_id, "line", i, ":", line, "expect line index",
                   i - 1, ", found", line.split()[0])
+
 
 def check_docs(group):
     """Check if all the documents contained in the data group is consistent
@@ -87,7 +86,8 @@ def check_docs(group):
     docs = get_docs(group)
     for document in docs:
         check_doc(document)
-        
+
+
 def check_data():
     """Check if the everything in the dataset is consistent
     Refer to check_docs(group) and check_doc(document)
@@ -95,7 +95,8 @@ def check_data():
     check_docs("train")
     check_docs("dev")
     check_docs("test")
-    
+
+
 # Describers
 def describe_list(lst, name):
     """Show the properties of the given sequence"""
@@ -108,10 +109,12 @@ def describe_list(lst, name):
     sns.distplot(lst, axlabel=name)
     plt.show()
     print()
-    
+
+
 def get_text_length_doc(document):
     """Get the length of a document"""
     return len(document) - 1
+
 
 def describe_text_length(group):
     """Show information about the length of documents in the dataset group"""
@@ -120,7 +123,8 @@ def describe_text_length(group):
     for document in docs:
         lengths.append(get_text_length_doc(document))
     describe_list(lengths, "document lengths of " + group)
-    
+
+
 def split_line(line):
     """Split a line in the following format from the dataset
     index word entity_type ['relation_type_1', ...] ['target_entity_1', ...]
@@ -131,6 +135,7 @@ def split_line(line):
     target_entities = [int(item.strip("\r\n\t []'")) for item in te.split(",")]
     assert len(relation_types) == len(target_entities)
     return index, word, entity_type, relation_types, target_entities
+
 
 def count_entity_doc(document):
     """Count the number of each type of entity in a document"""
@@ -143,6 +148,7 @@ def count_entity_doc(document):
             count[entity_type] = 1
     return count
 
+
 def count_relation_doc(document):
     """Count the number of each type of entity in a document"""
     count = {}
@@ -154,6 +160,7 @@ def count_relation_doc(document):
             else:
                 count[relation] = 1
     return count
+
 
 def describe_type(group, type_counter, describe=True):
     """Describe the types of a property in the dataset"""
@@ -176,6 +183,7 @@ def describe_type(group, type_counter, describe=True):
     # Return a map from entities to corresponding encoding numbers
     return dict(zip(count.keys(), range(len(count))))
 
+
 def describe_data():
     print("Description of train dataset:")
     describe_text_length("train")
@@ -192,7 +200,8 @@ def describe_data():
     describe_type("test", count_entity_doc)
     describe_type("test", count_relation_doc)
     print("---------------------------------------------------------------------------------")
-    
+
+
 # Parsers
 def get_token_id(words):
     """Tokenize each word in a list of words
@@ -203,6 +212,7 @@ def get_token_id(words):
         # apply [1:-1] to remore CLS and SEP token ids at the begin and the end of the list
         token_id.append(tokenizer(word)["input_ids"][1:-1])
     return token_id
+
 
 def expand_token_id(ids, token_ids, words, entity_embedding, entity_position):
     """Expand token id and duplicate members in other list wherever necessary"""
@@ -227,9 +237,10 @@ def expand_token_id(ids, token_ids, words, entity_embedding, entity_position):
         id_range[ids[i]] = (last, len(new_ids))
         last = len(new_ids)
     for key in entity_position:
-        entity_position[key] = (id_range[entity_position[key][0]][0], 
-                                id_range[entity_position[key][1]-1][1])
+        entity_position[key] = (id_range[entity_position[key][0]][0],
+                                id_range[entity_position[key][1] - 1][1])
     return new_ids, new_token_ids, new_words, new_entity_embedding, entity_position
+
 
 def extract_doc(document):
     """Extract data from a document"""
@@ -252,9 +263,9 @@ def extract_doc(document):
         entity_embedding.append(entity_encode[entity_type])
         relation_embedding.append(relation_types)
         target_entity_embedding.append(target_entities)
+        # if an I appears after an O, assume it's the start of a new entity
         if entity_type.startswith("B") or \
                 (entity_type.startswith("I") and len(entity_embedding) >= 2 and entity_embedding[-2] == 0):
-                # if an I appears after an O, assume it's the start of a new entity
             entity_count += 1
             entity_id.append(entity_count)
             entity_position[entity_count] = (int(idx), int(idx) + 1)
@@ -269,18 +280,19 @@ def extract_doc(document):
             for relation, target in zip(relation_embedding[int(idx)], target_entity_embedding[int(idx)]):
                 relation_count += 1
                 relations[relation_count] = {"type": relation_encode[relation],
-                                             "source": entity_id[int(idx)], 
+                                             "source": entity_id[int(idx)],
                                              "target": entity_id[target]}
     # Tokenize and expand
     token_ids = get_token_id(words)
     data_frame = pd.DataFrame()
     data_frame["ids"], data_frame["token_ids"], data_frame["words"], data_frame["entity_embedding"], \
         entity_position = expand_token_id(index, token_ids, words, entity_embedding, entity_position)
-    data_frame["tokens"] = tokenizer.convert_ids_to_tokens(data_frame["token_ids"]) 
+    data_frame["tokens"] = tokenizer.convert_ids_to_tokens(data_frame["token_ids"])
     return {"document": doc_id,
             "data_frame": data_frame,
             "entity_position": entity_position,
             "relations": relations}
+
 
 def extract_data(group):
     """Extract all documents to a dataset"""
@@ -289,6 +301,7 @@ def extract_data(group):
     for document in docs:
         data.append(extract_doc(document))
     return data
+
 
 # Checkers
 def check_extracted_data(data):
@@ -306,7 +319,7 @@ def check_extracted_data(data):
             low, high = entity_position[entity_key]
             cnt += high - low
             if high == low:
-                print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key, 
+                print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key,
                       "is empty (from", low, "to", high, ")")
             else:
                 try:
