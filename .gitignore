@@ -1,8 +1,8 @@
 /model/
 /playground/
-/classifier/128_by_128/
-/classifier/sentence_by_sentence/
-/classifier/conll04/
+/entity_recognition/128_by_128/
+/entity_recognition/sentence_by_sentence/
+/entity_recognition/conll04/
 .ipynb_checkpoints/
 
 # Byte-compiled / optimized / DLL files
