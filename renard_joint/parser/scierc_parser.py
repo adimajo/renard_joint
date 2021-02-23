@@ -18,27 +18,27 @@ describe_data(): Describe the whole dataset
 """
 
 import json
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 from transformers import BertTokenizer
-import torch
+
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 # Constants
-TRAIN_PATH = "../data/sciERC/processed_data/json/train.json"
-DEV_PATH = "../data/sciERC/processed_data/json/dev.json"
-TEST_PATH = "../data/sciERC/processed_data/json/test.json"
+TRAIN_PATH = "../../data/sciERC/processed_data/json/train.json"
+DEV_PATH = "../../data/sciERC/processed_data/json/dev.json"
+TEST_PATH = "../../data/sciERC/processed_data/json/test.json"
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102
 
-entity_encode = {'None': 0, 'Task': 1, 'OtherScientificTerm': 2, 'Material': 3, 'Generic': 4, 'Method': 5, 
+entity_encode = {'None': 0, 'Task': 1, 'OtherScientificTerm': 2, 'Material': 3, 'Generic': 4, 'Method': 5,
                  'Metric': 6}
-relation_encode = {'None': 0, 'PART-OF': 1, 'USED-FOR': 2, 'HYPONYM-OF': 3, 'CONJUNCTION': 4, 'FEATURE-OF': 5, 
+relation_encode = {'None': 0, 'PART-OF': 1, 'USED-FOR': 2, 'HYPONYM-OF': 3, 'CONJUNCTION': 4, 'FEATURE-OF': 5,
                    'EVALUATE-FOR': 6, 'COMPARE': 7}
+
 
 # -- Functions ------------------------------------------------------------------------------------------------------- #
 # Getters
@@ -46,7 +46,6 @@ def get_docs(group):
     """Read the dataset group and return a list of documents
     'group' is either "train", "dev", or "test"
     """
-    dataset = None
     if group == "train":
         dataset = open(TRAIN_PATH, "r", encoding="utf8").readlines()
     elif group == "dev":
@@ -60,6 +59,7 @@ def get_docs(group):
     for line in dataset:
         docs.append(json.loads(line))
     return docs
+
 
 # Data checkers
 def check_doc(document):
@@ -88,7 +88,7 @@ def check_doc(document):
         return
     try:
         assert len(document["sentences"]) == len(document["ner"]) == len(document["relations"])
-    except:
+    except AssertionError:
         print("Document '", doc_id, "' does not have consistent number of sentences")
         return
     # Check entity consistency
@@ -101,7 +101,7 @@ def check_doc(document):
                 assert 0 <= entity[0] <= entity[1] < total_length
             except AssertionError:
                 print("Document '", doc_id, "', entity", entity, "is inconsistent")
-    # Check relation consistency      
+    # Check relation consistency
     for i in range(len(document["relations"])):
         for relation in document["relations"][i]:
             try:
@@ -112,6 +112,7 @@ def check_doc(document):
             except AssertionError:
                 print("Document '", doc_id, "', relation", relation, "is inconsistent")
 
+
 def check_docs(group):
     """Check if all the documents contained in the data group is consistent
     'group' is either "train", "dev", or "test"
@@ -119,7 +120,8 @@ def check_docs(group):
     docs = get_docs(group)
     for document in docs:
         check_doc(document)
-        
+
+
 def check_data():
     """Check if the everything in the dataset is consistent
     Refer to check_docs(group) and check_doc(document)
@@ -127,7 +129,8 @@ def check_data():
     check_docs("train")
     check_docs("dev")
     check_docs("test")
-    
+
+
 # Describers
 def describe_list(lst, name):
     """Show the properties of the given sequence"""
@@ -140,11 +143,13 @@ def describe_list(lst, name):
     sns.distplot(lst, axlabel=name)
     plt.show()
     print()
-    
+
+
 def get_text_length_doc(document):
     """Get the length of the document and the length of each sentence in it"""
     sentence_lengths = [len(sentence) for sentence in document["sentences"]]
     return sentence_lengths, sum(sentence_lengths)
+
 
 def describe_text_length(group):
     """Show information about the length of documents in the dataset group"""
@@ -157,7 +162,8 @@ def describe_text_length(group):
         document_lengths.append(doc_len)
     describe_list(sentence_lengths, "sentence lengths of " + group)
     describe_list(document_lengths, "document lengths of " + group)
-    
+
+
 def count_type_doc(document, type_name):
     """Count the number of each class of a type in a document"""
     count = {}
@@ -168,6 +174,7 @@ def count_type_doc(document, type_name):
             else:
                 count[element[-1]] = 1
     return count
+
 
 def describe_type(group, type_name, describe=True):
     """Describe the types of a property in the dataset"""
@@ -190,6 +197,7 @@ def describe_type(group, type_name, describe=True):
     # Return a map from entities to corresponding encoding numbers
     return dict(zip(["None"] + list(count.keys()), range(len(count) + 1)))
 
+
 def get_sentence_number(sentence_lengths, position):
     """Given a list of sentence lengths, return the number to which the position belongs"""
     i = 0
@@ -198,7 +206,8 @@ def get_sentence_number(sentence_lengths, position):
         i += 1
         total += sentence_lengths[i]
     return i
-        
+
+
 def count_cross_sentence_relations_doc(document):
     "Count the number of cross sentence relations in a document"
     count = 0
@@ -212,6 +221,7 @@ def count_cross_sentence_relations_doc(document):
                 count += 1
     return count
 
+
 def count_cross_sentence_relations(group):
     "Count the number of cross sentence relations in a dataset"
     count = 0
@@ -219,7 +229,8 @@ def count_cross_sentence_relations(group):
     for document in docs:
         count += count_cross_sentence_relations_doc(document)
     print("There are", count, "cross sentence relations group", group)
-    
+
+
 def describe_data():
     print("Description of train dataset:")
     describe_text_length("train")
@@ -239,7 +250,8 @@ def describe_data():
     count_cross_sentence_relations("train")
     count_cross_sentence_relations("dev")
     count_cross_sentence_relations("test")
-    
+
+
 # Parsers
 def get_token_id(words):
     """Tokenize each word in a list of words
@@ -250,6 +262,7 @@ def get_token_id(words):
         # apply [1:-1] to remore CLS and SEP token ids at the begin and the end of the list
         token_id.append(tokenizer(word)["input_ids"][1:-1])
     return token_id
+
 
 def expand_token_id(token_ids, words, sentence_embedding, entities):
     """Expand token id and duplicate members in other lists wherever necessary"""
@@ -272,9 +285,10 @@ def expand_token_id(token_ids, words, sentence_embedding, entities):
         id_range[i] = (last, len(new_token_ids))
         last = len(new_token_ids)
     for key in entities:
-        entities[key]["begin"] = id_range[entities[key]["begin"]][0] 
-        entities[key]["end"] = id_range[entities[key]["end"]-1][1]
+        entities[key]["begin"] = id_range[entities[key]["begin"]][0]
+        entities[key]["end"] = id_range[entities[key]["end"] - 1][1]
     return new_token_ids, new_words, new_sentence_embedding, entities
+
 
 def extract_doc(document):
     """Extract data from a document"""
@@ -295,14 +309,14 @@ def extract_doc(document):
     for i in range(len(document["ner"])):
         for entity in document["ner"][i]:
             entity_count += 1
-            entities[entity_count] = {"type": entity_encode[entity[2]], 
+            entities[entity_count] = {"type": entity_encode[entity[2]],
                                       "begin": entity[0], "end": entity[1] + 1}
             entity_span[(entity[0], entity[1] + 1)] = entity_count
     # Parse the relations
     for i in range(len(document["relations"])):
         for relation in document["relations"][i]:
             relation_count += 1
-            relations[relation_count] = {"type": relation_encode[relation[4]], 
+            relations[relation_count] = {"type": relation_encode[relation[4]],
                                          "source": entity_span[(relation[0], relation[1] + 1)],
                                          "target": entity_span[(relation[2], relation[3] + 1)]}
     # Tokenize and expand
@@ -310,11 +324,12 @@ def extract_doc(document):
     data_frame = pd.DataFrame()
     data_frame["token_ids"], data_frame["words"], data_frame["sentence_embedding"], entities = \
         expand_token_id(token_ids, words, sentence_embedding, entities)
-    data_frame["tokens"] = tokenizer.convert_ids_to_tokens(data_frame["token_ids"]) 
+    data_frame["tokens"] = tokenizer.convert_ids_to_tokens(data_frame["token_ids"])
     return {"document": doc_id,
             "data_frame": data_frame,
             "entities": entities,
             "relations": relations}
+
 
 def extract_data(group):
     """Extract all documents to a dataset"""
@@ -323,6 +338,7 @@ def extract_data(group):
     for document in docs:
         data.append(extract_doc(document))
     return data
+
 
 # Checker
 def check_extracted_data(data):

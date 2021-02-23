@@ -1,8 +1,8 @@
 /model/
 /playground/
-/entity_recognition/128_by_128/
-/entity_recognition/sentence_by_sentence/
-/entity_recognition/conll04/
+/renard_joint/entity_recognition/128_by_128/
+/renard_joint/entity_recognition/sentence_by_sentence/
+/renard_joint/entity_recognition/conll04/
 .ipynb_checkpoints/
 
 # Byte-compiled / optimized / DLL files

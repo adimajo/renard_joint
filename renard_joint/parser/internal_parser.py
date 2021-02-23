@@ -28,15 +28,31 @@ from transformers import BertTokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 # Constants
-RECORD_PATH = "..\\data\\internal_data\\sets.json"
-DATA_PATH = "..\\data\\internal_data\\gt\\"
+RECORD_PATH = "../../data/internal_data/sets.json"
+DATA_PATH = "../../data/internal_data/gt\\"
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102
 
-entity_encode = {'None': 0, 'EnvironmentalIssues': 1, 'Date': 2, 'Organisation': 3, 'CommitmentLevel': 4, 'Location': 5, 'CoalActivity': 6, 'SocialIssues': 7, 'SocialOfficialTexts': 8}
-relation_encode = {'None': 0, 'Makes': 1, 'Of': 2, 'IsRelatedTo': 3, 'HasActivity': 4, 'Recognizes': 5, 'In': 6, 'IsInvolvedIn': 7}
+entity_encode = {'None': 0,
+                 'EnvironmentalIssues': 1,
+                 'Date': 2,
+                 'Organisation': 3,
+                 'CommitmentLevel': 4,
+                 'Location': 5,
+                 'CoalActivity': 6,
+                 'SocialIssues': 7,
+                 'SocialOfficialTexts': 8}
+relation_encode = {'None': 0,
+                   'Makes': 1,
+                   'Of': 2,
+                   'IsRelatedTo': 3,
+                   'HasActivity': 4,
+                   'Recognizes': 5,
+                   'In': 6,
+                   'IsInvolvedIn': 7}
 # These encodings can be obtained automatically instead of hard-coding by running describe_type(), see examples below
+
 
 # -- Functions ------------------------------------------------------------------------------------------------------- #
 # Getters
@@ -57,13 +73,13 @@ def get_doc(document_name):
     """Given a name, return the corresponding document"""
     return json.load(open(DATA_PATH + document_name + ".json", "r", encoding="utf8"))
 
-	
+
 # Data checkers
 def check_docs(docs):
     """Check if the number of documents in the "All" group in the record matches the number of data files"""
     assert len(docs) == len(os.listdir(DATA_PATH))
-    
-	
+
+
 def check_doc(document_name):
     """Check if extracted sentences and words have correct location tags
     Check if relations contain exactly 2 arguments
@@ -115,8 +131,8 @@ def check_data(docs):
     check_docs(docs)
     for document in docs:
         check_doc(document)
-		
-		
+
+
 # Describers
 def get_text_length_doc(document_name):
     """Get text length and sentence length of a document"""
@@ -140,8 +156,8 @@ def describe_list(lst, name):
     sns.distplot(lst, axlabel=name)
     plt.show()
     print()
-	
-    
+
+
 def describe_text_length(docs):
     """Show information about the length of text and sentences in the dataset"""
     text_lengths = []
@@ -264,7 +280,7 @@ def get_relation_doc(document_name):
     doc = get_doc(document_name)
     relations = {}
     for relation in doc["relations"]:
-        relations[relation["id"]] = {"type": relation_encode[relation["type"]], 
+        relations[relation["id"]] = {"type": relation_encode[relation["type"]],
                                      "source": relation["args"][0],
                                      "target": relation["args"][1]}
     return relations
@@ -353,7 +369,7 @@ def check_extracted_data(data):
             low, high = entity_position[entity_key]
             cnt += high - low
             if high == low:
-                print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key, 
+                print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key,
                       "is empty (from", low, "to", high, ")")
             else:
                 try:
@@ -427,24 +443,23 @@ def describe_relation(data):
     # sns.countplot(cross_sentence)
     plt.show()
 
-    
+
 def describe_data(docs):
     """Show information about the dataset
     Refer to describe_text_length(), describe_type(), and describe_token()
     """
     describe_text_length(docs)
     print()
-    
+
     entity_encode = describe_type("mentions", docs)
     print("Entity encoding:", entity_encode)
     print()
-    
+
     relation_encode = describe_type("relations", docs)
     print("Relation encoding:", relation_encode)
     print()
-    
+
     data = extract_data(docs)
-	
     describe_token(data)
     print()
     describe_relation(data)
