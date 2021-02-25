@@ -4,7 +4,7 @@ import random
 import torch
 
 import sys
-sys.path.append("..\\parser")
+sys.path.append("../parser")
 import conll04_parser as parser
 
 # B and I represent the same type of entity
@@ -53,12 +53,13 @@ def generate_relation_mask(doc, is_training, neg_relation_count):
         e1 = doc["entity_position"][doc["relations"][key]["source"]]
         e2 = doc["entity_position"][doc["relations"][key]["target"]]
         c = (min(e1[1], e2[1]), max(e1[0], e2[0]))
-        template = [0] * sentence_length
-        template[e1[0]: e1[1]] = [1] * (e1[1] - e1[0])
-        template[e2[0]: e2[1]] = [2] * (e2[1] - e2[0])
-        template[c[0]: c[1]] = [3] * (c[1] - c[0])
-        relation_mask.append(template)        
-        relation_label.append(doc["relations"][key]["type"])
+        if c[1] > c[0]:
+            template = [0] * sentence_length
+            template[e1[0]: e1[1]] = [1] * (e1[1] - e1[0])
+            template[e2[0]: e2[1]] = [2] * (e2[1] - e2[0])
+            template[c[0]: c[1]] = [3] * (c[1] - c[0])
+            relation_mask.append(template)        
+            relation_label.append(doc["relations"][key]["type"])
         
     # Only use real entities to generate false relations (refer to the paper)
     if is_training:
@@ -67,12 +68,13 @@ def generate_relation_mask(doc, is_training, neg_relation_count):
             e1 = doc["entity_position"][first]
             e2 = doc["entity_position"][second]
             c = (min(e1[1], e2[1]), max(e1[0], e2[0]))
-            template = [0] * sentence_length
-            template[e1[0]: e1[1]] = [1] * (e1[1] - e1[0])
-            template[e2[0]: e2[1]] = [2] * (e2[1] - e2[0])
-            template[c[0]: c[1]] = [3] * (c[1] - c[0])
-            relation_mask.append(template)        
-            relation_label.append(0)
+            if c[1] > c[0]:
+                template = [0] * sentence_length
+                template[e1[0]: e1[1]] = [1] * (e1[1] - e1[0])
+                template[e2[0]: e2[1]] = [2] * (e2[1] - e2[0])
+                template[c[0]: c[1]] = [3] * (c[1] - c[0])
+                relation_mask.append(template)        
+                relation_label.append(0)
     
     return torch.tensor(relation_mask, dtype=torch.long), torch.tensor(relation_label, dtype=torch.long)
 
