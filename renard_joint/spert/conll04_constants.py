@@ -1,7 +1,9 @@
-model_path = "bert-base-uncased"
+model_path = "bert-base-cased"
 train_dataset = "train"
 dev_dataset = "dev"
 test_dataset = "test"
+entity_types = 5
+relation_types = 5
 neg_entity_count = 100
 neg_relation_count = 100
 epochs = 20

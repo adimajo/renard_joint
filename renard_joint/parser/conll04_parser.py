@@ -23,7 +23,7 @@ import pandas as pd
 import seaborn as sns
 from transformers import BertTokenizer
 
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
 TRAIN_PATH = "../../data/CoNLL04/train.txt"

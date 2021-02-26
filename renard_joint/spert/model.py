@@ -58,24 +58,27 @@ class SpERT(BertPreTrainedModel):
         hidden_size = token_embedding.shape[1]
         entity_count = entity_mask.shape[0]
         
-        entity_embedding = torch.mul(token_embedding.view(1, sentence_length, hidden_size), 
-                                     entity_mask.view(entity_count, sentence_length, 1))
+        entity_embedding = token_embedding.view(1, sentence_length, hidden_size) + \
+                            ((entity_mask == 0) * (-1e30)).view(entity_count, sentence_length, 1)
         
         entity_embedding = entity_embedding.max(dim=-2)[0] # maxpool
         
-        entity_embedding = torch.cat([entity_embedding, 
-                                      width_embedding, 
-                                      cls_embedding.repeat(entity_count, 1)], dim=1)
+        entity_embedding = torch.cat([cls_embedding.repeat(entity_count, 1),
+                                      entity_embedding, 
+                                      width_embedding], dim=1)
+        entity_embedding = self.dropout(entity_embedding)
         
         entity_logit = self.entity_classifier(entity_embedding)
         entity_loss = None
         if entity_label != None:
             # If entity labels are provided, calculate cross entropy loss and take the average over all samples
             # Refer to the paper
-            loss_fct = CrossEntropyLoss(reduction='mean')
+            loss_fct = CrossEntropyLoss(reduction='none')
             entity_loss = loss_fct(entity_logit, entity_label)
+            entity_loss = entity_loss.sum() / float(entity_loss.shape[-1])
+            # print(entity_loss)
+            
         entity_pred = F.softmax(entity_logit, dim=-1).argmax(dim=-1).long()
-        
         return entity_logit, entity_loss, entity_pred 
     
     
@@ -113,7 +116,7 @@ class SpERT(BertPreTrainedModel):
                     template[e2[0]: e2[1]] = [2] * (e2[1] - e2[0])
                     template[c[0]: c[1]] = [3] * (c[1] - c[0])
                     relation_mask.append(template)        
-        return torch.tensor(relation_mask, dtype=torch.long)
+        return torch.tensor(relation_mask, dtype=torch.long).to(self.bert.device)
     
     
     def _classify_relation(self, token_embedding, e1_width_embedding, e2_width_embedding, 
@@ -135,35 +138,40 @@ class SpERT(BertPreTrainedModel):
         hidden_size = token_embedding.shape[1]
         relation_count = relation_mask.shape[0]
         
-        e1_embedding = torch.mul(token_embedding.view(1, sentence_length, hidden_size), 
-                                 (relation_mask == 1).view(relation_count, sentence_length, 1))
+        e1_embedding = token_embedding.view(1, sentence_length, hidden_size) + \
+                        ((relation_mask != 1) * (-1e30)).view(relation_count, sentence_length, 1)
         e1_embedding = e1_embedding.max(dim=-2)[0] # maxpool
         
-        e2_embedding = torch.mul(token_embedding.view(1, sentence_length, hidden_size), 
-                                 (relation_mask == 2).view(relation_count, sentence_length, 1))
+        e2_embedding = token_embedding.view(1, sentence_length, hidden_size) + \
+                        ((relation_mask != 2) * (-1e30)).view(relation_count, sentence_length, 1)
         e2_embedding = e2_embedding.max(dim=-2)[0] # maxpool
         
-        c_embedding = torch.mul(token_embedding.view(1, sentence_length, hidden_size), 
-                                 (relation_mask == 3).view(relation_count, sentence_length, 1))
+        c_embedding = token_embedding.view(1, sentence_length, hidden_size) + \
+                        ((relation_mask != 3) * (-1e30)).view(relation_count, sentence_length, 1)
         c_embedding = c_embedding.max(dim=-2)[0] # maxpool
         
-        relation_embedding = torch.cat([e1_embedding, e1_width_embedding,
-                                        c_embedding,
-                                        e2_embedding, e2_width_embedding], dim=1)
+        relation_embedding = torch.cat([c_embedding,
+                                        e1_embedding, e2_embedding,
+                                        e1_width_embedding, e2_width_embedding], dim=1)
+        relation_embedding = self.dropout(relation_embedding)
         
         relation_logit = self.relation_classifier(relation_embedding)
         relation_loss = None
         if relation_label != None:
             # If relation labels are provided, calculate the binary cross entropy loss 
             # and take the sum over all samples
-            loss_fct = BCEWithLogitsLoss(reduction='sum')
-            onehot_relation_label = F.one_hot(relation_label, num_classes=self._relation_types).float()
+            loss_fct = BCEWithLogitsLoss(reduction='none')
+            onehot_relation_label = F.one_hot(relation_label, num_classes=self._relation_types+1).float()
+            onehot_relation_label = onehot_relation_label[::, 1:] # Ignore None relation class
             relation_loss = loss_fct(relation_logit, onehot_relation_label)
+            relation_loss = (relation_loss.sum(dim=-1) / float(relation_loss.shape[-1])).sum()
+            # print(relation_loss)
             
-        relation_softmax = F.softmax(relation_logit, dim=-1)
+        relation_pred = relation_logit.clone().detach()
         # Filter out low confident relations
-        relation_softmax[relation_softmax < self._relation_filter_threshold] = 0
-        relation_pred = relation_softmax.argmax(dim=-1).long()
+        relation_pred[relation_pred < self._relation_filter_threshold] = 0
+        relation_pred = torch.cat([torch.zeros((relation_pred.shape[0], 1)).to(self.bert.device), relation_pred], dim=1)
+        relation_pred = relation_pred.argmax(dim=-1).long()
         
         return relation_logit, relation_loss, relation_pred 
     
@@ -231,7 +239,7 @@ class SpERT(BertPreTrainedModel):
             },
             "relation": None
         }
-        if relation_mask == None or torch.equal(relation_mask, torch.tensor([], dtype=torch.long)):
+        if relation_mask == None or torch.equal(relation_mask, torch.tensor([], dtype=torch.long).to(self.bert.device)):
             return output
         
         relation_count = relation_mask.shape[0]

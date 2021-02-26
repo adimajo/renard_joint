@@ -97,7 +97,8 @@ def data_generator(group, device,
         assert entity_mask.shape[1] == len(input_ids) - 2
         
         relation_mask, relation_label = generate_relation_mask(doc, is_training, neg_relation_count)
-        assert relation_mask.shape[1] == len(input_ids) - 2
+        if not torch.equal(relation_mask, torch.tensor([], dtype=torch.long)):
+            assert relation_mask.shape[1] == len(input_ids) - 2
         
         yield {
             "input_ids": torch.tensor([input_ids]).long().to(device), 
@@ -107,6 +108,9 @@ def data_generator(group, device,
             "entity_label": entity_label.to(device),
             "relation_mask": relation_mask.to(device),
             "relation_label": relation_label.to(device)
+        }, {
+            # Add information to trace back and evaluate
+            "entity_embedding": doc["data_frame"]["entity_embedding"]
         }
         del input_ids
         del entity_mask
