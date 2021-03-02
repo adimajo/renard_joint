@@ -5,11 +5,7 @@ import torch
 
 import sys
 sys.path.append("../parser")
-import conll04_parser as parser
-
-# B and I represent the same type of entity
-parser.entity_encode = {'O': 0, 'B-Loc': 1, 'I-Loc': 1, 'B-Peop': 2, 'I-Peop': 2, 
-                 'B-Org': 3, 'I-Org': 3, 'B-Other': 4, 'I-Other': 4}
+import internal_parser as parser
 
 
 def generate_entity_mask(doc, is_training, neg_entity_count, max_span_size):
@@ -59,7 +55,7 @@ def generate_relation_mask(doc, is_training, neg_relation_count):
     
     for key in doc["relations"]:
         relation_pool.discard((doc["relations"][key]["source"], doc["relations"][key]["target"]))
-        relation_pool.discard((doc["relations"][key]["target"], doc["relations"][key]["source"])) # remove reverse   
+        relation_pool.discard((doc["relations"][key]["target"], doc["relations"][key]["source"])) # remove reverse
         e1 = doc["entity_position"][doc["relations"][key]["source"]]
         e2 = doc["entity_position"][doc["relations"][key]["target"]]
         c = (min(e1[1], e2[1]), max(e1[0], e2[0]))
@@ -134,10 +130,37 @@ def data_generator(group, device,
                    neg_relation_count=100, 
                    max_span_size=10):
     """Generate input for the spert model
-    'group' is the dataset ("train", "dev", or "test")
+    'group' is the dataset ("Training" or "Test")
     'device' is the device where pytorch runs on (e.g. device = torch.device("cuda"))
     """
-    data = parser.extract_data(group)
+    data = parser.extract_data(parser.get_docs(group))
     for doc in data:
-        yield doc_to_input(doc, device, is_training, 
-                           neg_entity_count, neg_relation_count, max_span_size)
+        sentence_id = 0
+        starting_index = 0
+        # ddd a final row with dummy sentence embedding
+        doc["data_frame"].loc[doc["data_frame"].index.max() + 1, "sentence_embedding"] \
+            = doc["data_frame"]["sentence_embedding"].max() + 1
+        for index, row in doc["data_frame"].iterrows():
+            if row["sentence_embedding"] != sentence_id:
+                if index - starting_index > 510: starting_index = index - 510
+                tmp_entity_position = {}
+                for entity in doc["entity_position"]:
+                    if starting_index <= doc["entity_position"][entity][0] < doc["entity_position"][entity][1] <= index:
+                        tmp_entity_position[entity] = (
+                            doc["entity_position"][entity][0] - starting_index,
+                            doc["entity_position"][entity][1] - starting_index
+                        )
+                tmp_relations = {}
+                for relations in doc["relations"]:
+                    if doc["relations"][relations]["source"] in tmp_entity_position and \
+                        doc["relations"][relations]["target"] in tmp_entity_position:
+                        tmp_relations[relations] = doc["relations"][relations]
+                tmp_doc = {
+                    "data_frame": doc["data_frame"][starting_index: index].reset_index(drop=True),
+                    "entity_position": tmp_entity_position,
+                    "relations": tmp_relations
+                }
+                yield doc_to_input(tmp_doc, device, is_training, 
+                                   neg_entity_count, neg_relation_count, max_span_size)
+                sentence_id = row["sentence_embedding"]
+                starting_index = index

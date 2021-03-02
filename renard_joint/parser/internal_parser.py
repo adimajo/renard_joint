@@ -25,11 +25,11 @@ import seaborn as sns
 import bisect
 
 from transformers import BertTokenizer
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
 RECORD_PATH = "../../data/internal_data/sets.json"
-DATA_PATH = "../../data/internal_data/gt\\"
+DATA_PATH = "../../data/internal_data/gt/"
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102

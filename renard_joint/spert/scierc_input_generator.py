@@ -5,11 +5,7 @@ import torch
 
 import sys
 sys.path.append("../parser")
-import conll04_parser as parser
-
-# B and I represent the same type of entity
-parser.entity_encode = {'O': 0, 'B-Loc': 1, 'I-Loc': 1, 'B-Peop': 2, 'I-Peop': 2, 
-                 'B-Org': 3, 'I-Org': 3, 'B-Other': 4, 'I-Other': 4}
+import scierc_parser as parser
 
 
 def generate_entity_mask(doc, is_training, neg_entity_count, max_span_size):
@@ -21,12 +17,14 @@ def generate_entity_mask(doc, is_training, neg_entity_count, max_span_size):
     entity_label = []
     entity_span = []
     
-    for key in doc["entity_position"]:
-        l, r = doc["entity_position"][key]
+    for key in doc["entities"]:
+        l = doc["entities"][key]["begin"]
+        r = doc["entities"][key]["end"]
+        t = doc["entities"][key]["type"]
         if r - l <= max_span_size: entity_pool.remove((l, r))
         entity_mask.append([0] * l + [1] * (r - l) + [0] * (sentence_length - r))
-        entity_label.append(doc["data_frame"].at[l, "entity_embedding"])
-        entity_span.append((l, r, doc["data_frame"].at[l, "entity_embedding"]))
+        entity_label.append(t)
+        entity_span.append((l, r, t))
         
     if is_training:
         # If training then add a limited number of negative spans
@@ -50,39 +48,43 @@ def generate_entity_mask(doc, is_training, neg_entity_count, max_span_size):
 
 def generate_relation_mask(doc, is_training, neg_relation_count):
     sentence_length = doc["data_frame"].shape[0]
-    relation_pool = set([(e1, e2) for e1 in doc["entity_position"].keys() \
-                       for e2 in doc["entity_position"].keys() if e1 != e2])
+    relation_pool = set([(e1, e2) for e1 in doc["entities"].keys() \
+                       for e2 in doc["entities"].keys() if e1 != e2])
     # print(relation_pool)
     relation_mask = []
     relation_label = []
     relation_span = []
     
+    # print(doc["relations"])
     for key in doc["relations"]:
-        relation_pool.discard((doc["relations"][key]["source"], doc["relations"][key]["target"]))
-        relation_pool.discard((doc["relations"][key]["target"], doc["relations"][key]["source"])) # remove reverse   
-        e1 = doc["entity_position"][doc["relations"][key]["source"]]
-        e2 = doc["entity_position"][doc["relations"][key]["target"]]
-        c = (min(e1[1], e2[1]), max(e1[0], e2[0]))
-        template = [1] * sentence_length
-        template[e1[0]: e1[1]] = [x*2 for x in template[e1[0]: e1[1]]]
-        template[e2[0]: e2[1]] = [x*3 for x in template[e2[0]: e2[1]]]
-        template[c[0]: c[1]] = [x*5 for x in template[c[0]: c[1]]]
-        relation_mask.append(template)        
-        relation_label.append(doc["relations"][key]["type"])
-        relation_span.append(((e1[0], e1[1], doc["data_frame"].at[e1[0], "entity_embedding"]), 
-                              (e2[0], e2[1], doc["data_frame"].at[e2[0], "entity_embedding"]), 
-                              doc["relations"][key]["type"]))
+        if (doc["relations"][key]["source"], doc["relations"][key]["target"]) in relation_pool:
+            relation_pool.discard((doc["relations"][key]["source"], doc["relations"][key]["target"]))
+            e1 = doc["entities"][doc["relations"][key]["source"]]
+            e2 = doc["entities"][doc["relations"][key]["target"]]
+            c = (min(e1["end"], e2["end"]), max(e1["begin"], e2["begin"]))
+            template = [1] * sentence_length
+            template[e1["begin"]: e1["end"]] = [x*2 for x in template[e1["begin"]: e1["end"]]]
+            template[e2["begin"]: e2["end"]] = [x*3 for x in template[e2["begin"]: e2["end"]]]
+            template[c[0]: c[1]] = [x*5 for x in template[c[0]: c[1]]]
+            relation_mask.append(template)        
+            relation_label.append(doc["relations"][key]["type"])
+            relation_span.append(((e1["begin"], e1["end"], e1["type"]), 
+                                  (e2["begin"], e2["end"], e2["type"]), 
+                                  doc["relations"][key]["type"]))
+            
+    for key in doc["relations"]:
+        relation_pool.discard((doc["relations"][key]["target"], doc["relations"][key]["source"])) # remove reverse
         
     # Only use real entities to generate false relations (refer to the paper)
     if is_training:
         # Only add negative relations when training
         for first, second in random.sample(relation_pool, min(len(relation_pool), neg_relation_count)):
-            e1 = doc["entity_position"][first]
-            e2 = doc["entity_position"][second]
-            c = (min(e1[1], e2[1]), max(e1[0], e2[0]))
+            e1 = doc["entities"][first]
+            e2 = doc["entities"][second]
+            c = (min(e1["end"], e2["end"]), max(e1["begin"], e2["begin"]))
             template = [1] * sentence_length
-            template[e1[0]: e1[1]] = [x*2 for x in template[e1[0]: e1[1]]]
-            template[e2[0]: e2[1]] = [x*3 for x in template[e2[0]: e2[1]]]
+            template[e1["begin"]: e1["end"]] = [x*2 for x in template[e1["begin"]: e1["end"]]]
+            template[e2["begin"]: e2["end"]] = [x*3 for x in template[e2["begin"]: e2["end"]]]
             template[c[0]: c[1]] = [x*5 for x in template[c[0]: c[1]]]
             relation_mask.append(template)        
             relation_label.append(0)
@@ -122,7 +124,6 @@ def doc_to_input(doc, device,
     }, {
         # Add information to trace back and evaluate
         "words": doc["data_frame"]["words"],
-        "entity_embedding": doc["data_frame"]["entity_embedding"],
         "entity_span": entity_span, # ground truth entity spans
         "relation_span": relation_span # ground truth relation spans
     }

@@ -39,6 +39,10 @@ class SpERT(BertPreTrainedModel):
             for param in self.bert.parameters():
                 param.requires_grad = False
                 
+#         for name, param in self.named_parameters():
+#             if param.requires_grad:
+#                 print(name, param.data)
+        
                         
     def _classify_entity(self, token_embedding, width_embedding, cls_embedding, entity_mask, entity_label):
         """
@@ -60,8 +64,8 @@ class SpERT(BertPreTrainedModel):
         
         entity_embedding = token_embedding.view(1, sentence_length, hidden_size) + \
                             ((entity_mask == 0) * (-1e30)).view(entity_count, sentence_length, 1)
-        
         entity_embedding = entity_embedding.max(dim=-2)[0] # maxpool
+        # print(entity_embedding)
         
         entity_embedding = torch.cat([cls_embedding.repeat(entity_count, 1),
                                       entity_embedding, 
@@ -75,7 +79,7 @@ class SpERT(BertPreTrainedModel):
             # Refer to the paper
             loss_fct = CrossEntropyLoss(reduction='none')
             entity_loss = loss_fct(entity_logit, entity_label)
-            entity_loss = entity_loss.sum() / float(entity_loss.shape[-1])
+            entity_loss = entity_loss.sum() / entity_loss.shape[-1]
             # print(entity_loss)
             
         entity_pred = F.softmax(entity_logit, dim=-1).argmax(dim=-1).long()
@@ -87,36 +91,40 @@ class SpERT(BertPreTrainedModel):
         sentence_length = entity_mask.shape[1]
         entity_span = []
         entity_embedding = torch.zeros((sentence_length,)) if not self._is_overlapping else None
+        entity_type_map = {}
         
-        for i in range(entity_count):
+        for i in range(entity_count):  
+            begin = torch.argmax(entity_mask[i]).item()
+            end = sentence_length - torch.argmax(entity_mask[i].flip(0)).item()
+            
+            assert end > begin
+            assert entity_mask[i, begin:end].sum() == end - begin
+            assert entity_mask[i].sum() == end - begin
+            
+            entity_type_map[(begin, end)] = entity_pred[i].item()
+            
             if entity_pred[i] != 0:
-                begin = torch.argmax(entity_mask[i]).item()
-                end = sentence_length - torch.argmax(entity_mask[i].flip(0)).item()
-                
-                assert end > begin
-                assert entity_mask[i, begin:end].sum() == end - begin
-                
                 if self._is_overlapping:
                     entity_span.append((begin, end, entity_pred[i].item()))
                 elif not self._is_overlapping and entity_embedding[begin:end].sum() == 0:
                     entity_span.append((begin, end, entity_pred[i].item()))
                     entity_embedding[begin:end] = entity_pred[i]
         
-        return entity_span, entity_embedding
+        return entity_span, entity_embedding, entity_type_map
     
     
     def _generate_relation_mask(self, entity_span, sentence_length):
         relation_mask = []
         for e1 in entity_span:
             for e2 in entity_span:
-                c = (min(e1[1], e2[1]), max(e1[0], e2[0]))
-                if c[1] > c[0]:
-                    template = [0] * sentence_length
-                    template[e1[0]: e1[1]] = [1] * (e1[1] - e1[0])
-                    template[e2[0]: e2[1]] = [2] * (e2[1] - e2[0])
-                    template[c[0]: c[1]] = [3] * (c[1] - c[0])
+                if e1 != e2:
+                    c = (min(e1[1], e2[1]), max(e1[0], e2[0]))
+                    template = [1] * sentence_length
+                    template[e1[0]: e1[1]] = [x*2 for x in template[e1[0]: e1[1]]]
+                    template[e2[0]: e2[1]] = [x*3 for x in template[e2[0]: e2[1]]]
+                    template[c[0]: c[1]] = [x*5 for x in template[c[0]: c[1]]]
                     relation_mask.append(template)        
-        return torch.tensor(relation_mask, dtype=torch.long).to(self.bert.device)
+        return torch.tensor(relation_mask, dtype=torch.long).to(self.device)
     
     
     def _classify_relation(self, token_embedding, e1_width_embedding, e2_width_embedding, 
@@ -139,16 +147,20 @@ class SpERT(BertPreTrainedModel):
         relation_count = relation_mask.shape[0]
         
         e1_embedding = token_embedding.view(1, sentence_length, hidden_size) + \
-                        ((relation_mask != 1) * (-1e30)).view(relation_count, sentence_length, 1)
+                        ((relation_mask % 2 != 0) * (-1e30)).view(relation_count, sentence_length, 1)
         e1_embedding = e1_embedding.max(dim=-2)[0] # maxpool
+        # print(e1_embedding)
         
         e2_embedding = token_embedding.view(1, sentence_length, hidden_size) + \
-                        ((relation_mask != 2) * (-1e30)).view(relation_count, sentence_length, 1)
+                        ((relation_mask % 3 != 0) * (-1e30)).view(relation_count, sentence_length, 1)
         e2_embedding = e2_embedding.max(dim=-2)[0] # maxpool
+        # print(e2_embedding)
         
         c_embedding = token_embedding.view(1, sentence_length, hidden_size) + \
-                        ((relation_mask != 3) * (-1e30)).view(relation_count, sentence_length, 1)
+                        ((relation_mask % 5 != 0) * (-1e30)).view(relation_count, sentence_length, 1)
         c_embedding = c_embedding.max(dim=-2)[0] # maxpool
+        c_embedding[c_embedding < -1e15] = 0 # if context is empty then set it to 0
+        # print(c_embedding)
         
         relation_embedding = torch.cat([c_embedding,
                                         e1_embedding, e2_embedding,
@@ -164,38 +176,40 @@ class SpERT(BertPreTrainedModel):
             onehot_relation_label = F.one_hot(relation_label, num_classes=self._relation_types+1).float()
             onehot_relation_label = onehot_relation_label[::, 1:] # Ignore None relation class
             relation_loss = loss_fct(relation_logit, onehot_relation_label)
-            relation_loss = (relation_loss.sum(dim=-1) / float(relation_loss.shape[-1])).sum()
+            relation_loss = relation_loss.sum(dim=-1) / relation_loss.shape[-1]
+            relation_loss = relation_loss.sum() # sum to be divided for average later
             # print(relation_loss)
             
-        relation_pred = relation_logit.clone().detach()
+        relation_sigmoid = torch.sigmoid(relation_logit)
         # Filter out low confident relations
-        relation_pred[relation_pred < self._relation_filter_threshold] = 0
-        relation_pred = torch.cat([torch.zeros((relation_pred.shape[0], 1)).to(self.bert.device), relation_pred], dim=1)
-        relation_pred = relation_pred.argmax(dim=-1).long()
+        relation_sigmoid[relation_sigmoid < self._relation_filter_threshold] = 0
+        relation_sigmoid = torch.cat([torch.zeros((relation_sigmoid.shape[0], 1)).to(self.device), relation_sigmoid], dim=-1)
+        relation_pred = relation_sigmoid.argmax(dim=-1).long()
         
         return relation_logit, relation_loss, relation_pred 
     
     
-    def _filter_relation(self, relation_mask: torch.tensor, relation_pred: torch.tensor):
+    def _filter_relation(self, relation_mask: torch.tensor, relation_pred: torch.tensor, entity_type_map):
         relation_count = relation_mask.shape[0]
         sentence_length = relation_mask.shape[1]
         relation_span = []
         
         for i in range(relation_count):
             if relation_pred[i] != 0:
-                e1_begin = torch.argmax((relation_mask[i] == 1).long()).item()
-                e1_end = sentence_length - torch.argmax((relation_mask[i].flip(0) == 1).long()).item()
-                
+                e1_begin = torch.argmax((relation_mask[i] % 2 == 0).long()).item()
+                e1_end = sentence_length - torch.argmax((relation_mask[i].flip(0) % 2 == 0).long()).item()
                 assert e1_end > e1_begin
-                assert relation_mask[i, e1_begin:e1_end].sum() == (e1_end - e1_begin) * 1
+                assert (relation_mask[i, e1_begin:e1_end] % 2).sum() == 0
                 
-                e2_begin = torch.argmax((relation_mask[i] == 2).long()).item()
-                e2_end = sentence_length - torch.argmax((relation_mask[i].flip(0) == 2).long()).item()
-                
+                e2_begin = torch.argmax((relation_mask[i] % 3 == 0).long()).item()
+                e2_end = sentence_length - torch.argmax((relation_mask[i].flip(0) % 3 == 0).long()).item()
                 assert e2_end > e2_begin
-                assert relation_mask[i, e2_begin:e2_end].sum() == (e2_end - e2_begin) * 2
+                assert (relation_mask[i, e2_begin:e2_end] % 3).sum() == 0
+                # print(e1_begin, e1_end, e2_begin, e2_end)
                 
-                relation_span.append((e1_begin, e1_end, e2_begin, e2_end, relation_pred[i].item()))
+                relation_span.append(((e1_begin, e1_end, entity_type_map[(e1_begin, e1_end)]), 
+                                      (e2_begin, e2_end, entity_type_map[(e2_begin, e2_end)]), 
+                                      relation_pred[i].item()))
         
         return relation_span
     
@@ -204,7 +218,6 @@ class SpERT(BertPreTrainedModel):
                 entity_mask: torch.tensor = None, entity_label: torch.tensor = None, 
                 relation_mask: torch.tensor = None, relation_label: torch.tensor = None,
                 is_training: bool = True):
-            
         # get the last hidden layer from BERT
         bert_embedding = self.bert(input_ids=input_ids, 
                                    attention_mask=attention_mask, 
@@ -220,7 +233,7 @@ class SpERT(BertPreTrainedModel):
         entity_logit, entity_loss, entity_pred \
             = self._classify_entity(token_embedding, width_embedding, cls_embedding, entity_mask, entity_label)
         
-        entity_span, entity_embedding = self._filter_span(entity_mask, entity_pred)
+        entity_span, entity_embedding, entity_type_map = self._filter_span(entity_mask, entity_pred)
         
         # if not relation_mask then generate them from pairs of entities
         # only for prediction and evaluation
@@ -239,15 +252,15 @@ class SpERT(BertPreTrainedModel):
             },
             "relation": None
         }
-        if relation_mask == None or torch.equal(relation_mask, torch.tensor([], dtype=torch.long).to(self.bert.device)):
+        if relation_mask == None or torch.equal(relation_mask, torch.tensor([], dtype=torch.long).to(self.device)):
             return output
         
         relation_count = relation_mask.shape[0]
         relation_logit = torch.zeros((relation_count, self._relation_types))
         relation_loss = []
         relation_pred = torch.zeros((relation_count,), dtype=torch.long)
-        e1_width_embedding = self.width_embedding(torch.sum(relation_mask == 1, dim=-1))
-        e2_width_embedding = self.width_embedding(torch.sum(relation_mask == 2, dim=-1))
+        e1_width_embedding = self.width_embedding(torch.sum(relation_mask % 2 == 0, dim=-1))
+        e2_width_embedding = self.width_embedding(torch.sum(relation_mask % 3 == 0, dim=-1))
         
         # break down relation_mask (list of possible relations) to smaller chunks
         for i in range(0, relation_count, self._max_pairs):
@@ -261,16 +274,15 @@ class SpERT(BertPreTrainedModel):
             if loss != None:
                 relation_loss.append(loss)
             relation_pred[i: j] = pred
+            
         # relation loss is the average of binary cross entropy loss of each sample
         # refer to the paper
-        relation_loss = None if len(relation_loss) == 0 else (sum(relation_loss) / float(relation_count))
-        relation_span = self._filter_relation(relation_mask, relation_pred)
+        relation_loss = None if len(relation_loss) == 0 else (sum(relation_loss) / relation_count)
+        relation_span = self._filter_relation(relation_mask, relation_pred, entity_type_map)
+        
         # Final loss is the sum of entity_loss and relation_loss
         if relation_loss != None: 
-            if output["loss"] == None: 
-                output["loss"] = relation_loss
-            else:
-                output["loss"] += relation_loss
+            output["loss"] = relation_loss + entity_loss
         output["relation"] = {
             "logit": relation_logit,
             "pred": relation_pred,
