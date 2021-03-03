@@ -30,8 +30,12 @@ def evaluate_span(true_span, pred_span, label_map, classes):
     pred_label = []
     
     for true_span_batch, pred_span_batch in zip(true_span, pred_span):
-        true_span_batch = dict([((item[0], item[1]), item[2]) for item in true_span_batch])
-        pred_span_batch = dict([((item[0], item[1]), item[2]) for item in pred_span_batch])
+        true_span_batch = dict([((item[0][:2] if isinstance(item[0], tuple) else item[0], 
+                                  item[1][:2] if isinstance(item[1], tuple) else item[1]), 
+                                 item[2]) for item in true_span_batch])
+        pred_span_batch = dict([((item[0][:2] if isinstance(item[0], tuple) else item[0], 
+                                  item[1][:2] if isinstance(item[1], tuple) else item[1]), 
+                                 item[2]) for item in pred_span_batch])
         s = set()
         s.update(true_span_batch.keys())
         s.update(pred_span_batch.keys())
