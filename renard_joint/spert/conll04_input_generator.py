@@ -15,7 +15,9 @@ parser.entity_encode = {'O': 0, 'B-Loc': 1, 'I-Loc': 1, 'B-Peop': 2, 'I-Peop': 2
 def generate_entity_mask(doc, is_training, neg_entity_count, max_span_size):
     sentence_length = doc["data_frame"].shape[0]
     entity_pool = set([(l, r) for l in range(sentence_length) \
-                       for r in range(l + 1, min(sentence_length, l + max_span_size) + 1)])
+                       if l == 0 or doc["data_frame"].at[l, "words"] != doc["data_frame"].at[l-1, "words"] \
+                       for r in range(l + 1, min(sentence_length, l + max_span_size) + 1) \
+                       if r == sentence_length or doc["data_frame"].at[r-1, "words"] != doc["data_frame"].at[r, "words"]])
     # print(sorted(entity_pool))
     entity_mask = []
     entity_label = []
