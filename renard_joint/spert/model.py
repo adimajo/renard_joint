@@ -38,10 +38,6 @@ class SpERT(BertPreTrainedModel):
             # freeze all transformer weights
             for param in self.bert.parameters():
                 param.requires_grad = False
-                
-#         for name, param in self.named_parameters():
-#             if param.requires_grad:
-#                 print(name, param.data)
         
                         
     def _classify_entity(self, token_embedding, width_embedding, cls_embedding, entity_mask, entity_label):
@@ -246,6 +242,7 @@ class SpERT(BertPreTrainedModel):
             "loss": entity_loss,
             "entity": {
                 "logit": entity_logit,
+                "loss": None if entity_loss is None else entity_loss.item(),
                 "pred": entity_pred,
                 "span": entity_span,
                 "embedding": entity_embedding
@@ -285,6 +282,7 @@ class SpERT(BertPreTrainedModel):
             output["loss"] = relation_loss + entity_loss
         output["relation"] = {
             "logit": relation_logit,
+            "loss": None if relation_loss is None else relation_loss.item(),
             "pred": relation_pred,
             "span": relation_span
         }

@@ -10,8 +10,16 @@ import internal_parser as parser
 
 def generate_entity_mask(doc, is_training, neg_entity_count, max_span_size):
     sentence_length = doc["data_frame"].shape[0]
-    entity_pool = set([(l, r) for l in range(sentence_length) \
-                       for r in range(l + 1, min(sentence_length, l + max_span_size) + 1)])
+    entity_pool = set()
+    for l in range(sentence_length):
+        if l == 0 or doc["data_frame"].at[l, "words"] != doc["data_frame"].at[l-1, "words"]:
+            i = 0
+            for r in range(l + 1, sentence_length + 1):
+                if r == sentence_length or doc["data_frame"].at[r, "words"] != doc["data_frame"].at[r-1, "words"]:
+                    entity_pool.add((l, r))
+                    i += 1
+                    if i >= max_span_size:
+                        break # the span reaches max size limit
     # print(sorted(entity_pool))
     entity_mask = []
     entity_label = []
@@ -19,7 +27,7 @@ def generate_entity_mask(doc, is_training, neg_entity_count, max_span_size):
     
     for key in doc["entity_position"]:
         l, r = doc["entity_position"][key]
-        if r - l <= max_span_size: entity_pool.remove((l, r))
+        entity_pool.discard((l, r))
         entity_mask.append([0] * l + [1] * (r - l) + [0] * (sentence_length - r))
         entity_label.append(doc["data_frame"].at[l, "entity_embedding"])
         entity_span.append((l, r, doc["data_frame"].at[l, "entity_embedding"]))
