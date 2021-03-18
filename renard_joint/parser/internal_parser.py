@@ -218,8 +218,7 @@ def get_word_doc(document_name):
     sentence_count = 0
     for sentence in doc["sentences"]:
         for word in sentence["tokens"]:
-            # Put words to lower case to use uncased bert model
-            words.append(word["text"].lower())
+            words.append(word["text"])
             begins.append(word["begin"])
             ends.append(word["end"])
             sentence_embedding.append(sentence_count)
