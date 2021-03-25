@@ -12,7 +12,7 @@ class SpERT(BertPreTrainedModel):
 
     def __init__(self, config: BertConfig, relation_types: int, entity_types: int, 
                  width_embedding_size: int, prop_drop: float, freeze_transformer: bool, max_pairs: int, 
-                 is_overlapping: bool, relation_filter_threshold: float):
+                 is_overlapping: bool, relation_filter_threshold: float, relation_possibility: map = None):
         super(SpERT, self).__init__(config)
 
         # BERT model
@@ -28,6 +28,7 @@ class SpERT(BertPreTrainedModel):
         self._relation_types = relation_types
         self._entity_types = entity_types
         self._relation_filter_threshold = relation_filter_threshold
+        self._relation_possibility = relation_possibility
         self._max_pairs = max_pairs
         self._is_overlapping = is_overlapping # whether overlapping entities are allowed
 
@@ -78,39 +79,44 @@ class SpERT(BertPreTrainedModel):
             entity_loss = entity_loss.sum() / entity_loss.shape[-1]
             # print(entity_loss)
             
-        entity_pred = F.softmax(entity_logit, dim=-1).argmax(dim=-1).long()
-        return entity_logit, entity_loss, entity_pred 
+        entity_confidence, entity_pred = F.softmax(entity_logit, dim=-1).max(dim=-1)
+        return entity_logit, entity_loss, entity_confidence, entity_pred
     
     
-    def _filter_span(self, entity_mask: torch.tensor, entity_pred: torch.tensor):
+    def _filter_span(self, entity_mask: torch.tensor, entity_pred: torch.tensor, entity_confidence: torch.tensor):
         entity_count = entity_mask.shape[0]
         sentence_length = entity_mask.shape[1]
+        entities = [(entity_mask[i], entity_pred[i].item(), entity_confidence[i].item()) for i in range(entity_count)]
+        entities = sorted(entities, key=lambda entity: entity[2], reverse=True)
+        
         entity_span = []
         entity_embedding = torch.zeros((sentence_length,)) if not self._is_overlapping else None
         entity_type_map = {}
         
         for i in range(entity_count):  
-            begin = torch.argmax(entity_mask[i]).item()
-            end = sentence_length - torch.argmax(entity_mask[i].flip(0)).item()
+            e_mask, e_pred, e_confidence = entities[i]
+            begin = torch.argmax(e_mask).item()
+            end = sentence_length - torch.argmax(e_mask.flip(0)).item()
             
             assert end > begin
-            assert entity_mask[i, begin:end].sum() == end - begin
-            assert entity_mask[i].sum() == end - begin
+            assert e_mask[begin:end].sum() == end - begin
+            assert e_mask.sum() == end - begin
             
-            entity_type_map[(begin, end)] = entity_pred[i].item()
+            entity_type_map[(begin, end)] = e_pred
             
-            if entity_pred[i] != 0:
+            if e_pred != 0:
                 if self._is_overlapping:
-                    entity_span.append((begin, end, entity_pred[i].item()))
+                    entity_span.append((begin, end, e_pred))
                 elif not self._is_overlapping and entity_embedding[begin:end].sum() == 0:
-                    entity_span.append((begin, end, entity_pred[i].item()))
-                    entity_embedding[begin:end] = entity_pred[i]
+                    entity_span.append((begin, end, e_pred))
+                    entity_embedding[begin:end] = e_pred
         
         return entity_span, entity_embedding, entity_type_map
     
     
     def _generate_relation_mask(self, entity_span, sentence_length):
         relation_mask = []
+        relation_possibility = []
         for e1 in entity_span:
             for e2 in entity_span:
                 if e1 != e2:
@@ -119,12 +125,18 @@ class SpERT(BertPreTrainedModel):
                     template[e1[0]: e1[1]] = [x*2 for x in template[e1[0]: e1[1]]]
                     template[e2[0]: e2[1]] = [x*3 for x in template[e2[0]: e2[1]]]
                     template[c[0]: c[1]] = [x*5 for x in template[c[0]: c[1]]]
-                    relation_mask.append(template)        
-        return torch.tensor(relation_mask, dtype=torch.long).to(self.device)
+                    relation_mask.append(template)     
+                    if self._relation_possibility is not None:
+                        if (e1[2], e2[2]) in self._relation_possibility:
+                            relation_possibility.append(self._relation_possibility[(e1[2], e2[2])])
+                        else: 
+                            relation_mask.pop() # no relation possible, remove the last mask
+        return torch.tensor(relation_mask, dtype=torch.long).to(self.device), \
+                torch.tensor(relation_possibility, dtype=torch.long).to(self.device)
     
     
     def _classify_relation(self, token_embedding, e1_width_embedding, e2_width_embedding, 
-                           relation_mask, relation_label):
+                           relation_mask, relation_label, relation_possibility):
         """
         INPUT:
         token_embedding.shape = (sentence_length, hidden_size)
@@ -180,9 +192,14 @@ class SpERT(BertPreTrainedModel):
         # Filter out low confident relations
         relation_sigmoid[relation_sigmoid < self._relation_filter_threshold] = 0
         relation_sigmoid = torch.cat([torch.zeros((relation_sigmoid.shape[0], 1)).to(self.device), relation_sigmoid], dim=-1)
-        relation_pred = relation_sigmoid.argmax(dim=-1).long()
+        # filter out illogical relations
+        if self._relation_possibility is not None and \
+           relation_possibility is not None and \
+           not torch.equal(relation_possibility, torch.tensor([], dtype=torch.long).to(self.device)):
+            relation_sigmoid = torch.mul(relation_sigmoid, relation_possibility)
+        relation_confidence, relation_pred = relation_sigmoid.max(dim=-1)
         
-        return relation_logit, relation_loss, relation_pred 
+        return relation_logit, relation_loss, relation_confidence, relation_pred 
     
     
     def _filter_relation(self, relation_mask: torch.tensor, relation_pred: torch.tensor, entity_type_map):
@@ -226,24 +243,26 @@ class SpERT(BertPreTrainedModel):
         
         # get the width embedding for each entity length
         width_embedding = self.width_embedding(torch.sum(entity_mask, dim=-1))
-        entity_logit, entity_loss, entity_pred \
+        entity_logit, entity_loss, entity_confidence, entity_pred \
             = self._classify_entity(token_embedding, width_embedding, cls_embedding, entity_mask, entity_label)
         
-        entity_span, entity_embedding, entity_type_map = self._filter_span(entity_mask, entity_pred)
+        entity_span, entity_embedding, entity_type_map = self._filter_span(entity_mask, entity_pred, entity_confidence)
         
         # if not relation_mask then generate them from pairs of entities
         # only for prediction and evaluation
+        relation_possibility = None
         if not is_training or relation_mask == None:
-            relation_mask = self._generate_relation_mask(entity_span, token_embedding.shape[0])
+            relation_mask, relation_possibility = self._generate_relation_mask(entity_span, token_embedding.shape[0])
             relation_label = None
         
-        # return immediately if there is no relations to predict (e.g. there are less than 2 entities)
+        # return immediately if there is no relation to predict (e.g. there are less than 2 entities)
         output = {
             "loss": entity_loss,
             "entity": {
                 "logit": entity_logit,
                 "loss": None if entity_loss is None else entity_loss.item(),
                 "pred": entity_pred,
+                "confidence": entity_confidence,
                 "span": entity_span,
                 "embedding": entity_embedding
             },
@@ -255,6 +274,7 @@ class SpERT(BertPreTrainedModel):
         relation_count = relation_mask.shape[0]
         relation_logit = torch.zeros((relation_count, self._relation_types))
         relation_loss = []
+        relation_confidence = torch.zeros((relation_count,))
         relation_pred = torch.zeros((relation_count,), dtype=torch.long)
         e1_width_embedding = self.width_embedding(torch.sum(relation_mask % 2 == 0, dim=-1))
         e2_width_embedding = self.width_embedding(torch.sum(relation_mask % 3 == 0, dim=-1))
@@ -262,14 +282,16 @@ class SpERT(BertPreTrainedModel):
         # break down relation_mask (list of possible relations) to smaller chunks
         for i in range(0, relation_count, self._max_pairs):
             j = min(relation_count, i + self._max_pairs)
-            logit, loss, pred = self._classify_relation(token_embedding, 
+            logit, loss, confidence, pred = self._classify_relation(token_embedding, 
                                                         e1_width_embedding[i: j], 
                                                         e2_width_embedding[i: j], 
                                                         relation_mask[i: j], 
-                                                        relation_label[i: j] if relation_label != None else None)
+                                                        relation_label[i: j] if relation_label != None else None, 
+                                                        relation_possibility[i: j] if relation_possibility != None else None)
             relation_logit[i: j] = logit
             if loss != None:
                 relation_loss.append(loss)
+            relation_confidence[i: j] = confidence
             relation_pred[i: j] = pred
             
         # relation loss is the average of binary cross entropy loss of each sample
@@ -284,6 +306,7 @@ class SpERT(BertPreTrainedModel):
             "logit": relation_logit,
             "loss": None if relation_loss is None else relation_loss.item(),
             "pred": relation_pred,
+            "confidence": relation_confidence,
             "span": relation_span
         }
         return output

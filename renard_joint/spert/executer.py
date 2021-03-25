@@ -42,6 +42,21 @@ relation_label_map = {v: k for k, v in input_generator.parser.relation_encode.it
 relation_classes = list(relation_label_map.keys())
 relation_classes.remove(0)
 
+if __name__ == "__main__":
+    if sys.argv[1] == "internal":
+        relation_possibility = {
+            (3, 5): [0, 0, 0, 1, 0, 0, 0, 0], # Organization + Location -> IsRelatedTo
+            (3, 6): [0, 0, 0, 0, 1, 0, 0, 0], # Organization + CoalActivity -> HasActivity
+            (3, 8): [0, 0, 0, 0, 0, 1, 0, 0], # Organization + SocialOfficialText -> Recognizes
+            (3, 4): [0, 1, 0, 0, 0, 0, 0, 0], # Organization + CommitmentLevel -> Makes
+            (4, 1): [0, 0, 1, 0, 0, 0, 0, 0], # CommitmentLevel + EnvironmentalIssues -> Of
+            (4, 7): [0, 0, 1, 0, 0, 0, 0, 0]  # CommitmentLevel + SocialIssues -> Of
+        }
+        relation_classes.remove(6) # remove In
+        relation_classes.remove(7) # remove IsInvolvedIn
+    else:
+        relation_possibility = None
+
 tokenizer = BertTokenizer.from_pretrained(constants.model_path)
 input_generator.parser.tokenizer = tokenizer
 
@@ -123,7 +138,8 @@ def train():
                                               freeze_transformer=False, 
                                               max_pairs=constants.max_pairs, 
                                               is_overlapping=constants.is_overlapping, 
-                                              relation_filter_threshold=constants.relation_filter_threshold)
+                                              relation_filter_threshold=constants.relation_filter_threshold,
+                                              relation_possibility=relation_possibility)
     spert_model.to(device)
     optimizer_params = get_optimizer_params(spert_model)
     optimizer = AdamW(optimizer_params, lr=constants.lr, weight_decay=constants.weight_decay, correct_bias=False)
@@ -227,7 +243,8 @@ def load_model(checkpoint):
                                               freeze_transformer=True, 
                                               max_pairs=constants.max_pairs, 
                                               is_overlapping=constants.is_overlapping, 
-                                              relation_filter_threshold=constants.relation_filter_threshold)
+                                              relation_filter_threshold=constants.relation_filter_threshold,
+                                              relation_possibility=relation_possibility)
     spert_model.to(device)
     state_dict = torch.load(constants.model_save_path + "epoch_" + str(checkpoint) + ".model", map_location=device)
     spert_model.load_state_dict(state_dict, strict=False)
