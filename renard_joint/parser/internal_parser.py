@@ -23,6 +23,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import bisect
+import tikzplotlib
 
 from transformers import BertTokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
@@ -154,6 +155,7 @@ def describe_list(lst, name):
     print("Mean:", sum(lst) / len(lst))
     print("Max:", max(lst))
     sns.distplot(lst, axlabel=name)
+    tikzplotlib.save(name + ".tex")
     plt.show()
     print()
 
@@ -198,6 +200,7 @@ def describe_type(type_name, docs, describe=True):
         for key in count:
             print(key, ":", count[key])
         sns.barplot(list(count.values()), list(count.keys()))
+        tikzplotlib.save(type_name + ".tex")
         plt.show()
     # Return a map from entities to corresponding encoding numbers
     return dict(zip(["None"] + list(count.keys()), range(len(count) + 1)))
@@ -441,6 +444,7 @@ def describe_relation(data):
     print("Reverse relation count:", reverse_relation_count)
     print("Cross sentence count:", sum(cross_sentence))
     # sns.countplot(cross_sentence)
+    tikzplotlib.save("relation.tex")
     plt.show()
 
 
