@@ -286,7 +286,7 @@ def predict(sentences, bert_model, ner_model, re_model,
         # relation extraction
         pred_relation_span = predict_relation(re_model, doc, pred_entity_span,
                                               max_entity_pair=max_entity_pair)
-        # print result
+        # print the result
         tokens = parser.tokenizer.convert_ids_to_tokens(token_ids)
         print("Sentence:", sentence)
         print("Entities: (", len(pred_entity_span), ")")

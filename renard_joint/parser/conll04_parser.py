@@ -23,6 +23,8 @@ import pandas as pd
 import seaborn as sns
 from transformers import BertTokenizer
 
+CHECK_FAILED_AT_DOCUMENT = "Check failed at document"
+
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
@@ -325,18 +327,18 @@ def check_extracted_data(data):
             low, high = entity_position[entity_key]
             cnt += high - low
             if high == low:
-                print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key,
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'entity_embedding', key", entity_key,
                       "is empty (from", low, "to", high, ")")
             else:
                 try:
                     assert abs(min(entity_embedding[low:high]) - max(entity_embedding[low:high])) <= 1
                 except AssertionError:
-                    print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key,
+                    print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'entity_embedding', key", entity_key,
                           ", values from", low, "to", high, ":", entity_embedding[low:high], "are inconsistent")
         try:
             assert cnt == (np.array(entity_embedding) != 0).astype(int).sum()
         except AssertionError:
-            print("Check failed at document", document_name, "in total entity embedded tokens",
+            print(CHECK_FAILED_AT_DOCUMENT, document_name, "in total entity embedded tokens",
                   (np.array(entity_embedding) != 0).astype(int).sum(), "does not match the record", cnt)
 
         # Check if all relations are valid
@@ -346,10 +348,10 @@ def check_extracted_data(data):
             try:
                 assert first in entity_position
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relations',", first,
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'relations',", first,
                       "is not found in record")
             try:
                 assert second in entity_position
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relations',", second,
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'relations',", second,
                       "is not found in record")

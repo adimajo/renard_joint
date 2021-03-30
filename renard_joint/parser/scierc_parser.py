@@ -24,6 +24,10 @@ import pandas as pd
 import seaborn as sns
 from transformers import BertTokenizer
 
+CHECK_FAILED_AT_DOCUMENT = "Check failed at document"
+
+DOCUMENT_ = "Document '"
+
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
@@ -76,22 +80,22 @@ def check_doc(document):
     try:
         assert "sentences" in document
     except AssertionError:
-        print("Document '", doc_id, "' does not have key 'sentences'")
+        print(DOCUMENT_, doc_id, "' does not have key 'sentences'")
         return
     try:
         assert "ner" in document
     except AssertionError:
-        print("Document '", doc_id, "' does not have key 'ner'")
+        print(DOCUMENT_, doc_id, "' does not have key 'ner'")
         return
     try:
         assert "relations" in document
     except AssertionError:
-        print("Document '", doc_id, "' does not have key 'relations'")
+        print(DOCUMENT_, doc_id, "' does not have key 'relations'")
         return
     try:
         assert len(document["sentences"]) == len(document["ner"]) == len(document["relations"])
     except AssertionError:
-        print("Document '", doc_id, "' does not have consistent number of sentences")
+        print(DOCUMENT_, doc_id, "' does not have consistent number of sentences")
         return
     # Check entity consistency
     total_length = sum([len(sentence) for sentence in document["sentences"]])
@@ -102,7 +106,7 @@ def check_doc(document):
                 assert isinstance(entity[2], str)
                 assert 0 <= entity[0] <= entity[1] < total_length
             except AssertionError:
-                print("Document '", doc_id, "', entity", entity, "is inconsistent")
+                print(DOCUMENT_, doc_id, "', entity", entity, "is inconsistent")
     # Check relation consistency
     for i in range(len(document["relations"])):
         for relation in document["relations"][i]:
@@ -112,7 +116,7 @@ def check_doc(document):
                 assert 0 <= relation[0] <= relation[1] < total_length
                 assert 0 <= relation[2] <= relation[3] < total_length
             except AssertionError:
-                print("Document '", doc_id, "', relation", relation, "is inconsistent")
+                print(DOCUMENT_, doc_id, "', relation", relation, "is inconsistent")
 
 
 def check_docs(group):
@@ -361,7 +365,7 @@ def check_extracted_data(data):
             try:
                 assert 0 <= sentence_embedding[i] - sentence_embedding[i - 1] <= 1
             except AssertionError:
-                print("Check failed at document", document_name, "in 'sentence_embedding' at position",
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'sentence_embedding' at position",
                       i, "sentence_embedding[i] - sentence_embedding[i-1] =",
                       sentence_embedding[i] - sentence_embedding[i - 1])
 
@@ -372,10 +376,10 @@ def check_extracted_data(data):
             try:
                 assert first in entities
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relations',", first,
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'relations',", first,
                       "is not found in record")
             try:
                 assert second in entities
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relations',", second,
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'relations',", second,
                       "is not found in record")

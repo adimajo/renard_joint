@@ -27,6 +27,12 @@ import seaborn as sns
 import tikzplotlib
 from transformers import BertTokenizer
 
+VALUE = "(value"
+
+CHECK_FAILED_AT_DOCUMENT = "Check failed at document"
+
+ERROR_IN_DOC = "Error in doc"
+
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
@@ -93,7 +99,7 @@ def check_doc(document_name):
         try:
             assert sentence["text"] == doc["text"][sentence["begin"]:sentence["end"]]
         except AssertionError:
-            print("Error in doc",
+            print(ERROR_IN_DOC,
                   document_name,
                   "sentence",
                   sentence["id"],
@@ -105,7 +111,7 @@ def check_doc(document_name):
             try:
                 assert word["text"] == doc["text"][word["begin"]:word["end"]]
             except AssertionError:
-                print("Error in doc",
+                print(ERROR_IN_DOC,
                       document_name,
                       "sentence",
                       sentence["id"],
@@ -119,7 +125,7 @@ def check_doc(document_name):
         try:
             assert len(relation["args"]) == 2
         except AssertionError:
-            print("Error in doc",
+            print(ERROR_IN_DOC,
                   document_name,
                   "relation",
                   relation["id"],
@@ -207,11 +213,6 @@ def describe_type(type_name, docs, describe=True):
         plt.show()
     # Return a map from entities to corresponding encoding numbers
     return dict(zip(["None"] + list(count.keys()), range(len(count) + 1)))
-
-
-# Parsers
-# entity_encode = describe_type("mentions", describe=False)
-# relation_encode = describe_type("relations", describe=False)
 
 
 def get_word_doc(document_name):
@@ -332,8 +333,8 @@ def check_extracted_data(data):
             try:
                 assert begins[i] >= begins[i - 1]
             except AssertionError:
-                print("Check failed at document", document_name, "in 'begins' at position", i - 1,
-                      "(value", begins[i - 1], ") >", i, "(value", begins[i], ")")
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'begins' at position", i - 1,
+                      VALUE, begins[i - 1], ") >", i, VALUE, begins[i], ")")
 
         # Check if ends is increasing
         ends = data_frame["ends"].tolist()
@@ -341,15 +342,15 @@ def check_extracted_data(data):
             try:
                 assert ends[i] >= ends[i - 1]
             except AssertionError:
-                print("Check failed at document", document_name, "in 'ends' at position", i - 1,
-                      "(value", ends[i - 1], ") >", i, "(value", ends[i], ")")
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'ends' at position", i - 1,
+                      VALUE, ends[i - 1], ") >", i, VALUE, ends[i], ")")
 
         # Check if ends are always greater than begins
         for i in range(len(begins)):
             try:
                 assert begins[i] < ends[i]
             except AssertionError:
-                print("Check failed at document", document_name, "in 'begins' & 'ends' at position",
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'begins' & 'ends' at position",
                       i, "(begin", begins[i], ">= end", ends[i], ")")
 
         # Check if sentence embedding are correct
@@ -358,13 +359,13 @@ def check_extracted_data(data):
             try:
                 assert 0 <= sentence_embedding[i] - sentence_embedding[i - 1] <= 1
             except AssertionError:
-                print("Check failed at document", document_name, "in 'sentence_embedding' at position",
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'sentence_embedding' at position",
                       i, "sentence_embedding[i] - sentence_embedding[i-1] =",
                       sentence_embedding[i] - sentence_embedding[i - 1])
         try:
             assert sentence_embedding[-1] == len(get_doc(document_name)["sentences"]) - 1
         except AssertionError:
-            print("Check failed at document", document_name, ", expected",
+            print(CHECK_FAILED_AT_DOCUMENT, document_name, ", expected",
                   len(get_doc(document_name)["sentences"]), "sentences but", sentence_embedding[-1] + 1, "found")
 
         # Check if entities correctly embedded
@@ -374,18 +375,18 @@ def check_extracted_data(data):
             low, high = entity_position[entity_key]
             cnt += high - low
             if high == low:
-                print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key,
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'entity_embedding', key", entity_key,
                       "is empty (from", low, "to", high, ")")
             else:
                 try:
                     assert min(entity_embedding[low:high]) == max(entity_embedding[low:high])
                 except AssertionError:
-                    print("Check failed at document", document_name, "in 'entity_embedding', key", entity_key,
+                    print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'entity_embedding', key", entity_key,
                           ", values from", low, "to", high, ":", entity_embedding[low:high], "are inconsistent")
         try:
             assert cnt == (np.array(entity_embedding) != 0).astype(int).sum()
         except AssertionError:
-            print("Check failed at document", document_name, "in total entity embedded tokens",
+            print(CHECK_FAILED_AT_DOCUMENT, document_name, "in total entity embedded tokens",
                   (np.array(entity_embedding) != 0).astype(int).sum(), "does not match the record", cnt)
 
         # Check if all relations are valid
@@ -395,12 +396,12 @@ def check_extracted_data(data):
             try:
                 assert first in entity_position
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relations',", first,
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'relations',", first,
                       "is not found in record")
             try:
                 assert second in entity_position
             except AssertionError:
-                print("Check failed at document", document_name, "in 'relations',", second,
+                print(CHECK_FAILED_AT_DOCUMENT, document_name, "in 'relations',", second,
                       "is not found in record")
 
 

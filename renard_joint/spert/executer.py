@@ -7,6 +7,8 @@ import torch
 import transformers
 from transformers import AdamW, BertConfig, BertTokenizer
 
+EPOCH_ = "epoch:"
+
 if __name__ == "__main__":
     import sys
 
@@ -184,9 +186,9 @@ def train():
             assert len(train_relation_pred) == len(train_relation_true)
 
         # evaluate & save checkpoint
-        print("epoch:", epoch, "average loss:", sum(losses) / len(losses))
-        print("epoch:", epoch, "average entity loss:", sum(entity_losses) / len(entity_losses))
-        print("epoch:", epoch, "average relation loss:", sum(relation_losses) / len(relation_losses))
+        print(EPOCH_, epoch, "average loss:", sum(losses) / len(losses))
+        print(EPOCH_, epoch, "average entity loss:", sum(entity_losses) / len(entity_losses))
+        print(EPOCH_, epoch, "average relation loss:", sum(relation_losses) / len(relation_losses))
         results = pd.concat([
             evaluator.evaluate_results(train_entity_true, train_entity_pred, entity_label_map, entity_classes),
             evaluator.evaluate_results(train_relation_true, train_relation_pred, relation_label_map, relation_classes)
@@ -224,7 +226,7 @@ def predict(spert_model, sentences):
         outputs = spert_model(**inputs, is_training=False)
         pred_entity_span = outputs["entity"]["span"]
         pred_relation_span = [] if outputs["relation"] is None else outputs["relation"]["span"]
-        # print result
+        # print the result
         tokens = tokenizer.convert_ids_to_tokens(token_ids)
         print("Sentence:", sentence)
         print("Entities: (", len(pred_entity_span), ")")
