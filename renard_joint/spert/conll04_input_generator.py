@@ -1,10 +1,7 @@
 import random
+
 import torch
 
-# import sys
-
-# sys.path.append("../parser")
-# import conll04_parser as parser
 import renard_joint.parser.conll04_parser as parser
 
 # B and I represent the same type of entity

@@ -1,12 +1,11 @@
 import random
 
+import evaluator
+import model
 import pandas as pd
 import torch
 import transformers
 from transformers import AdamW, BertConfig, BertTokenizer
-
-import model
-import evaluator
 
 if __name__ == "__main__":
     import sys

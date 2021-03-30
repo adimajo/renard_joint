@@ -1,18 +1,12 @@
+import pickle
+
 import numpy as np
 import pandas as pd
-from transformers import BertModel, BertTokenizer
 import torch
-from torch.nn import CrossEntropyLoss
 import torch.nn.functional as F
-import pickle
+from torch.nn import CrossEntropyLoss
 from tqdm import tqdm
-
-# import sys
-# sys.path.append("../parser")
-# sys.path.append("../spert")
-# import conll04_parser as parser
-# import evaluator
-# import model
+from transformers import BertModel, BertTokenizer
 
 import renard_joint.parser.conll04_parser as parser
 from renard_joint.spert import evaluator

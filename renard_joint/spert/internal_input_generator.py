@@ -1,10 +1,7 @@
 import random
+
 import torch
 
-# import sys
-#
-# sys.path.append("../parser")
-# import internal_parser as parser
 import renard_joint.parser.internal_parser as parser
 
 

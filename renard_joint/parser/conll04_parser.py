@@ -64,7 +64,9 @@ def get_docs(group):
 
 # Data checkers
 def check_doc(document):
-    """Check if the data in the document is consistent"""
+    """Check if the data in the document is consistent
+    .. todo: move this to tests
+    """
     try:
         assert document[0].startswith("#doc ")
     except AssertionError:
@@ -82,6 +84,7 @@ def check_doc(document):
 def check_docs(group):
     """Check if all the documents contained in the data group is consistent
     'group' is either "train", "dev", or "test"
+    .. todo: move this to tests
     """
     docs = get_docs(group)
     for document in docs:
@@ -91,6 +94,7 @@ def check_docs(group):
 def check_data():
     """Check if the everything in the dataset is consistent
     Refer to check_docs(group) and check_doc(document)
+    .. todo: move this to tests
     """
     check_docs("train")
     check_docs("dev")
@@ -305,7 +309,9 @@ def extract_data(group):
 
 # Checkers
 def check_extracted_data(data):
-    """Check if all extracted data is valid"""
+    """Check if all extracted data is valid
+    .. todo: move this to tests
+    """
     for item in data:
         document_name = item["document"]
         data_frame = item["data_frame"]

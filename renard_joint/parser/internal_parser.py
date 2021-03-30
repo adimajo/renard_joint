@@ -16,16 +16,17 @@ describe_data(docs): Describe the dataset
 
 """
 
-import os
+import bisect
 import json
+import os
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
-import bisect
 import tikzplotlib
-
 from transformers import BertTokenizer
+
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
@@ -77,7 +78,9 @@ def get_doc(document_name):
 
 # Data checkers
 def check_docs(docs):
-    """Check if the number of documents in the "All" group in the record matches the number of data files"""
+    """Check if the number of documents in the "All" group in the record matches the number of data files
+    .. todo: move this to tests
+    """
     assert len(docs) == len(os.listdir(DATA_PATH))
 
 

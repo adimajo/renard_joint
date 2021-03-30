@@ -1,10 +1,7 @@
 import random
+
 import torch
 
-# import sys
-#
-# sys.path.append("../parser")
-# import scierc_parser as parser
 import renard_joint.parser.scierc_parser as parser
 
 

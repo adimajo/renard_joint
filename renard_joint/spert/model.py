@@ -1,8 +1,7 @@
 import torch
+import torch.nn.functional as F
 from torch import nn as nn
 from torch.nn import CrossEntropyLoss, BCEWithLogitsLoss
-import torch.nn.functional as F
-
 from transformers import BertConfig
 from transformers import BertModel
 from transformers import BertPreTrainedModel

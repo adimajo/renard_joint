@@ -1,2 +1,9 @@
-"""Renard Joint Entity and Relation Extraction"""
-__version__ = "0.0.1"
+"""NER-RE pipelines
+
+.. autosummary::
+    :toctree:
+
+    conll04_pipeline
+    internal_pipeline
+    model
+"""

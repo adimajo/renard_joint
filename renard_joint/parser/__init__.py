@@ -1,2 +1,9 @@
-"""Renard Joint Entity and Relation Extraction"""
-__version__ = "0.0.1"
+"""Parsers for the CoNLL04, SciERC and internal datasets
+
+.. autosummary::
+    :toctree:
+
+    conll04_parser
+    internal_parser
+    scierc_parser
+"""
