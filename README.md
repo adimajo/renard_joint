@@ -49,3 +49,15 @@ Note: The hyperparameters for retraining can be modified in the `[dataset]_const
 <a id="1">[1]</a> Eberts, M., & Ulges, A. (2019). Span-based joint entity and relation extraction with transformer pre-training. arXiv preprint arXiv:1909.07755.
 
 <a id="2">[2]</a> Wang, H., Tan, M., Yu, M., Chang, S., Wang, D., Xu, K., ... & Potdar, S. (2019). Extracting multiple-relations in one-pass with pre-trained transformers. arXiv preprint arXiv:1902.01030.
+
+## TODO
+
+Move tests from `if __main__` to the `tests` directory
+
+Documentation
+
+API
+
+Package
+
+Ingest in Renard

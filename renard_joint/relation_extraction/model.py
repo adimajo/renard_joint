@@ -49,12 +49,14 @@ class MreOutput(ModelOutput):
             Classification loss.
         logits (:obj:`torch.FloatTensor` of shape :obj:`(batch_size, max_entities ** 2, num_labels)`):
             Classification scores (before SoftMax).
-        hidden_states (:obj:`tuple(torch.FloatTensor)`, `optional`, returned when ``output_hidden_states=True`` is passed or when ``config.output_hidden_states=True``):
+        hidden_states (:obj:`tuple(torch.FloatTensor)`, `optional`, returned when ``output_hidden_states=True``
+            is passed or when ``config.output_hidden_states=True``):
             Tuple of :obj:`torch.FloatTensor` (one for the output of the embeddings + one for the output of each layer)
             of shape :obj:`(batch_size, sequence_length, hidden_size)`.
 
             Hidden-states of the model at the output of each layer plus the initial embedding outputs.
-        attentions (:obj:`tuple(torch.FloatTensor)`, `optional`, returned when ``output_attentions=True`` is passed or when ``config.output_attentions=True``):
+        attentions (:obj:`tuple(torch.FloatTensor)`, `optional`, returned when ``output_attentions=True`` is passed or
+            when ``config.output_attentions=True``):
             Tuple of :obj:`torch.FloatTensor` (one for each layer) of shape :obj:`(batch_size, num_heads,
             sequence_length, sequence_length)`.
 
@@ -75,10 +77,11 @@ class BertForMre(nn.Module):
     Wang, H., Tan, M., Yu, M., Chang, S., Wang, D., Xu, K., ... & Potdar, S. (2019).
     Extracting multiple-relations in one-pass with pre-trained transformers. arXiv preprint arXiv:1902.01030.
     """
+
     def __init__(
-        self,
-        num_labels,
-        model_name="bert-base-uncased"
+            self,
+            num_labels,
+            model_name="bert-base-uncased"
     ):
         super(BertForMre, self).__init__()
         self.num_labels = num_labels
@@ -88,19 +91,19 @@ class BertForMre(nn.Module):
         self.classifier = nn.Linear(self.bert.config.hidden_size * 2, num_labels)
 
     def forward(
-        self,
-        input_ids=None,
-        attention_mask=None,
-        token_type_ids=None,
-        position_ids=None,
-        head_mask=None,
-        inputs_embeds=None,
-        e1_mask=None,
-        e2_mask=None,
-        labels=None,
-        output_attentions=None,
-        output_hidden_states=None,
-        return_dict=True,
+            self,
+            input_ids=None,
+            attention_mask=None,
+            token_type_ids=None,
+            position_ids=None,
+            head_mask=None,
+            inputs_embeds=None,
+            e1_mask=None,
+            e2_mask=None,
+            labels=None,
+            output_attentions=None,
+            output_hidden_states=None,
+            return_dict=True,
     ):
         outputs = self.bert(
             input_ids,
