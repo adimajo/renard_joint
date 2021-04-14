@@ -1,5 +1,7 @@
+import os
+
 model_path = "bert-base-cased"
-model_save_path = "../../model/spert/conll04_"
+model_save_path = os.environ["MODEL"] + "/spert/conll04_"
 train_dataset = "train"
 dev_dataset = "dev"
 test_dataset = "test"

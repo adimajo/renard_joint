@@ -1,0 +1,1 @@
+import renard_joint.relation_extraction.conll04_pipeline as pipeline

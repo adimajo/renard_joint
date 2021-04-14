@@ -1,11 +1,12 @@
 import random
 
-import evaluator
-import model
+import renard_joint.spert.evaluator as evaluator
+import renard_joint.spert.model as model
 import pandas as pd
 import torch
 import transformers
 from transformers import AdamW, BertConfig, BertTokenizer
+from tqdm import tqdm
 
 EPOCH_ = "epoch:"
 
@@ -21,16 +22,15 @@ if __name__ == "__main__":
         import scierc_constants as constants
         import scierc_input_generator as input_generator
     elif sys.argv[1] == "internal":
-        import internal_constants as constants
-        import internal_input_generator as input_generator
+        import renard_joint.spert.internal_constants as constants
+        import renard_joint.spert.internal_input_generator as input_generator
     else:
         raise ValueError("Invalid dataset argument")
 else:
     # import default dataset
-    import internal_constants as constants
-    import internal_input_generator as input_generator
+    import renard_joint.spert.internal_constants as constants
+    import renard_joint.spert.internal_input_generator as input_generator
 
-from tqdm import tqdm
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

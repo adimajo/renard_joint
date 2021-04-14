@@ -1,3 +1,4 @@
+import os
 import pickle
 
 import numpy as np
@@ -10,7 +11,7 @@ from transformers import BertModel, BertTokenizer
 
 import renard_joint.parser.conll04_parser as parser
 from renard_joint.spert import evaluator
-from renard_joint.spert import model
+from renard_joint.relation_extraction import model
 
 label_map_bio = {v: k for k, v in parser.entity_encode.items()}
 
@@ -29,11 +30,11 @@ parser.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 bert_model = BertModel.from_pretrained('bert-base-uncased')
 
 print("Loading entity recognition model...")
-ner_model = pickle.load(open("../../model/ner/conll04_nn_1024.model", 'rb'))
+ner_model = pickle.load(open(os.environ["MODEL"] + "/ner/conll04_nn_1024.model", 'rb'))
 
 print("Loading relation extraction model...")
 re_model = model.BertForMre(len(relation_classes) + 1)
-re_model.load_state_dict(torch.load("../../model/re/conll04_100.model", map_location=device))
+re_model.load_state_dict(torch.load(os.environ["MODEL"] + "/re/conll04_100.model", map_location=device))
 re_model.eval()  # Set model for evaluation only
 re_model.to(device)
 
@@ -247,13 +248,13 @@ def evaluate(group, bert_model, ner_model, re_model,
                                                relation_classes),
         evaluator.evaluate_span(true_relation_spans, pred_relation_spans, relation_label_map, relation_classes),
     ], keys=["Entity span", "Entity embedding", "Loose relation", "Strict relation"])
-    results.to_csv("../../model/re/conll04_evaluate_" + group + ".csv")
+    results.to_csv(os.environ["MODEL"] + "/re/conll04_evaluate_" + group + ".csv")
     print(results)
 
 
 def predict(sentences, bert_model, ner_model, re_model,
-            entity_label_map, entity_classes,
-            relation_label_map, relation_classes,
+            entity_label_map,
+            relation_label_map,
             max_entity_pair=1000):
     for sentence in sentences:
         word_list = sentence.split()
@@ -309,6 +310,6 @@ if __name__ == "__main__":
                  entity_label_map, entity_classes, relation_label_map, relation_classes)
     elif sys.argv[1] == "predict":
         predict(sys.argv[2:], bert_model, ner_model, re_model,
-                entity_label_map, entity_classes, relation_label_map, relation_classes)
+                entity_label_map, relation_label_map)
     else:
         raise ValueError("Invalid argument(s)")
