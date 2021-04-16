@@ -22,6 +22,9 @@ lint:
 test:
   extends: .before_script_template
   stage: test
+  variables:
+    DATA: "data/"
+    MODEL: "model/"
   script:
   - pipenv install -d --skip-lock
   - pipenv run coverage run --source renard_joint -m pytest
