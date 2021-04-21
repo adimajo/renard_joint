@@ -1,4 +1,4 @@
-import renard_joint.relation_extraction.conll04_pipeline as pipeline
+import renard_joint.relation_extraction.internal_pipeline as pipeline
 
 
 def test_evaluate():
@@ -18,4 +18,6 @@ def test_predict():
                      pipeline.ner_model,
                      pipeline.re_model,
                      pipeline.entity_label_map,
-                     pipeline.relation_label_map)
+                     pipeline.relation_label_map,
+                     pipeline.relation_label_map,
+                     pipeline.relation_classes)

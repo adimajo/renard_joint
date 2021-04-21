@@ -24,9 +24,9 @@ from transformers import BertTokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
-TRAIN_PATH = os.environ["DATA"] + "CoNLL04/train.txt"
-DEV_PATH = os.environ["DATA"] + "CoNLL04/dev.txt"
-TEST_PATH = os.environ["DATA"] + "CoNLL04/test.txt"
+TRAIN_PATH = os.path.join(os.environ["DATA"], "CoNLL04/train.txt")
+DEV_PATH = os.path.join(os.environ["DATA"], "CoNLL04/dev.txt")
+TEST_PATH = os.path.join(os.environ["DATA"], "CoNLL04/test.txt")
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102

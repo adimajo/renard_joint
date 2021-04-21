@@ -1,7 +1,7 @@
 import os
 
 model_path = "bert-base-cased"
-model_save_path = os.environ["MODEL"] + "model/spert/scierc_"
+model_save_path = os.path.join(os.environ["MODEL"], "model/spert/scierc_")
 train_dataset = "train"
 dev_dataset = "dev"
 test_dataset = "test"

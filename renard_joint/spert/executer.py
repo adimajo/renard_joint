@@ -16,11 +16,11 @@ if __name__ == "__main__":
     if len(sys.argv) <= 1:
         raise ValueError("Dataset argument not found")
     elif sys.argv[1] == "conll04":
-        import conll04_constants as constants
-        import conll04_input_generator as input_generator
+        import renard_joint.spert.conll04_constants as constants
+        import renard_joint.spert.conll04_input_generator as input_generator
     elif sys.argv[1] == "scierc":
-        import scierc_constants as constants
-        import scierc_input_generator as input_generator
+        import renard_joint.spert.scierc_constants as constants
+        import renard_joint.spert.scierc_input_generator as input_generator
     elif sys.argv[1] == "internal":
         import renard_joint.spert.internal_constants as constants
         import renard_joint.spert.internal_input_generator as input_generator

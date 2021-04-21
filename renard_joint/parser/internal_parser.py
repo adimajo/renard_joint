@@ -26,8 +26,8 @@ from transformers import BertTokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
-RECORD_PATH = os.environ["DATA"] + "internal_data/sets.json"
-DATA_PATH = os.environ["DATA"] + "internal_data/gt/"
+RECORD_PATH = os.path.join(os.environ["DATA"], "internal_data/sets.json")
+DATA_PATH = os.path.join(os.environ["DATA"], "internal_data/gt/")
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102
