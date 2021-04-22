@@ -1,3 +1,10 @@
+"""
+Constants to retrain the model on COnLL04.
+
+.. autosummary::
+    :toctree:
+
+"""
 import os
 
 model_path = "bert-base-cased"

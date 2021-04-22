@@ -1,3 +1,15 @@
+"""
+
+.. autosummary::
+    :toctree:
+
+    get_optimizer_params
+    take_first_tokens
+    evaluate
+    train
+    predict
+    load_model
+"""
 import random
 
 import renard_joint.spert.evaluator as evaluator

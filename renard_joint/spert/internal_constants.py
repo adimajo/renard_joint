@@ -1,3 +1,10 @@
+"""
+Constants to retrain the model on internal data.
+
+.. autosummary::
+    :toctree:
+
+"""
 import os
 
 model_path = "bert-base-cased"

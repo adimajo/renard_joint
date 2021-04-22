@@ -1,3 +1,10 @@
+"""
+A pytorch module for the Spert model.
+
+.. autoclass:: SpERT
+   :members:
+   :inherited-members:
+"""
 import torch
 import torch.nn.functional as F
 from torch import nn as nn

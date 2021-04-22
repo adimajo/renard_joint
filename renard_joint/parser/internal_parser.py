@@ -1,19 +1,17 @@
 """
-USAGE:
+Internal data parser.
 
-1. Adapt the constants:
-RECORD_PATH is the record file that contains the names(ids) of all documents,
-DATA_PATH is the folder that contains the documents
+.. autosummary::
+    :toctree:
 
-2. Obtain the list of documents
-docs = get_docs("All", "Training", or "Test")
-
-3. Main functions:
-check_data(docs): Check if the record and the documents are consistent
-data = extract_data(docs): Parse and return the dataset
-check_extracted_data(data): Check if the parsed data is consistent
-describe_data(docs): Describe the dataset
-
+    get_doc
+    get_word_doc
+    get_token_id
+    expand_token_id
+    get_entity_doc
+    get_relation_doc
+    extract_doc
+    extract_data
 """
 import os
 import bisect

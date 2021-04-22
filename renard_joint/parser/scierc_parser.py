@@ -1,20 +1,14 @@
 """
-USAGE:
+Parser for SciERC data.
 
-1. Adapt the constants:
-TRAIN_PATH is the path to the train dataset,
-DEV_PATH is the path to the dev dataset,
-TEST_PATH is the path to the test dataset,
+.. autosummary::
+    :toctree:
 
-2. Obtain the list of documents from one of three group: "train", "dev", or "test"
-docs = get_docs(group)
-
-3. Main functions:
-check_data(): Check if the record and the documents are consistent
-data = extract_data(group): Parse and return the dataset
-check_extracted_data(data): Check if the parsed data is consistent
-describe_data(): Describe the whole dataset
-
+    get_docs
+    get_token_id
+    expand_token_id
+    extract_doc
+    extract_data
 """
 import os
 import json

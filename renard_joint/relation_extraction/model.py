@@ -1,34 +1,47 @@
-"""A pytorch module for multiple relation extraction (Wang et al. 2019)
+"""A pytorch module for multiple relation extraction.
 
-REFERENCE:
 Wang, H., Tan, M., Yu, M., Chang, S., Wang, D., Xu, K., ... & Potdar, S. (2019).
 Extracting multiple-relations in one-pass with pre-trained transformers. arXiv preprint arXiv:1902.01030.
 
-SAMPLE USAGE:
-# create a model
-model = BertForMre(#number_of_relation_classes)
+.. code-block:: python
 
-# extract a sentence and create entity masks & labels
-docs = conll04_parser.get_docs("train")
-extracted_doc = conll04_parser.extract_doc(docs[0])
-e1_mask, e2_mask, labels = generate_entity_mask(
-    extracted_doc["data_frame"].shape[0],
-    extracted_doc["entity_position"],
-    extracted_doc["relations"]
-)
+    # create a model
+    model = BertForMre(#number_of_relation_classes)
 
-# train the model
-from transformers import AdamW
-optimizer = AdamW(model.parameters(), lr=1e-5)
-outputs = model(
-    torch.tensor([extracted_doc["data_frame"]["token_ids"]]),
-    e1_mask=e1_mask,
-    e2_mask=e2_mask,
-    labels=labels
-)
-loss = outputs.loss
-loss.backward()
-optimizer.step()
+    # extract a sentence and create entity masks & labels
+    docs = conll04_parser.get_docs("train")
+    extracted_doc = conll04_parser.extract_doc(docs[0])
+    e1_mask, e2_mask, labels = generate_entity_mask(
+        extracted_doc["data_frame"].shape[0],
+        extracted_doc["entity_position"],
+        extracted_doc["relations"]
+    )
+
+    # train the model
+    from transformers import AdamW
+    optimizer = AdamW(model.parameters(), lr=1e-5)
+    outputs = model(
+        torch.tensor([extracted_doc["data_frame"]["token_ids"]]),
+        e1_mask=e1_mask,
+        e2_mask=e2_mask,
+        labels=labels
+    )
+    loss = outputs.loss
+    loss.backward()
+    optimizer.step()
+
+.. autosummary::
+    :toctree:
+
+    generate_entity_mask
+
+.. autoclass:: MreOutput
+   :members:
+   :inherited-members:
+
+.. autoclass:: BertForMre
+   :members:
+   :inherited-members:
 """
 
 from typing import Optional, Tuple
@@ -71,7 +84,7 @@ class MreOutput(ModelOutput):
 
 
 class BertForMre(nn.Module):
-    """A pytorch module for multiple relation extraction (Wang et al. 2019)
+    """A pytorch module for multiple relation extraction.
 
     Reference:
     Wang, H., Tan, M., Yu, M., Chang, S., Wang, D., Xu, K., ... & Potdar, S. (2019).
@@ -159,7 +172,7 @@ class BertForMre(nn.Module):
 
 def generate_entity_mask(sequence_length, entity_position, relations):
     """For each pair of entities e1 and e2 in a sentence, generate a bit mask for e1 (appended to e1_mask),
-    a bit mask for e2 (appended to e2_mask), and append the corresponding relation type of the pair to labels
+    a bit mask for e2 (appended to e2_mask), and append the corresponding relation type of the pair to labels.
     """
     relation_count = len(entity_position) * (len(entity_position) - 1)
     e1_mask = torch.zeros((relation_count, sequence_length), dtype=torch.long)

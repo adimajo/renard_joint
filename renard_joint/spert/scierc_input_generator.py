@@ -1,3 +1,14 @@
+"""
+Input data generator for SciERC data.
+
+.. autosummary::
+    :toctree:
+
+    generate_entity_mask
+    generate_relation_mask
+    doc_to_input
+    data_generator
+"""
 import random
 
 import torch

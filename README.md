@@ -3,31 +3,38 @@
 The repository provides a **pipeline** and an implementation of **SpERT**[[1]](#1) for joint entity and relation extraction. The pipeline consisted of a simple entity recognition and a multiple relation extraction[[2]](#2) models.
 
 ## Installation
+
 - Clone this repository
+- The data can be found in the directory `N:\Projets02\GRO_STAGES\GRO_STG_2021_01 - Joint Entity and Relation Extraction\Data`
 - The pretrained models can be found in the directory `N:\Projets02\GRO_STAGES\GRO_STG_2021_01 - Joint Entity and Relation Extraction\model`
-- Copy the pretrained models folder `model` to the root folder of the cloned repository.
+- Set the environment variables `DATA` and `MODEL` to their respective location.
+- Install the dependencies using: `pipenv install`
+- Install the package using: `pip install .`
 
 ## Directory
-- `data` contains the three datasets:
-     - `conll04` and `scierc` are public datasets
-     - `internal` is the annotated data from RSE reports.
-- `renard_joint` contains code and notebooks
+- `renard_joint` contains the main package;
+- `notebooks` contains the notebooks to explore the datasets and fine-tune the model;
+- `scripts` contains the command-line tools of the package;
+- `tests` contains the `pytest` tests for `renard_joint` and `scripts`;
+- `docs` contains the utilities to build the Sphinx documentation;
+- `.gitlab-ci.yml` defines the CI/CD pipeline;
+- `Pipefile(.lock)` are used to manage the dependencies of the project.
 
 ## Usage
 
 ### Pipeline
-From `renard_joint/relation_extraction`,
+From the command line, once the package is installed:
 
 - For CoNLL04:
     - To evaluate: `python conll04_pipeline.py evaluate`
     - To predict: `python conll04_pipeline.py predict "sentence 1" "sentence 2" ...`
-    
+
 - For the internal dataset:
     - To evaluate: `python internal_pipeline.py evaluate`
     - To predict: `python internal_pipeline.py predict "sentence 1" "sentence 2" ...`
-    
+
 ### SpERT
-From `renard_joint/spert`,
+From the command line, once the package is installed:
 
 - To retrain model: `python executer.py [dataset] train`
 - To evaluate model: `python executer.py [dataset] evaluate [checkpoint]`
@@ -52,12 +59,10 @@ Note: The hyperparameters for retraining can be modified in the `[dataset]_const
 
 ## TODO
 
-Move tests from `if __main__` to the `tests` directory
+Rename scripts
 
-Documentation
+Coverage
 
 API
 
 Package
-
-Ingest in Renard

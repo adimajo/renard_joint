@@ -1,3 +1,15 @@
+"""
+Evaluation utilities for Spert.
+
+Constants to retrain the model on COnLL04
+
+.. autosummary::
+    :toctree:
+
+    evaluate_results
+    evalute_span
+    evaluate_loose_relation_span
+"""
 import pandas as pd
 from sklearn.metrics import precision_recall_fscore_support
 

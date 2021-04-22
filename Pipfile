@@ -8,6 +8,7 @@ pytest = "*"
 coverage = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
+m2r2 = "*"
 flake8 = "*"
 numpydoc = "*"
 wheel = "*"
@@ -21,5 +22,5 @@ matplotlib = "*"
 seaborn = "*"
 transformers = "*"
 tikzplotlib = "*"
-torch = {version = "*", sys_platform='linux'}
-# "torch_win" = {file="https://download.pytorch.org/whl/cpu/torch-1.8.1%2Bcpu-cp38-cp38-win_amd64.whl", sys_platform='win32'}
+torch = {version = "*",markers="sys_platform == 'linux'"}
+# "torch_win" = {file="https://download.pytorch.org/whl/cpu/torch-1.8.1%2Bcpu-cp38-cp38-win_amd64.whl",markers="sys_platform == 'win32'"}
