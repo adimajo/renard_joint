@@ -45,7 +45,7 @@ parser.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 bert_model = BertModel.from_pretrained('bert-base-uncased')
 
 print("Loading entity recognition model...")
-ner_model = pickle.load(open(os.environ["MODEL"] + "ner/conll04_nn_1024.model", 'rb'))
+ner_model = pickle.load(open(os.path.join(os.environ["MODEL"], "ner/conll04_nn_1024.model"), 'rb'))
 
 print("Loading relation extraction model...")
 re_model = model.BertForMre(len(relation_classes) + 1)

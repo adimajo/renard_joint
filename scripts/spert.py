@@ -1,4 +1,5 @@
 """
+Spert command-line tool.
 
 .. autosummary::
     :toctree:
@@ -14,6 +15,7 @@ import random
 
 import renard_joint.spert.evaluator as evaluator
 import renard_joint.spert.model as model
+from renard_joint.spert import SpertConfig
 import pandas as pd
 import torch
 import transformers
@@ -22,55 +24,17 @@ from tqdm import tqdm
 
 EPOCH_ = "epoch:"
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
 if __name__ == "__main__":
     import sys
 
     if len(sys.argv) <= 1:
         raise ValueError("Dataset argument not found")
-    elif sys.argv[1] == "conll04":
-        import renard_joint.spert.conll04_constants as constants
-        import renard_joint.spert.conll04_input_generator as input_generator
-    elif sys.argv[1] == "scierc":
-        import renard_joint.spert.scierc_constants as constants
-        import renard_joint.spert.scierc_input_generator as input_generator
-    elif sys.argv[1] == "internal":
-        import renard_joint.spert.internal_constants as constants
-        import renard_joint.spert.internal_input_generator as input_generator
-    else:
-        raise ValueError("Invalid dataset argument")
-else:
-    # import default dataset
-    import renard_joint.spert.internal_constants as constants
-    import renard_joint.spert.internal_input_generator as input_generator
 
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-entity_label_map = {v: k for k, v in input_generator.parser.entity_encode.items()}
-entity_classes = list(entity_label_map.keys())
-entity_classes.remove(0)
-
-relation_label_map = {v: k for k, v in input_generator.parser.relation_encode.items()}
-relation_classes = list(relation_label_map.keys())
-relation_classes.remove(0)
-
-if __name__ == "__main__":
-    if sys.argv[1] == "internal":
-        relation_possibility = {
-            (3, 5): [0, 0, 0, 1, 0, 0, 0, 0],  # Organization + Location -> IsRelatedTo
-            (3, 6): [0, 0, 0, 0, 1, 0, 0, 0],  # Organization + CoalActivity -> HasActivity
-            (3, 8): [0, 0, 0, 0, 0, 1, 0, 0],  # Organization + SocialOfficialText -> Recognizes
-            (3, 4): [0, 1, 0, 0, 0, 0, 0, 0],  # Organization + CommitmentLevel -> Makes
-            (4, 1): [0, 0, 1, 0, 0, 0, 0, 0],  # CommitmentLevel + EnvironmentalIssues -> Of
-            (4, 7): [0, 0, 1, 0, 0, 0, 0, 0]  # CommitmentLevel + SocialIssues -> Of
-        }
-        relation_classes.remove(6)  # remove In
-        relation_classes.remove(7)  # remove IsInvolvedIn
-    else:
-        relation_possibility = None
-
-tokenizer = BertTokenizer.from_pretrained(constants.model_path)
-input_generator.parser.tokenizer = tokenizer
+    spert_config = SpertConfig(sys.argv[1])
+    constants, input_generator = spert_config.constants, spert_config.input_generator
 
 
 def get_optimizer_params(model):
@@ -93,7 +57,14 @@ def take_first_tokens(embedding, words):
     return reduced_embedding
 
 
-def evaluate(spert_model, group):
+def evaluate(entity_label_map,
+             entity_classes,
+             relation_label_map,
+             relation_classes,
+             constants,
+             input_generator,
+             spert_model,
+             group):
     spert_model.eval()
     eval_entity_span_pred = []
     eval_entity_span_true = []
@@ -133,7 +104,13 @@ def evaluate(spert_model, group):
     print(results)
 
 
-def train():
+def train(entity_label_map,
+          entity_classes,
+          relation_label_map,
+          relation_classes,
+          relation_possibility,
+          constants,
+          input_generator):
     """Train the model and evaluate on the dev dataset
     """
     # Training
@@ -211,7 +188,13 @@ def train():
     torch.save(spert_model.state_dict(), constants.model_save_path + "epoch_" + str(constants.epochs - 1) + ".model")
 
 
-def predict(spert_model, sentences):
+def predict(entity_label_map,
+            relation_label_map,
+            tokenizer,
+            constants,
+            input_generator,
+            spert_model,
+            sentences):
     for sentence in sentences:
         word_list = sentence.split()
         words = []
@@ -251,7 +234,7 @@ def predict(spert_model, sentences):
                   " ".join(tokens[e2[0]:e2[1]]))
 
 
-def load_model(checkpoint):
+def load_model(relation_possibility, constants, checkpoint):
     """Import trained model given the checkpoint number"""
     config = BertConfig.from_pretrained(constants.model_path)
     spert_model = model.SpERT.from_pretrained(constants.model_path,
@@ -272,22 +255,77 @@ def load_model(checkpoint):
     return spert_model
 
 
+def data_prep(constants, input_generator, dataset):
+    entity_label_map = {v: k for k, v in input_generator.parser.entity_encode.items()}
+    entity_classes = list(entity_label_map.keys())
+    entity_classes.remove(0)
+
+    relation_label_map = {v: k for k, v in input_generator.parser.relation_encode.items()}
+    relation_classes = list(relation_label_map.keys())
+    relation_classes.remove(0)
+
+    if dataset == "internal":
+        relation_possibility = {
+            (3, 5): [0, 0, 0, 1, 0, 0, 0, 0],  # Organization + Location -> IsRelatedTo
+            (3, 6): [0, 0, 0, 0, 1, 0, 0, 0],  # Organization + CoalActivity -> HasActivity
+            (3, 8): [0, 0, 0, 0, 0, 1, 0, 0],  # Organization + SocialOfficialText -> Recognizes
+            (3, 4): [0, 1, 0, 0, 0, 0, 0, 0],  # Organization + CommitmentLevel -> Makes
+            (4, 1): [0, 0, 1, 0, 0, 0, 0, 0],  # CommitmentLevel + EnvironmentalIssues -> Of
+            (4, 7): [0, 0, 1, 0, 0, 0, 0, 0]  # CommitmentLevel + SocialIssues -> Of
+        }
+        relation_classes.remove(6)  # remove In
+        relation_classes.remove(7)  # remove IsInvolvedIn
+    else:
+        relation_possibility = None
+
+    tokenizer = BertTokenizer.from_pretrained(constants.model_path)
+    input_generator.parser.tokenizer = tokenizer
+
+    return entity_label_map, entity_classes, relation_label_map, relation_classes, tokenizer, relation_possibility
+
+
 if __name__ == "__main__":
+    entity_label_map,\
+        entity_classes,\
+        relation_label_map, \
+        relation_classes,\
+        tokenizer,\
+        relation_possibility = data_prep(constants, input_generator, sys.argv[1])
+
     if len(sys.argv) <= 2:
         raise ValueError("No functional argument found")
     elif sys.argv[2] == "train":
-        train()
+        train(entity_label_map,
+          entity_classes,
+          relation_label_map,
+          relation_classes,
+          relation_possibility,
+          constants,
+          input_generator)
     elif sys.argv[2] == "evaluate":
         if len(sys.argv) <= 3:
             raise ValueError("No checkpoint number found")
         else:
-            spert_model = load_model(int(sys.argv[3]))
-            evaluate(spert_model, constants.test_dataset)
+            spert_model = load_model(relation_possibility, constants, int(sys.argv[3]))
+            evaluate(entity_label_map,
+                     entity_classes,
+                     relation_label_map,
+                     relation_classes,
+                     constants,
+                     input_generator,
+                     spert_model,
+                     constants.test_dataset)
     elif sys.argv[2] == "predict":
         if len(sys.argv) <= 3:
             raise ValueError("No checkpoint number found")
         else:
-            spert_model = load_model(int(sys.argv[3]))
-            predict(spert_model, sentences=sys.argv[4:])
+            spert_model = load_model(relation_possibility, constants, int(sys.argv[3]))
+            predict(entity_label_map,
+                    relation_label_map,
+                    tokenizer,
+                    constants,
+                    input_generator,
+                    spert_model,
+                    sentences=sys.argv[4:])
     else:
         raise ValueError("Invalid argument(s)")

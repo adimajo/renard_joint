@@ -29,13 +29,14 @@ test:
     MODEL: "/the_data/model/"
   script:
   - pipenv install -d --skip-lock
-  - pipenv run coverage run --source renard_joint --source scripts -m pytest
+  - pipenv run coverage run --source renard_joint,scripts -m pytest
   - pipenv run coverage report
 
 document:
   extends: .before_script_template
   stage: document
   script:
+  - apt-get install make
   - cd docs
   - make html
   artifacts:

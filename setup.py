@@ -132,7 +132,6 @@ if __name__ == "__main__":
         #        'sample=sample:main',
         #    ],
         # },
-        scripts=["scripts/conll04_pipeline.py",
-                 "scripts/internal_pipeline.py",
-                 "scripts/executer.py"]
+        scripts=["scripts/pipeline.py",
+                 "scripts/spert.py"]
     )

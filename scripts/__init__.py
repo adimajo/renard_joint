@@ -6,5 +6,6 @@ Command-line scripts for renard_joint a.k.a. Data Harvesting
 
     conll04_pipeline
     internal_pipeline
-    executer
+    pipeline
+    spert
 """
