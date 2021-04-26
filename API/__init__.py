@@ -12,12 +12,11 @@ serve these predictions.
     wsgi
     gini
 """
-import numpy as np
-from datetime import datetime
 from flask_restful import reqparse, Resource
-from flask import jsonify
+from flask.json import jsonify
 from loguru import logger
-import importlib
+from renard_joint.spert import SpertConfig
+from scripts import spert
 
 str_required = {
     'type': str,
@@ -25,78 +24,9 @@ str_required = {
     'default': None
 }
 
-datetime_required = {
-    'type': lambda x: datetime.strptime(x, '%d/%m/%Y %H:%M'),
-    'required': True,
-    'default': None
-}
 
 int_required = {
     'type': int,
-    'required': True,
-    'default': None
-}
-
-float_required = {
-    'type': float,
-    'required': True,
-    'default': None
-}
-
-bool_required = {
-    'type': bool,
-    'required': True,
-    'default': None
-}
-
-
-def check_between_0_1(x):
-    """
-    Checks if input is between 0 and 1.
-    :param x: input
-    :type x: float or int
-    :return: x
-    """
-    if not 0 <= x <= 1:
-        logger.error("Invalid value for proportion_for_test: must be between 0 and 1.")
-    else:
-        return x
-
-
-b0_1_required = {
-    'type': lambda x: check_between_0_1(x),
-    'required': True,
-    'default': None
-}
-
-b0_1_not_required = {
-    'type': lambda x: check_between_0_1(x),
-    'required': False,
-    'default': None
-}
-
-
-def check_learner(learner):
-    """
-    Checks if the weak learner argument can be imported.
-    :param learner: weak learner to use in classification
-    :type learner: str
-    :return: learner
-    :rtype: str
-    """
-    if learner == "ASSEMBLE":
-        logger.info("ASSEMBLE method chosen.")
-        return learner
-    try:
-        getattr(importlib.import_module("sklearn.linear_model"), learner)
-        logger.info("Specified learner could be imported.")
-    except ImportError as e:
-        logger.error("Specified learner is not installed / cannot be imported. " + str(e))
-    return learner
-
-
-learner_required = {
-    'type': lambda x: check_learner(x),
     'required': True,
     'default': None
 }
@@ -163,15 +93,34 @@ class Predictor(Resource):
         kwargs = predict_parser.parse_args(strict=True)
         logger.info("Successfully parsed arguments")
 
-        # result = predict(**kwargs)
-        # logger.info("Successfully predicted")
-        #
-        # if not result["score"] == np.nan:
-        #     response = jsonify(result)
-        #     response.status_code = 200
-        # else:
-        #     response = jsonify("Model failed")
-        #     response.status_code = 400
+        spert_config = SpertConfig(kwargs["dataset"])
+        constants, input_generator = spert_config.constants, spert_config.input_generator
+
+        entity_label_map, \
+            entity_classes, \
+            relation_label_map, \
+            relation_classes, \
+            tokenizer, \
+            relation_possibility = spert.data_prep(constants, input_generator, kwargs["dataset"])
+
+        spert_model = spert.load_model(relation_possibility, constants, kwargs["checkpoint"])
+
+        result = spert.predict(entity_label_map,
+                               relation_label_map,
+                               tokenizer,
+                               constants,
+                               input_generator,
+                               spert_model,
+                               [kwargs["sentence"]])
+
+        logger.info("Successfully predicted")
+
+        try:
+            response = jsonify(result)
+            response.status_code = 200
+        except:
+            response = jsonify("Model failed")
+            response.status_code = 400
 
         return response
 
@@ -202,6 +151,34 @@ class Evaluator(Resource):
         kwargs = train_parser.parse_args(strict=True)
         logger.info("Successfully parsed arguments")
 
+        spert_config = SpertConfig(kwargs["dataset"])
+        constants, input_generator = spert_config.constants, spert_config.input_generator
+
+        entity_label_map, \
+            entity_classes, \
+            relation_label_map, \
+            relation_classes, \
+            tokenizer, \
+            relation_possibility = spert.data_prep(constants, input_generator, kwargs["dataset"])
+
+        spert_model = spert.load_model(relation_possibility, constants, kwargs["checkpoint"])
+
+        result = spert.evaluate(entity_label_map,
+                                entity_classes,
+                                relation_label_map,
+                                relation_classes,
+                                constants,
+                                input_generator,
+                                spert_model,
+                                constants.test_dataset)
+
+        try:
+            response = jsonify(result)
+            response.status_code = 200
+        except:
+            response = jsonify("Model failed")
+            response.status_code = 400
+
         return response
 
 
@@ -231,5 +208,30 @@ class Trainer(Resource):
         """
         kwargs = train_parser.parse_args(strict=True)
         logger.info("Successfully parsed arguments")
+
+        spert_config = SpertConfig(kwargs["dataset"])
+        constants, input_generator = spert_config.constants, spert_config.input_generator
+
+        entity_label_map, \
+            entity_classes, \
+            relation_label_map, \
+            relation_classes, \
+            tokenizer, \
+            relation_possibility = spert.data_prep(constants, input_generator, kwargs["dataset"])
+
+        try:
+            spert.train(entity_label_map,
+                        entity_classes,
+                        relation_label_map,
+                        relation_classes,
+                        relation_possibility,
+                        constants,
+                        input_generator)
+
+            response = jsonify("Model saved")
+            response.status_code = 200
+        except:
+            response = jsonify("Model failed")
+            response.status_code = 400
 
         return response

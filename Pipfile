@@ -27,3 +27,4 @@ torch = {version = "*",markers="sys_platform == 'linux'"}
 flask = "*"
 flask_restful = "*"
 flask_swagger = "*"
+loguru = "*"

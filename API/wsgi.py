@@ -14,7 +14,7 @@ def create_app():
     app.config['JSON_SORT_KEYS'] = False
     api = restful.Api(app)
     api.add_resource(Predictor, '/predict')
-    api.add_resource(Predictor, '/evaluate')
+    api.add_resource(Evaluator, '/evaluate')
     api.add_resource(Trainer, '/train')
 
     @app.route("/spec")
