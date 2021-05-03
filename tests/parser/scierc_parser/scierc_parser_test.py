@@ -289,3 +289,7 @@ def test_parsing_test_document():
     print("Doc id:", doc_id)
     print("Words:", data_frame['words'])
     print("Token ids:", data_frame['token_ids'])
+
+
+# def test_exception():
+#     scierc_parser.expand_token_id(token_ids, words, sentence_embedding, entities)

@@ -6,6 +6,7 @@ stages:
   - test
   - document
   - install
+  - api
 
 .before_script_template:
   before_script:
@@ -31,6 +32,19 @@ test:
   - pipenv install -d --skip-lock
   - pipenv run coverage run --source renard_joint,scripts -m pytest
   - pipenv run coverage report
+  - python pipeline.py conll04 evaluate
+  - python pipeline.py internal evaluate
+  - python pipeline.py conll04 predict "Adrien tries data harvesting" "It's probably working"
+  - python pipeline.py internal predict "Dirty company does bad coal activity" "Nice company treats people equally"
+  - python spert.py conll04 evaluate
+  - python spert.py scierc evaluate
+  - python spert.py internal evaluate
+  - python spert.py conll04 predict "Dirty company does bad coal activity" "Nice company treats people equally"
+  - python spert.py scierc predict "Dirty company does bad coal activity" "Nice company treats people equally"
+  - python spert.py internal predict "Dirty company does bad coal activity" "Nice company treats people equally"
+  - python spert.py conll04 train
+  - python spert.py scierc train
+  - python spert.py internal train
 
 document:
   extends: .before_script_template

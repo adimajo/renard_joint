@@ -1,6 +1,7 @@
 import scripts.spert as spert
 import renard_joint.spert.internal_constants as constants
 import renard_joint.spert.internal_input_generator as input_generator
+import pytest
 
 entity_label_map, \
     entity_classes, \
@@ -31,3 +32,13 @@ def test_predict_internal_spert():
                   input_generator,
                   spert_model,
                   ["Adrien is testing the Data Harvesting prototype"])
+
+
+def test_spert_config():
+    with pytest.raises(ValueError):
+        spert.SpertConfig(dataset=None)
+    with pytest.raises(ValueError):
+        spert.SpertConfig(dataset="toto")
+    spert.SpertConfig(dataset="internal")
+    spert.SpertConfig(dataset="scierc")
+    spert.SpertConfig(dataset="conll")

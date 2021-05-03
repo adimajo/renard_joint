@@ -314,18 +314,3 @@ def predict(sentences, bert_model, ner_model, re_model,
             print(relation_label_map[relation_type], "|",
                   " ".join(tokens[e1[0]:e1[1]]), "|",
                   " ".join(tokens[e2[0]:e2[1]]))
-
-
-if __name__ == "__main__":
-    import sys
-
-    if len(sys.argv) <= 1:
-        raise ValueError("No argument found")
-    elif sys.argv[1] == "evaluate":
-        evaluate("test", bert_model, ner_model, re_model,
-                 entity_label_map, entity_classes, relation_label_map, relation_classes)
-    elif sys.argv[1] == "predict":
-        predict(sys.argv[2:], bert_model, ner_model, re_model,
-                entity_label_map, relation_label_map)
-    else:
-        raise ValueError("Invalid argument(s)")
