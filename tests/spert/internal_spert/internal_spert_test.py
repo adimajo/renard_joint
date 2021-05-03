@@ -41,4 +41,4 @@ def test_spert_config():
         spert.SpertConfig(dataset="toto")
     spert.SpertConfig(dataset="internal")
     spert.SpertConfig(dataset="scierc")
-    spert.SpertConfig(dataset="conll")
+    spert.SpertConfig(dataset="conll04")
