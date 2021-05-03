@@ -1,4 +1,4 @@
-import scripts.conll04_pipeline as pipeline
+import renard_joint.relation_extraction.conll04_pipeline as pipeline
 
 
 def test_evaluate_conll_pipeline():

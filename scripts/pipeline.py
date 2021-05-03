@@ -2,9 +2,7 @@
 NER-RE pipeline script.
 """
 import sys
-from . import conll04_pipeline
-from . import internal_pipeline
-
+from renard_joint.relation_extraction import conll04_pipeline, internal_pipeline
 
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
