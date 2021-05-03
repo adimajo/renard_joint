@@ -19,13 +19,13 @@ import json
 
 import pandas as pd
 from transformers import BertTokenizer
-
+from renard_joint.PathHandler import MyPathHandler
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
 RECORD_PATH = os.path.join(os.environ["DATA"], "internal_data/sets.json")
-DATA_PATH = os.path.join(os.environ["DATA"], "internal_data/gt/")
+
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102
@@ -67,7 +67,7 @@ def get_docs(group="All"):
 
 def get_doc(document_name):
     """Given a name, return the corresponding document"""
-    return json.load(open(DATA_PATH + document_name + ".json", "r", encoding="utf8"))
+    return json.load(open(os.path.join(MyPathHandler().get_path(), document_name + ".json"), "r", encoding="utf8"))
 
 
 def get_word_doc(document_name):
@@ -103,8 +103,8 @@ def expand_token_id(token_id, words, begins, ends, sentence_embedding):
     """Expand token id and duplicate members in other list wherever necessary"""
     # Test if all lists have the same length as expected
     assert len(token_id) == len(words) == len(begins) == len(ends) == len(sentence_embedding), "Input lists do " \
-                                                                                                   "not have the same" \
-                                                                                                   " length, abort"
+                                                                                               "not have the same" \
+                                                                                               " length, abort"
     new_token_id = []
     new_words = []
     new_begins = []
@@ -167,3 +167,9 @@ def extract_data(docs):
     for document in docs:
         data.append(extract_doc(document))
     return data
+
+
+def extract_all_data(group="All"):
+    """Extract all documents to a dataset"""
+    docs = get_docs(group)
+    return extract_data(docs)

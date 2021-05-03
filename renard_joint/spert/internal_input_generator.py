@@ -136,7 +136,8 @@ def doc_to_input(doc, device,
             "relation_span": relation_span}  # ground truth relation spans
 
 
-def data_generator(group, device,
+def data_generator(group,
+                   device,
                    is_training=True,
                    neg_entity_count=100,
                    neg_relation_count=100,
@@ -145,7 +146,7 @@ def data_generator(group, device,
     'group' is the dataset ("Training" or "Test")
     'device' is the device where pytorch runs on (e.g. device = torch.device("cuda"))
     """
-    data = parser.extract_data(parser.get_docs(group))
+    data = parser.extract_all_data(group)
     for doc in data:
         sentence_id = 0
         starting_index = 0

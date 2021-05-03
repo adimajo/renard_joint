@@ -54,3 +54,15 @@ install:
     paths:
       - dist
     expire_in: 1 week
+
+api:
+  stage: api
+  script:
+  - pipenv install -d --skip-lock
+  - cd API
+  - docker build --build-arg http_proxy=$HTTP_PROXY --build-arg POSTGRES_PASSWORD=CoinCoin -t data_harvesting_api:latest .
+  - docker save data_harvesting_api:latest > data_harvesting_api.tar
+  artifacts:
+    paths:
+      - API/data_harvesting_api.tar
+    expire_in: 1 week

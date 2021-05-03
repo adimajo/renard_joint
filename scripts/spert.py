@@ -72,7 +72,8 @@ def evaluate(entity_label_map,
     eval_entity_embedding_true = []
     eval_relation_span_pred = []
     eval_relation_span_true = []
-    eval_generator = input_generator.data_generator(group, device,
+    eval_generator = input_generator.data_generator(group,
+                                                    device,
                                                     is_training=False,
                                                     neg_entity_count=constants.neg_entity_count,
                                                     neg_relation_count=constants.neg_relation_count,

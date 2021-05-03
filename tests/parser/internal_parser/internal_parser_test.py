@@ -6,6 +6,7 @@ import seaborn as sns
 import tikzplotlib
 
 from renard_joint.parser import internal_parser
+from renard_joint.PathHandler import MyPathHandler, PathOverWrite
 
 VALUE = "(value"
 
@@ -17,7 +18,7 @@ ERROR_IN_DOC = "Error in doc"
 def check_docs(docs):
     """Check if the number of documents in the "All" group in the record matches the number of data files
     """
-    assert len(docs) == len(os.listdir(internal_parser.DATA_PATH))
+    assert len(docs) == len(os.listdir(MyPathHandler().get_path()))
 
 
 def check_doc(document_name):
@@ -339,67 +340,70 @@ def test_SEP_token():
 
 
 # -- TEST ------------------------------------------------------------------------------------------------------------ #
-internal_parser.DATA_PATH = os.path.dirname(__file__) + ("/" if len(os.path.dirname(__file__)) > 0 else "")
+# tmp = internal_parser.DATA_PATH
+# internal_parser.DATA_PATH = os.path.dirname(__file__) + ("/" if len(os.path.dirname(__file__)) > 0 else "")
 test_doc = "internal_test_doc"
 
 
 def test_parsing_test_document():
     print("Test parsing the test document...")
-    test_words, test_begins, test_ends, test_sentence_embedding = internal_parser.get_word_doc(test_doc)
-    test_token_ids = internal_parser.get_token_id(test_words)
-    # print("Words:", test_words)
-    # print("Token ids:", test_token_ids)
+    my_new_path = os.path.dirname(__file__) + ("/" if len(os.path.dirname(__file__)) > 0 else "")
+    with PathOverWrite(path_data=my_new_path) :
+        test_words, test_begins, test_ends, test_sentence_embedding = internal_parser.get_word_doc(test_doc)
+        test_token_ids = internal_parser.get_token_id(test_words)
+        # print("Words:", test_words)
+        # print("Token ids:", test_token_ids)
 
-    test_token_ids, test_words, test_begins, test_ends, test_sentence_embedding = \
-        internal_parser.expand_token_id(test_token_ids, test_words, test_begins, test_ends, test_sentence_embedding)
-    # print("Expanded words:", test_words)
-    # print("Expanded token ids:", test_token_ids)
+        test_token_ids, test_words, test_begins, test_ends, test_sentence_embedding = \
+            internal_parser.expand_token_id(test_token_ids, test_words, test_begins, test_ends, test_sentence_embedding)
+        # print("Expanded words:", test_words)
+        # print("Expanded token ids:", test_token_ids)
 
-    test_entity_position, test_entity_embedding = internal_parser.get_entity_doc(test_doc, test_begins)
-    # print("Entity embedding:", test_entity_embedding)
+        test_entity_position, test_entity_embedding = internal_parser.get_entity_doc(test_doc, test_begins)
+        # print("Entity embedding:", test_entity_embedding)
 
-    # print("Entity tokens:")
-    # for low, high in test_entity_position.values():
-    #     print(test_words[low:high], test_token_ids[low:high], test_entity_embedding[low:high])
+        # print("Entity tokens:")
+        # for low, high in test_entity_position.values():
+        #     print(test_words[low:high], test_token_ids[low:high], test_entity_embedding[low:high])
 
-    test_relations = internal_parser.get_relation_doc(test_doc)
-    # print("Relations:", test_relations)
+        test_relations = internal_parser.get_relation_doc(test_doc)
+        # print("Relations:", test_relations)
 
-    # -- TEST -------------------------------------------------------------------------------------------------------- #
-    assert len(test_words) \
-        == len(test_token_ids) \
-        == len(test_begins) \
-        == len(test_ends) \
-        == len(test_sentence_embedding) \
-        == len(test_entity_embedding)
+        # -- TEST -------------------------------------------------------------------------------------------------------- #
+        assert len(test_words) \
+            == len(test_token_ids) \
+            == len(test_begins) \
+            == len(test_ends) \
+            == len(test_sentence_embedding) \
+            == len(test_entity_embedding)
 
-    # Test if begins is increasing
-    for i in range(1, len(test_begins)):
-        assert test_begins[i] >= test_begins[i - 1]
+        # Test if begins is increasing
+        for i in range(1, len(test_begins)):
+            assert test_begins[i] >= test_begins[i - 1]
 
-    # Test if ends is increasing
-    for i in range(1, len(test_ends)):
-        assert test_ends[i] >= test_ends[i - 1]
+        # Test if ends is increasing
+        for i in range(1, len(test_ends)):
+            assert test_ends[i] >= test_ends[i - 1]
 
-    # Test if ends are always greater than begins
-    for i in range(len(test_begins)):
-        assert test_begins[i] < test_ends[i]
+        # Test if ends are always greater than begins
+        for i in range(len(test_begins)):
+            assert test_begins[i] < test_ends[i]
 
-    # Test if sentence embedding are correct
-    for i in range(1, len(test_sentence_embedding)):
-        assert 0 <= test_sentence_embedding[i] - test_sentence_embedding[i - 1] <= 1
-    assert test_sentence_embedding[-1] == len(internal_parser.get_doc(test_doc)["sentences"]) - 1
+        # Test if sentence embedding are correct
+        for i in range(1, len(test_sentence_embedding)):
+            assert 0 <= test_sentence_embedding[i] - test_sentence_embedding[i - 1] <= 1
+        assert test_sentence_embedding[-1] == len(internal_parser.get_doc(test_doc)["sentences"]) - 1
 
-    # Test if entities correctly embedded
-    cnt = 0
-    for low, high in test_entity_position.values():
-        cnt += high - low
-        assert min(test_entity_embedding[low:high]) == max(test_entity_embedding[low:high])
-    assert cnt == (np.array(test_entity_embedding) != 0).astype(int).sum()
+        # Test if entities correctly embedded
+        cnt = 0
+        for low, high in test_entity_position.values():
+            cnt += high - low
+            assert min(test_entity_embedding[low:high]) == max(test_entity_embedding[low:high])
+        assert cnt == (np.array(test_entity_embedding) != 0).astype(int).sum()
 
-    # Test if all relations are valid
-    for value in test_relations.values():
-        first = value["source"]
-        second = value["target"]
-        assert first in test_entity_position
-        assert second in test_entity_position
+        # Test if all relations are valid
+        for value in test_relations.values():
+            first = value["source"]
+            second = value["target"]
+            assert first in test_entity_position
+            assert second in test_entity_position

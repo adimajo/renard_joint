@@ -12,7 +12,7 @@ entity_label_map, \
 spert_model = spert.load_model(relation_possibility, constants, 26)
 
 
-def test_evaluate_conll_spert():
+def test_evaluate_internal_spert():
     spert.evaluate(entity_label_map,
                    entity_classes,
                    relation_label_map,
@@ -23,7 +23,7 @@ def test_evaluate_conll_spert():
                    constants.test_dataset)
 
 
-def test_predict_conll_spert():
+def test_predict_internal_spert():
     spert.predict(entity_label_map,
                   relation_label_map,
                   tokenizer,
