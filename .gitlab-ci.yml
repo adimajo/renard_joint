@@ -29,6 +29,7 @@ test:
   variables:
     DATA: "/the_data/data/"
     MODEL: "/the_data/model/"
+    PYTHONPATH: '.'
   script:
   - pipenv install -d --skip-lock
   - pipenv run coverage run --source renard_joint,scripts -m pytest
