@@ -320,7 +320,10 @@ def evaluate(group, bert_model, ner_model, re_model,
     print(results)
 
 
-def predict(sentences, bert_model, ner_model, re_model,
+def predict(sentences,
+            bert_model,
+            ner_model,
+            re_model,
             entity_label_map,
             relation_label_map,
             max_token_count=512, max_entity_pair=1000):
