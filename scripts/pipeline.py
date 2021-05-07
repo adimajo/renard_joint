@@ -17,7 +17,7 @@ if __name__ == "__main__":
                                       conll04_pipeline.entity_classes,
                                       conll04_pipeline.relation_label_map,
                                       conll04_pipeline.relation_classes)
-        elif sys.argv[1] == "predict":
+        elif sys.argv[2] == "predict":
             conll04_pipeline.predict(sys.argv[3:],
                                      conll04_pipeline.bert_model,
                                      conll04_pipeline.ner_model,

@@ -348,7 +348,7 @@ test_doc = "internal_test_doc"
 def test_parsing_test_document():
     print("Test parsing the test document...")
     my_new_path = os.path.dirname(__file__) + ("/" if len(os.path.dirname(__file__)) > 0 else "")
-    with PathOverWrite(path_data=my_new_path) :
+    with PathOverWrite(path_data=my_new_path):
         test_words, test_begins, test_ends, test_sentence_embedding = internal_parser.get_word_doc(test_doc)
         test_token_ids = internal_parser.get_token_id(test_words)
         # print("Words:", test_words)

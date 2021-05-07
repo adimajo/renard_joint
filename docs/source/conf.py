@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath('../../renard_joint'))
 sys.path.insert(0, os.path.abspath('../../scripts'))
 sys.path.insert(0, os.path.abspath('../..'))
 
-from renard_joint import __version__
+from renard_joint import __version__  # noqa: E402
 
 
 # -- Project information -----------------------------------------------------
