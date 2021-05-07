@@ -147,7 +147,7 @@ def data_generator(group, device,
                    neg_relation_count=100,
                    max_span_size=10):
     """Generate input for the spert model
-    'group' is the dataset ("train", "dev", or "test")
+    'group' is the dataset ("Training", "dev", or "Test")
     'device' is the device where pytorch runs on (e.g. device = torch.device("cuda"))
     """
     data = parser.extract_data(group)

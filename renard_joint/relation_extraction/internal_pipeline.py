@@ -276,10 +276,16 @@ def predict_relation(re_model, doc, pred_entity_span, max_token_count=512, max_e
     return pred_relation_span
 
 
-def evaluate(group, bert_model, ner_model, re_model,
-             entity_label_map, entity_classes,
-             relation_label_map, relation_classes,
-             max_token_count=512, max_entity_pair=1000):
+def evaluate(group,
+             bert_model,
+             ner_model,
+             re_model,
+             entity_label_map,
+             entity_classes,
+             relation_label_map,
+             relation_classes,
+             max_token_count=512,
+             max_entity_pair=1000):
     true_entity_embeddings = []
     pred_entity_embeddings = []
     true_entity_spans = []

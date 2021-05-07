@@ -37,13 +37,13 @@ relation_encode = {'N': 0, 'Kill': 1, 'Located_In': 2, 'OrgBased_In': 3,
 # Getters
 def get_docs(group):
     """Read the dataset group and return a list of documents
-    'group' is either "train", "dev", or "test"
+    'group' is either "Training", "dev", or "test"
     """
-    if group == "train":
+    if group == "Training":
         dataset = open(TRAIN_PATH, "r", encoding="utf8").readlines()
     elif group == "dev":
         dataset = open(DEV_PATH, "r", encoding="utf8").readlines()
-    elif group == "test":
+    elif group == "Test":
         dataset = open(TEST_PATH, "r", encoding="utf8").readlines()
     else:
         print("No '", group, "' data group found!")

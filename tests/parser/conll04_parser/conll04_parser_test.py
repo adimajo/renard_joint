@@ -78,9 +78,9 @@ def describe_type(group, type_counter, describe=True):
 
 def describe_data():
     print("Description of train dataset:")
-    describe_text_length("train")
-    describe_type("train", count_entity_doc)
-    describe_type("train", count_relation_doc)
+    describe_text_length("Training")
+    describe_type("Training", count_entity_doc)
+    describe_type("Training", count_relation_doc)
     print("---------------------------------------------------------------------------------")
     print("Description of dev dataset:")
     describe_text_length("dev")
@@ -88,9 +88,9 @@ def describe_data():
     describe_type("dev", count_relation_doc)
     print("---------------------------------------------------------------------------------")
     print("Description of test dataset:")
-    describe_text_length("test")
-    describe_type("test", count_entity_doc)
-    describe_type("test", count_relation_doc)
+    describe_text_length("Test")
+    describe_type("Test", count_entity_doc)
+    describe_type("Test", count_relation_doc)
     print("---------------------------------------------------------------------------------")
 
 
@@ -113,7 +113,7 @@ def check_doc(document):
 
 def check_docs(group):
     """Check if all the documents contained in the data group is consistent
-    'group' is either "train", "dev", or "test"
+    'group' is either "Training", "dev", or "Test"
     """
     docs = conll04_parser.get_docs(group)
     for document in docs:
@@ -124,9 +124,9 @@ def check_data():
     """Check if the everything in the dataset is consistent
     Refer to check_docs(group) and check_doc(document)
     """
-    check_docs("train")
+    check_docs("Training")
     check_docs("dev")
-    check_docs("test")
+    check_docs("Test")
 
 
 def check_extracted_data(data):

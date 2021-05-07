@@ -15,7 +15,7 @@ if __name__ == "__main__":
         raise ValueError("Invalid dataset argument: only 'conll04' and 'internal' are supported.")
 
     if sys.argv[2] == "evaluate":
-        le_pipeline.evaluate("test",
+        le_pipeline.evaluate("Test",
                              le_pipeline.bert_model,
                              le_pipeline.ner_model,
                              le_pipeline.re_model,

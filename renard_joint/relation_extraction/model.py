@@ -9,7 +9,7 @@ Extracting multiple-relations in one-pass with pre-trained transformers. arXiv p
     model = BertForMre(#number_of_relation_classes)
 
     # extract a sentence and create entity masks & labels
-    docs = conll04_parser.get_docs("train")
+    docs = conll04_parser.get_docs("Training")
     extracted_doc = conll04_parser.extract_doc(docs[0])
     e1_mask, e2_mask, labels = generate_entity_mask(
         extracted_doc["data_frame"].shape[0],

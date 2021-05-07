@@ -64,7 +64,6 @@ def check_doc(document):
 def check_docs(group):
     """Check if all the documents contained in the data group is consistent
     'group' is either "train", "dev", or "test"
-    .. todo: move this to tests
     """
     docs = scierc_parser.get_docs(group)
     for document in docs:
