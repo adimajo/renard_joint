@@ -52,7 +52,8 @@ document:
   extends: .before_script_template
   stage: document
   script:
-  - apt-get install build-essential
+  - apt update
+  - apt install -y build-essential
   - cd docs
   - make html
   artifacts:
