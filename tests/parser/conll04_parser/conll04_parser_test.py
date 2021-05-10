@@ -216,8 +216,8 @@ def test_SEP_token():
 
 def test_parsing_test_document():
     print("Test parsing the test documents...")
-    list_of_docs_to_data = conll04_parser.extract_data("test")
-    list_of_docs = conll04_parser.get_docs("test")
+    list_of_docs_to_data = conll04_parser.extract_data("Test")
+    list_of_docs = conll04_parser.get_docs("Test")
     data_dict = conll04_parser.extract_doc(list_of_docs[0])
     doc_id = data_dict["document"]
     data_frame = data_dict["data_frame"]

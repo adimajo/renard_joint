@@ -6,7 +6,7 @@ stages:
   - test
   - document
   - install
-  - test_install
+  - test installed scripts
   - api
 
 .before_script_template:
@@ -52,7 +52,7 @@ document:
   extends: .before_script_template
   stage: document
   script:
-  - apt-get install make
+  - apt-get install build-essential
   - cd docs
   - make html
   artifacts:
@@ -72,7 +72,7 @@ install:
     expire_in: 1 week
 
 test_install:
-  stage: test_install
+  stage: test installed scripts
   script:
   - pipenv install -d --skip-lock
   - pipenv lock -r > requirements.txt
