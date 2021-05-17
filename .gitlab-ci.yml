@@ -9,6 +9,9 @@ stages:
   - test installed scripts
   - api
 
+variables:
+  the_proxy: "http://host.docker.internal:3128"
+
 .before_script_template:
   before_script:
     - pip3 install pipenv
@@ -54,6 +57,7 @@ document:
   script:
   - apt update
   - apt install -y build-essential
+  - pipenv install -d --skip-lock
   - cd docs
   - make html
   artifacts:
@@ -97,7 +101,7 @@ api:
   script:
   - pipenv install -d --skip-lock
   - cd API
-  - docker build --build-arg http_proxy=$HTTP_PROXY --build-arg POSTGRES_PASSWORD=CoinCoin -t data_harvesting_api:latest .
+  - docker build --build-arg the_proxy=$the_proxy -t data_harvesting_api:latest .
   - docker save data_harvesting_api:latest > data_harvesting_api.tar
   artifacts:
     paths:
