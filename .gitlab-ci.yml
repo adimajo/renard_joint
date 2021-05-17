@@ -59,7 +59,7 @@ document:
   - apt install -y build-essential
   - pipenv install -d --skip-lock
   - cd docs
-  - make html
+  - pipenv run make html
   artifacts:
     paths:
       - docs/build/html
