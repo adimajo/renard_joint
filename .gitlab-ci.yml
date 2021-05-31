@@ -60,13 +60,12 @@ document:
   stage: document
   script:
   - apk update
-  - apk add docker-scan-plugin build-essential python3-pip
+  - apk add python3-pip
   - pip3 install pipenv
   - pipenv install -d --skip-lock
   - cd docs
   - pipenv run make html
   - docker run -v "build/html":/web -p 8000:8000 --name sphinx-server dldl/sphinx-server
-  - docker scan sphinx-server
   - docker save sphinx-server > data_harvesting_docs.tar
   artifacts:
     paths:
@@ -115,12 +114,9 @@ api:
       entrypoint: ["env", "-u", "DOCKER_HOST"]
       command: ["dockerd-entrypoint.sh"]
   script:
-  - apk update
-  - apk add docker-scan-plugin
   - pipenv install -d --skip-lock
   - cd API
   - docker build --build-arg the_proxy=$the_proxy -t data_harvesting_api:latest .
-  - docker scan data_harvesting_api:latest
   - docker save data_harvesting_api:latest > data_harvesting_api.tar
   artifacts:
     paths:
