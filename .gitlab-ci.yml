@@ -59,8 +59,8 @@ document:
       command: ["dockerd-entrypoint.sh"]
   stage: document
   script:
-  - yum update -y
-  - yum install -y docker-scan-plugin build-essential python3-pip
+  - apk update
+  - apk add -y docker-scan-plugin build-essential python3-pip
   - pip3 install pipenv
   - pipenv install -d --skip-lock
   - cd docs
@@ -115,8 +115,8 @@ api:
       entrypoint: ["env", "-u", "DOCKER_HOST"]
       command: ["dockerd-entrypoint.sh"]
   script:
-  - yum update -y
-  - yum install -y docker-scan-plugin
+  - apk update
+  - apk add -y docker-scan-plugin
   - pipenv install -d --skip-lock
   - cd API
   - docker build --build-arg the_proxy=$the_proxy -t data_harvesting_api:latest .
