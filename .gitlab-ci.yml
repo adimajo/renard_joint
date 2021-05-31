@@ -60,7 +60,7 @@ document:
   stage: document
   script:
   - apk update
-  - apk add -y docker-scan-plugin build-essential python3-pip
+  - apk add docker-scan-plugin build-essential python3-pip
   - pip3 install pipenv
   - pipenv install -d --skip-lock
   - cd docs
@@ -116,7 +116,7 @@ api:
       command: ["dockerd-entrypoint.sh"]
   script:
   - apk update
-  - apk add -y docker-scan-plugin
+  - apk add docker-scan-plugin
   - pipenv install -d --skip-lock
   - cd API
   - docker build --build-arg the_proxy=$the_proxy -t data_harvesting_api:latest .
