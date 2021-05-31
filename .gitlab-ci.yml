@@ -59,8 +59,8 @@ document:
       command: ["dockerd-entrypoint.sh"]
   stage: document
   script:
-  - apt update
-  - apt install -y build-essential python3-pip
+  - yum update -y
+  - yum install -y docker-scan-plugin build-essential python3-pip
   - pip3 install pipenv
   - pipenv install -d --skip-lock
   - cd docs
@@ -77,7 +77,7 @@ install:
   extends: .before_script_template
   stage: install
   script:
-  - pipenv install -d --skip-lock
+  - pipenv install --skip-lock
   - pipenv lock -r > requirements.txt
   - pipenv run python3 setup.py sdist bdist_wheel
   artifacts:
@@ -89,7 +89,7 @@ test_install:
   extends: .before_script_template
   stage: test installed scripts
   script:
-  - pipenv install -d --skip-lock
+  - pipenv install --skip-lock
   - pipenv lock -r > requirements.txt
   - pipenv install .
   - pipenv run python pipeline.py conll04 evaluate
@@ -108,7 +108,15 @@ test_install:
 
 api:
   stage: api
+  image: docker:20.10.5-dind
+  services:
+    - name: docker:dind
+      alias: docker
+      entrypoint: ["env", "-u", "DOCKER_HOST"]
+      command: ["dockerd-entrypoint.sh"]
   script:
+  - yum update -y
+  - yum install -y docker-scan-plugin
   - pipenv install -d --skip-lock
   - cd API
   - docker build --build-arg the_proxy=$the_proxy -t data_harvesting_api:latest .
