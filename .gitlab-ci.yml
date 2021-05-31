@@ -52,11 +52,16 @@ test:
 #  - pipenv run python scripts/spert.py internal train
 
 document:
-  extends: .before_script_template
+  image: docker:20.10.5-dind
+  services:
+    - name: docker:dind
+      entrypoint: ["env", "-u", "DOCKER_HOST"]
+      command: ["dockerd-entrypoint.sh"]
   stage: document
   script:
   - apt update
-  - apt install -y build-essential
+  - apt install -y build-essential python3-pip
+  - pip3 install pipenv
   - pipenv install -d --skip-lock
   - cd docs
   - pipenv run make html
