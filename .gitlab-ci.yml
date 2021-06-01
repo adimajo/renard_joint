@@ -114,7 +114,6 @@ api:
       entrypoint: ["env", "-u", "DOCKER_HOST"]
       command: ["dockerd-entrypoint.sh"]
   script:
-  - pipenv install -d --skip-lock
   - cd API
   - docker build --build-arg the_proxy=$the_proxy -t data_harvesting_api:latest .
   - docker save data_harvesting_api:latest > data_harvesting_api.tar
