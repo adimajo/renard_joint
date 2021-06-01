@@ -60,7 +60,7 @@ document:
   stage: document
   script:
   - apk update
-  - apk add py3-pip
+  - apk add py3-pip gcc build-base freetype-dev libpng-dev openblas-dev
   - pip3 install pipenv
   - pipenv install -d --skip-lock
   - cd docs
