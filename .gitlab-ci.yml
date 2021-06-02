@@ -62,6 +62,7 @@ document:
   - apk update
   - apk --no-cache add py3-pip gcc build-base freetype-dev libpng-dev openblas-dev lapack libstdc++
   - apk --no-cache add --virtual .builddeps g++ gfortran musl-dev lapack-dev
+  - apk --no-cache add python3 py3-scipy libpq uwsgi-python3 python3-dev alpine-sdk proj proj-dev proj-util bash openssh curl ca-certificates openssl less htop make wget rsync libexecinfo-dev libgomp libgcc libquadmath musl libgfortran
   - pip3 install pipenv
   - pipenv install -d --skip-lock
   - cd docs
