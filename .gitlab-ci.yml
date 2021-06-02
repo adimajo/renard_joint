@@ -60,7 +60,8 @@ document:
   stage: document
   script:
   - apk update
-  - apk add py3-pip gcc build-base freetype-dev libpng-dev openblas-dev
+  - apk --no-cache add py3-pip gcc build-base freetype-dev libpng-dev openblas-dev lapack libstdc++
+  - apk --no-cache add --virtual .builddeps g++ gfortran musl-dev lapack-dev
   - pip3 install pipenv
   - pipenv install -d --skip-lock
   - cd docs
