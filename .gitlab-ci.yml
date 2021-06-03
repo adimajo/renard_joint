@@ -66,6 +66,7 @@ document:
   - apk --no-cache add libxml2-dev libxslt-dev libffi-dev openssl-dev
   - apk --no-cache add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
   - pip3 install pipenv
+  - pip3 install tokenizers
   - pipenv install -d --skip-lock
   - cd docs
   - pipenv run make html
