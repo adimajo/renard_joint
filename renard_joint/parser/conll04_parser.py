@@ -39,11 +39,11 @@ def get_docs(group):
     """Read the dataset group and return a list of documents
     'group' is either "Training", "dev", or "test"
     """
-    if group == "Training":
+    if group.lower() == "training":
         dataset = open(TRAIN_PATH, "r", encoding="utf8").readlines()
-    elif group == "dev":
+    elif group.lower() == "dev":
         dataset = open(DEV_PATH, "r", encoding="utf8").readlines()
-    elif group == "Test":
+    elif group.lower() == "test":
         dataset = open(TEST_PATH, "r", encoding="utf8").readlines()
     else:
         print("No '", group, "' data group found!")
