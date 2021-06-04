@@ -161,7 +161,7 @@ def extract_doc(document_name):
             "relations": relations}
 
 
-def extract_data(docs):
+def extract_data_util(docs):
     """Extract all documents to a dataset for training"""
     data = []
     for document in docs:
@@ -169,7 +169,7 @@ def extract_data(docs):
     return data
 
 
-def extract_all_data(group="All"):
+def extract_data(group="All"):
     """Extract all documents to a dataset"""
     docs = get_docs(group)
-    return extract_data(docs)
+    return extract_data_util(docs)

@@ -146,7 +146,7 @@ def data_generator(group,
     'group' is the dataset ("Training" or "Test")
     'device' is the device where pytorch runs on (e.g. device = torch.device("cuda"))
     """
-    data = parser.extract_all_data(group)
+    data = parser.extract_data(group)
     for doc in data:
         sentence_id = 0
         starting_index = 0
