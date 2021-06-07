@@ -59,14 +59,14 @@ test:
       - docs/build/html
     expire_in: 1 week
 
-document:
-  image: docker:20.10.5-dind
-  services:
-    - name: docker:dind
-      entrypoint: ["env", "-u", "DOCKER_HOST"]
-      command: ["dockerd-entrypoint.sh"]
-  stage: document
-  script:
+#document:
+#  image: docker:20.10.5-dind
+#  services:
+#    - name: docker:dind
+#      entrypoint: ["env", "-u", "DOCKER_HOST"]
+#      command: ["dockerd-entrypoint.sh"]
+#  stage: document
+#  script:
 #    - apk update
 #    - apk --no-cache add py3-pip gcc build-base freetype-dev libpng-dev openblas-dev lapack libstdc++
 #    - apk --no-cache add --virtual .builddeps g++ gfortran musl-dev lapack-dev
@@ -82,13 +82,13 @@ document:
 #    - pipenv install -d --skip-lock
 #    - cd docs
 #    - pipenv run make html
-  - docker run -v "html":/web -p 8000:8000 --name sphinx-server dldl/sphinx-server
-  - docker save sphinx-server > data_harvesting_docs.tar
-  artifacts:
-    paths:
-      - data_harvesting_docs.tar
-    expire_in: 1 week
-  needs: ["test"]
+#  - docker run -v "html":/web -p 8000:8000 --name sphinx-server dldl/sphinx-server
+#  - docker save sphinx-server > data_harvesting_docs.tar
+#  artifacts:
+#    paths:
+#      - data_harvesting_docs.tar
+#    expire_in: 1 week
+#  needs: ["test"]
 
 install:
   extends: .before_script_template
