@@ -47,9 +47,15 @@ test:
   - pipenv run python scripts/spert.py conll04 predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
   - pipenv run python scripts/spert.py scierc predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
   - pipenv run python scripts/spert.py internal predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
+  - cd docs
+  - pipenv run make html
 #  - pipenv run python scripts/spert.py conll04 train
 #  - pipenv run python scripts/spert.py scierc train
 #  - pipenv run python scripts/spert.py internal train
+  artifacts:
+    paths:
+      - docs/build/html
+    expire_in: 1 week
 
 document:
   image: docker:20.10.5-dind
@@ -59,27 +65,28 @@ document:
       command: ["dockerd-entrypoint.sh"]
   stage: document
   script:
-  - apk update
-  - apk --no-cache add py3-pip gcc build-base freetype-dev libpng-dev openblas-dev lapack libstdc++
-  - apk --no-cache add --virtual .builddeps g++ gfortran musl-dev lapack-dev
-  - apk --no-cache add python3 cargo py3-scipy libpq uwsgi-python3 python3-dev alpine-sdk proj proj-dev proj-util bash openssh curl ca-certificates openssl less htop make wget rsync libexecinfo-dev libgomp libgcc libquadmath musl libgfortran
-  - apk --no-cache add python3 py3-scipy libpq uwsgi-python3 python3-dev alpine-sdk proj proj-dev proj-util bash openssh curl ca-certificates openssl less htop make wget rsync libexecinfo-dev libgomp libgcc libquadmath musl libgfortran
-  - apk --no-cache add libxml2-dev libxslt-dev libffi-dev openssl-dev
-  - apk --no-cache add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev rust
-  - export CARGO_HTTP_CHECK_REVOKE=false
-  - pip3 install --upgrade pip
-  - pip3 install pipenv
-  - pip3 install setuptools_rust
-  - pip3 install tokenizers
-  - pipenv install -d --skip-lock
-  - cd docs
-  - pipenv run make html
-  - docker run -v "build/html":/web -p 8000:8000 --name sphinx-server dldl/sphinx-server
+#    - apk update
+#    - apk --no-cache add py3-pip gcc build-base freetype-dev libpng-dev openblas-dev lapack libstdc++
+#    - apk --no-cache add --virtual .builddeps g++ gfortran musl-dev lapack-dev
+#    - apk --no-cache add python3 cargo py3-scipy libpq uwsgi-python3 python3-dev alpine-sdk proj proj-dev proj-util bash openssh curl ca-certificates openssl less htop make wget rsync libexecinfo-dev libgomp libgcc libquadmath musl libgfortran
+#    - apk --no-cache add python3 py3-scipy libpq uwsgi-python3 python3-dev alpine-sdk proj proj-dev proj-util bash openssh curl ca-certificates openssl less htop make wget rsync libexecinfo-dev libgomp libgcc libquadmath musl libgfortran
+#    - apk --no-cache add libxml2-dev libxslt-dev libffi-dev openssl-dev
+#    - apk --no-cache add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev rust
+#    - export CARGO_HTTP_CHECK_REVOKE=false
+#    - pip3 install --upgrade pip
+#    - pip3 install pipenv
+#    - pip3 install setuptools_rust
+#    - pip3 install tokenizers
+#    - pipenv install -d --skip-lock
+#    - cd docs
+#    - pipenv run make html
+  - docker run -v "html":/web -p 8000:8000 --name sphinx-server dldl/sphinx-server
   - docker save sphinx-server > data_harvesting_docs.tar
   artifacts:
     paths:
-      - docs/build/html
+      - data_harvesting_docs.tar
     expire_in: 1 week
+  needs: ["test"]
 
 install:
   extends: .before_script_template
