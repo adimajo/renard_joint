@@ -63,7 +63,13 @@ document:
   - apk --no-cache add py3-pip gcc build-base freetype-dev libpng-dev openblas-dev lapack libstdc++
   - apk --no-cache add --virtual .builddeps g++ gfortran musl-dev lapack-dev
   - apk --no-cache add python3 cargo py3-scipy libpq uwsgi-python3 python3-dev alpine-sdk proj proj-dev proj-util bash openssh curl ca-certificates openssl less htop make wget rsync libexecinfo-dev libgomp libgcc libquadmath musl libgfortran
+  - apk --no-cache add python3 py3-scipy libpq uwsgi-python3 python3-dev alpine-sdk proj proj-dev proj-util bash openssh curl ca-certificates openssl less htop make wget rsync libexecinfo-dev libgomp libgcc libquadmath musl libgfortran
+  - apk --no-cache add libxml2-dev libxslt-dev libffi-dev openssl-dev
+  - apk --no-cache add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev rust
+  - pip3 install --upgrade pip
   - pip3 install pipenv
+  - pip3 install setuptools_rust
+  - pip3 install tokenizers
   - pipenv install -d --skip-lock
   - cd docs
   - pipenv run make html

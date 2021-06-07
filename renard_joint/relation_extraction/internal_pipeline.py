@@ -294,7 +294,7 @@ def evaluate(group,
     pred_relation_spans = []
 
     docs = parser.get_docs(group)
-    data = parser.extract_data(docs)
+    data = parser.extract_data_util(docs)
     for doc in tqdm(data, total=len(data), desc="Evaluation " + group):
         token_df, label_df = transform_doc(doc, bert_model, max_token_count=max_token_count)
 
