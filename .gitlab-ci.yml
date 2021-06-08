@@ -5,7 +5,7 @@ stages:
   - lint
   - test
   - document
-  - install
+  - build
   - test installed scripts
   - api
 
@@ -37,6 +37,7 @@ test:
   - pipenv install -d --skip-lock
   - pipenv run coverage run --source renard_joint,scripts -m pytest
   - pipenv run coverage report
+  - pipenv run bandit -r renard_joint
   - pipenv run python scripts/pipeline.py conll04 evaluate
   - pipenv run python scripts/pipeline.py internal evaluate
   - pipenv run python scripts/pipeline.py conll04 predict "Adrien tries data harvesting" "It's probably working"
@@ -79,12 +80,12 @@ document:
       - docs/build/html
     expire_in: 1 week
 
-install:
+build:
   extends: .before_script_template
-  stage: install
+  stage: build
   script:
   - pipenv install --skip-lock
-  - pipenv lock -r > requirements.txt
+  - pipenv run pip freeze > requirements.txt
   - pipenv run python3 setup.py sdist bdist_wheel
   artifacts:
     paths:
@@ -96,7 +97,7 @@ test_install:
   stage: test installed scripts
   script:
   - pipenv install --skip-lock
-  - pipenv lock -r > requirements.txt
+  - pipenv run pip freeze > requirements.txt
   - pipenv install .
   - pipenv run python pipeline.py conll04 evaluate
   - pipenv run python pipeline.py internal evaluate
