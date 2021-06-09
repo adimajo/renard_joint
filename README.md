@@ -9,6 +9,9 @@ model. The main contribution, described in upcoming paper, is that we provide a 
 Social and Governance reports, as well as Corporate Social Responsability (CSR) reports annotated by analysts at Crédit
 Agricole, such that these can be analyzed automatically.
 
+For storage reasons on Github, RE models as well as SpERT models for CoNLL04 and SciERC are not hosted here. Hence, lots
+of tests are deactivated.
+
 ## Installation
 
 - Clone this repository: `git clone ` or `git clone `;
