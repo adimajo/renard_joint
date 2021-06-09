@@ -1,18 +1,23 @@
 # Renard Joint
 
-Renard is an NLP software suite developed internally at Crédit Agricole
+Renard is an NLP software suite developed internally at Crédit Agricole.
 
-The repository provides a **pipeline** and an implementation of **SpERT**[[1]](#1) for joint entity and relation extraction. The pipeline consisted of a simple entity recognition and a multiple relation extraction[[2]](#2) models.
+This open-source project, dubbed `renard_joint`, is a component of this suite which deals with joint entity and relation
+extraction. The repository provides a **pipeline** and an implementation of **SpERT**[[1]](#1) for joint entity and 
+relation extraction. The pipeline consists of a simple entity recognition and a multiple relation extraction[[2]](#2) 
+model. The main contribution, described in upcoming paper, is that we provide a model trained on Environmental,
+Social and Governance reports, as well as Corporate Social Responsability (CSR) reports annotated by analysts at Crédit
+Agricole, such that these can be analyzed automatically.
 
 ## Installation
 
 - Clone this repository: `git clone ` or `git clone `;
 - The data can be found in the `data` subfolder (stored as LFS);
 - The pretrained models can be found in the `model` subfolder (stored as LFS);
-- If you wish to clone **only** the code:
-    - clone
-    - download data and model
-    - set the environment variables `DATA` and `MODEL` to their respective location (`data` and `model` by default resp.).
+- If you wish to clone **only** the code, not the datasets nor the models (i.e. to cherry-pick or because they're heavy):
+    - Use `GIT_LFS_SKIP_SMUDGE=1 git clone [...]` (Unix) or `set GIT_LFS_SKIP_SMUDGE=1 && git clone [...]` (Windows);
+    - Optionnally download the dataset(s) and model(s) you'd like to have through Github's GUI;
+    - Set the environment variables `DATA` and `MODEL` to the location of your choice (`data` and `model` by default resp.).
 - Install `pipenv` with `pip install pipenv`;
 - Install the dependencies using: `pipenv install`;
 - Install the package using: `pip install .`

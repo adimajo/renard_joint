@@ -24,7 +24,7 @@ class MyPathHandler(object, metaclass=Singleton):
         initialise path to path pointed to by environment variable "DATA"
         """
         if path_data is None:
-            path_data = os.path.join(os.environ["DATA"], "internal_data/gt/")
+            path_data = os.path.join(os.environ.get("DATA", "data"), "internal_data/gt/")
         self.path_data = path_data
 
     def set_path(self, path_data):

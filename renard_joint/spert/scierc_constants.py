@@ -8,7 +8,7 @@ Constants to retrain the model on SciERC data.
 import os
 
 model_path = "bert-base-cased"
-model_save_path = os.path.join(os.environ["MODEL"], "spert/scierc_")
+model_save_path = os.path.join(os.environ.get("MODEL", "model"), "spert/scierc_")
 train_dataset = "train"
 dev_dataset = "dev"
 test_dataset = "test"

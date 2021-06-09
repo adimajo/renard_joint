@@ -24,7 +24,7 @@ from renard_joint.PathHandler import MyPathHandler
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
-RECORD_PATH = os.path.join(os.environ["DATA"], "internal_data/sets.json")
+RECORD_PATH = os.path.join(os.environ.get("DATA", "data"), "internal_data/sets.json")
 
 UNK_TOKEN = 100
 CLS_TOKEN = 101

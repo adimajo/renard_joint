@@ -8,7 +8,7 @@ Constants to retrain the model on internal data.
 import os
 
 model_path = "bert-base-cased"
-model_save_path = os.path.join(os.environ["MODEL"], "spert/internal_")
+model_save_path = os.path.join(os.environ.get("MODEL", "model"), "spert/internal_")
 train_dataset = "Training"
 dev_dataset = "Test"
 test_dataset = "Test"
