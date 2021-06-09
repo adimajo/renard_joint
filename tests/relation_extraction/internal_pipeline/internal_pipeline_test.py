@@ -1,6 +1,11 @@
+import sys
+
+import pytest
+
 import renard_joint.relation_extraction.internal_pipeline as pipeline
 
 
+@pytest.mark.skipif(sys.platform != 'win32', reason="only on Crédit Agricole's computers")
 def test_evaluate_internal_pipeline():
     pipeline.evaluate("test",
                       pipeline.bert_model,
@@ -12,6 +17,7 @@ def test_evaluate_internal_pipeline():
                       pipeline.relation_classes)
 
 
+@pytest.mark.skipif(sys.platform != 'win32', reason="only on Crédit Agricole's computers")
 def test_predict_internal_pipeline():
     pipeline.predict(["Adrien is testing the Data Harvesting prototype"],
                      pipeline.bert_model,
