@@ -25,7 +25,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
         lfs: true
     - name: Checkout LFS objects
-      run: git lfs checkout
+      run: git lfs pull
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
