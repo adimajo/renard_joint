@@ -1,5 +1,3 @@
-import sys
-
 import pytest
 
 import renard_joint.spert.internal_constants as constants
@@ -16,7 +14,7 @@ entity_label_map, \
 spert_model = spert.load_model(relation_possibility, constants, 26)
 
 
-@pytest.mark.skipif(sys.platform != 'win32', reason="only on Crédit Agricole's computers")
+@pytest.mark.xfail
 def test_evaluate_internal_spert():
     spert.evaluate(entity_label_map,
                    entity_classes,
@@ -28,7 +26,7 @@ def test_evaluate_internal_spert():
                    constants.test_dataset)
 
 
-@pytest.mark.skipif(sys.platform != 'win32', reason="only on Crédit Agricole's computers")
+@pytest.mark.xfail
 def test_predict_internal_spert():
     spert.predict(entity_label_map,
                   relation_label_map,
@@ -39,7 +37,7 @@ def test_predict_internal_spert():
                   ["Adrien is testing the Data Harvesting prototype"])
 
 
-@pytest.mark.skipif(sys.platform != 'win32', reason="only on Crédit Agricole's computers")
+@pytest.mark.xfail
 def test_spert_config():
     with pytest.raises(ValueError):
         spert.SpertConfig(dataset=None)

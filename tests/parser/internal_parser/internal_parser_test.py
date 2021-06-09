@@ -2,11 +2,12 @@ import os
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pytest
 import seaborn as sns
 import tikzplotlib
 
-from renard_joint.parser import internal_parser
 from renard_joint.PathHandler import MyPathHandler, PathOverWrite
+from renard_joint.parser import internal_parser
 
 VALUE = "(value"
 
@@ -300,26 +301,28 @@ def describe_data(docs):
     print()
 
 
-# # Test main functions on the whole dataset (will take a minute)
-print("-------------------------------------------------------------------------------------------------------------")
-print("Checking the dataset...")
-check_data(internal_parser.get_docs("All"))
-print("-------------------------------------------------------------------------------------------------------------")
-print("Testing data parser and checking parsed all data...")
-data = internal_parser.extract_data("All")
-check_extracted_data(data)
-print("-------------------------------------------------------------------------------------------------------------")
-print("Testing data parser and checking parsed training data...")
-training_data = internal_parser.extract_data("Training")
-check_extracted_data(training_data)
-print("-------------------------------------------------------------------------------------------------------------")
-print("Testing data parser and checking parsed test data...")
-test_data = internal_parser.extract_data("Test")
-check_extracted_data(test_data)
-print("-------------------------------------------------------------------------------------------------------------")
-print("Describing the dataset...")
-describe_data(internal_parser.get_docs("All"))
-print("-------------------------------------------------------------------------------------------------------------")
+@pytest.mark.xfail
+def test_read_all():
+    # # Test main functions on the whole dataset (will take a minute)
+    print("-----------------------------------------------------------------------------------------------------------")
+    print("Checking the dataset...")
+    check_data(internal_parser.get_docs("All"))
+    print("-----------------------------------------------------------------------------------------------------------")
+    print("Testing data parser and checking parsed all data...")
+    data = internal_parser.extract_data("All")
+    check_extracted_data(data)
+    print("-----------------------------------------------------------------------------------------------------------")
+    print("Testing data parser and checking parsed training data...")
+    training_data = internal_parser.extract_data("Training")
+    check_extracted_data(training_data)
+    print("-----------------------------------------------------------------------------------------------------------")
+    print("Testing data parser and checking parsed test data...")
+    test_data = internal_parser.extract_data("Test")
+    check_extracted_data(test_data)
+    print("-----------------------------------------------------------------------------------------------------------")
+    print("Describing the dataset...")
+    describe_data(internal_parser.get_docs("All"))
+    print("-----------------------------------------------------------------------------------------------------------")
 
 
 # -- TEST ------------------------------------------------------------------------------------------------------------ #
@@ -369,7 +372,7 @@ def test_parsing_test_document():
         test_relations = internal_parser.get_relation_doc(test_doc)
         # print("Relations:", test_relations)
 
-        # -- TEST -------------------------------------------------------------------------------------------------------- #
+        # -- TEST ---------------------------------------------------------------------------------------------------- #
         assert len(test_words) \
             == len(test_token_ids) \
             == len(test_begins) \
