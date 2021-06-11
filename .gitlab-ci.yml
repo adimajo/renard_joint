@@ -89,6 +89,7 @@ document:
     DATA: "/the_data/data/"
     MODEL: "/the_data/model/"
     PYTHONPATH: '.'
+    GITLAB: 1
   script:
     - pipenv install -d --skip-lock
     - cd docs

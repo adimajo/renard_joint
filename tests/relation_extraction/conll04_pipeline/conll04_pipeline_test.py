@@ -1,6 +1,9 @@
+import os
+
 import pytest
 
-import renard_joint.relation_extraction.conll04_pipeline as pipeline
+if os.environ.get("GITLAB", 0) == 1:
+    import renard_joint.relation_extraction.conll04_pipeline as pipeline
 
 
 @pytest.mark.xfail
