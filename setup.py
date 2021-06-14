@@ -102,7 +102,7 @@ if __name__ == "__main__":
             "Programming Language :: Python :: 3.8",
         ],
         keywords="nlp text entity recognition relation extraction",
-        packages=find_packages(exclude=["contrib", "docs", "tests", "examples", "venv"]),
+        packages=find_packages(exclude=["contrib", "docs", "tests", "examples", "venv", "scripts"]),
         install_requires=install_requires,
         test_suite="pytest-runner",
         tests_require=[],
@@ -134,8 +134,8 @@ if __name__ == "__main__":
         # },
         entry_points={
             'console_scripts': [
-                'pipeline=scripts/pipeline:main',
-                'spert=scripts/spert:main',
+                'pipeline=scripts.pipeline:main',
+                'spert=scripts.spert:main',
             ],
         }
     )

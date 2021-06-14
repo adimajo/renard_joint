@@ -27,14 +27,15 @@ EPOCH_ = "epoch:"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-if __name__ == "__main__":
+def config(argv):
     import sys
 
     if len(sys.argv) <= 1:
         raise ValueError("Dataset argument not found")
 
-    spert_config = SpertConfig(sys.argv[1])
+    spert_config = SpertConfig(argv[1])
     constants, input_generator = spert_config.constants, spert_config.input_generator
+    return constants, input_generator
 
 
 def get_optimizer_params(model):
@@ -285,7 +286,7 @@ def data_prep(constants, input_generator, dataset):
     return entity_label_map, entity_classes, relation_label_map, relation_classes, tokenizer, relation_possibility
 
 
-if __name__ == "__main__":
+def main(constants, input_generator):
     entity_label_map,\
         entity_classes,\
         relation_label_map, \
@@ -330,3 +331,9 @@ if __name__ == "__main__":
                     sentences=sys.argv[4:])
     else:
         raise ValueError("Invalid argument(s)")
+
+
+if __name__ == "__main__":
+    import sys
+    constants, input_generator = config(sys.argv)
+    main(constants, input_generator)
