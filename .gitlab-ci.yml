@@ -121,16 +121,16 @@ test_install:
   - pipenv install --skip-lock
   - pipenv run pip freeze > requirements.txt
   - pipenv install .
-  - pipenv run python pipeline.py conll04 evaluate
-  - pipenv run python pipeline.py internal evaluate
-  - pipenv run python pipeline.py conll04 predict "Adrien tries data harvesting" "It's probably working"
-  - pipenv run python pipeline.py internal predict "Dirty company does bad coal activity" "Nice company treats people equally"
-  - pipenv run python spert.py conll04 evaluate 19
-  - pipenv run python spert.py scierc evaluate 19
-  - pipenv run python spert.py internal evaluate 26
-  - pipenv run python spert.py conll04 predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
-  - pipenv run python spert.py scierc predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
-  - pipenv run python spert.py internal predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
+  - pipenv run python -m pipeline conll04 evaluate
+  - pipenv run python -m pipeline internal evaluate
+  - pipenv run python -m pipeline conll04 predict "Adrien tries data harvesting" "It's probably working"
+  - pipenv run python -m pipeline internal predict "Dirty company does bad coal activity" "Nice company treats people equally"
+  - pipenv run python -m spert conll04 evaluate 19
+  - pipenv run python -m spert scierc evaluate 19
+  - pipenv run python -m spert internal evaluate 26
+  - pipenv run python -m spert conll04 predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
+  - pipenv run python -m spert scierc predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
+  - pipenv run python -m spert internal predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
 #  - pipenv run python spert.py conll04 train
 #  - pipenv run python spert.py scierc train
 #  - pipenv run python spert.py internal train

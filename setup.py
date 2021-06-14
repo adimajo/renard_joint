@@ -132,6 +132,10 @@ if __name__ == "__main__":
         #        'sample=sample:main',
         #    ],
         # },
-        scripts=["scripts/pipeline.py",
-                 "scripts/spert.py"]
+        entry_points={
+            'console_scripts': [
+                'pipeline=scripts/pipeline:main',
+                'spert=scripts/spert:main',
+            ],
+        }
     )
