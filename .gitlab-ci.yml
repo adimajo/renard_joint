@@ -47,13 +47,19 @@ test:
   - pipenv run python scripts/spert.py conll04 predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
   - pipenv run python scripts/spert.py scierc predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
   - pipenv run python scripts/spert.py internal predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
-  - cd docs
-  - apt update
-  - apt install -y build-essential
-  - pipenv run make html
 #  - pipenv run python scripts/spert.py conll04 train
 #  - pipenv run python scripts/spert.py scierc train
 #  - pipenv run python scripts/spert.py internal train
+
+document:
+  stage: document
+  extends: .before_script_template
+  script:
+    - apt update
+    - apt install -y build-essential
+    - pipenv install -d --skip-lock
+    - cd docs
+    - pipenv run make html
   artifacts:
     paths:
       - docs/build/html
