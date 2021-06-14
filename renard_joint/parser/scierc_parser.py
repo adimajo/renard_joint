@@ -20,9 +20,9 @@ from transformers import BertTokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 
 # Constants
-TRAIN_PATH = os.path.join(os.environ["DATA"], "sciERC/processed_data/json/train.json")
-DEV_PATH = os.path.join(os.environ["DATA"], "sciERC/processed_data/json/dev.json")
-TEST_PATH = os.path.join(os.environ["DATA"], "sciERC/processed_data/json/test.json")
+TRAIN_PATH = os.path.join(os.environ.get("DATA", "data"), "sciERC/train.json")
+DEV_PATH = os.path.join(os.environ.get("DATA", "data"), "sciERC/dev.json")
+TEST_PATH = os.path.join(os.environ.get("DATA", "data"), "sciERC/test.json")
 UNK_TOKEN = 100
 CLS_TOKEN = 101
 SEP_TOKEN = 102

@@ -51,11 +51,11 @@ parser.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 bert_model = BertModel.from_pretrained('bert-base-uncased')
 
 print("Loading entity recognition model...")
-ner_model = pickle.load(open(os.path.join(os.environ["MODEL"], "ner/internal_nn_1024.model"), 'rb'))
+ner_model = pickle.load(open(os.path.join(os.environ.get("MODEL", "model"), "ner/internal_nn_1024.model"), 'rb'))
 
 print("Loading relation extraction model...")
 re_model = model.BertForMre(len(relation_classes) + 1)
-re_model.load_state_dict(torch.load(os.path.join(os.environ["MODEL"], "re/internal_100.model"),
+re_model.load_state_dict(torch.load(os.path.join(os.environ.get("MODEL", "model"), "re/internal_100.model"),
                                     map_location=device))
 re_model.eval()  # Set model for evaluation only
 re_model.to(device)
@@ -322,7 +322,7 @@ def evaluate(group,
                                                relation_classes),
         evaluator.evaluate_span(true_relation_spans, pred_relation_spans, relation_label_map, relation_classes),
     ], keys=["Entity span", "Entity embedding", "Loose relation", "Strict relation"])
-    results.to_csv(os.path.join(os.environ["MODEL"], "re/internal_evaluate_" + group + ".csv"))
+    results.to_csv(os.path.join(os.environ.get("MODEL", "model"), "re/internal_evaluate_" + group + ".csv"))
     print(results)
 
 

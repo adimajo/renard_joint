@@ -8,7 +8,7 @@ Constants to retrain the model on COnLL04.
 import os
 
 model_path = "bert-base-cased"
-model_save_path = os.path.join(os.environ["MODEL"], "spert/conll04_")
+model_save_path = os.path.join(os.environ.get("MODEL", "model"), "spert/conll04_")
 train_dataset = "train"
 dev_dataset = "dev"
 test_dataset = "test"

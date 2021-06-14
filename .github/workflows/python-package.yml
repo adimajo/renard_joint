@@ -1,0 +1,66 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python package
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+        lfs: true
+    - name: Checkout LFS objects
+      run: git lfs pull
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pipenv
+        pipenv install --dev --skip-lock
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        pipenv run flake8 --ignore=W504 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
+    - name: Test with coverage and pytest
+      run: |
+        pipenv run coverage run --source renard_joint,scripts -m pytest
+        pipenv run coverage report
+        pipenv run python scripts/pipeline.py conll04 evaluate
+        pipenv run python scripts/pipeline.py internal evaluate
+        pipenv run python scripts/pipeline.py conll04 predict "Adrien tries data harvesting" "It's probably working"
+        pipenv run python scripts/pipeline.py internal predict "Dirty company does bad coal activity" "Nice company treats people equally"
+        pipenv run python scripts/spert.py conll04 evaluate 19
+        pipenv run python scripts/spert.py scierc evaluate 19
+        pipenv run python scripts/spert.py internal evaluate 26
+        pipenv run python scripts/spert.py conll04 predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
+        pipenv run python scripts/spert.py scierc predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
+        pipenv run python scripts/spert.py internal predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
+    - name: Vulnerability
+      run: |
+        pipenv run bandit -r renard_joint,scripts
+    - name: Document
+      run: |
+        cd docs
+        pipenv run make html
+    - name: Build and check package
+      run: |
+        pipenv run pipenv-setup sync --dev
+        pipenv run pip install --upgrade keyring keyrings.alt
+        python setup.py build sdist bdist_wheel
+        pipenv run twine check dist/*
