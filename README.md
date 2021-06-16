@@ -10,11 +10,12 @@ Social and Governance reports, as well as Corporate Social Responsability (CSR) 
 Agricole, such that these can be analyzed automatically.
 
 For storage reasons on Github, RE models as well as SpERT models for CoNLL04 and SciERC are not hosted here. Hence, lots
-of tests are deactivated.
+of tests are deactivated for Github, but run on our internal Gitlab platform. If you wish to receive, please email Dr.
+Adrien Ehrhardt at <adrien.ehrhardt _ at _ credit-agricole-sa.fr>. Current test coverage on that platform: 60 %.
 
 ## Installation
 
-- Clone this repository: `git clone ` or `git clone `;
+- Clone this repository: `git clone https://github.com/adimajo/renard_joint.git` or `git clone git@github.com:adimajo/renard_joint.git`;
 - The data can be found in the `data` subfolder (stored as LFS);
 - The pretrained models can be found in the `model` subfolder (stored as LFS);
 - If you wish to clone **only** the code, not the datasets nor the models (i.e. to cherry-pick or because they're heavy):
@@ -41,25 +42,27 @@ of tests are deactivated.
 ## Usage
 
 ### Pipeline
+
 From the command line, once the package is installed:
 
 - For CoNLL04:
-    - To evaluate: `python pipeline.py [dataset] evaluate`
-    - To predict: `python pipeline.py [dataset] predict "sentence 1" "sentence 2" ...`
+    - To evaluate: `pipeline [dataset] evaluate`
+    - To predict: `pipeline [dataset] predict "sentence 1" "sentence 2" ...`
 
 - For the internal dataset:
-    - To evaluate: `python pipeline.py [dataset] evaluate`
-    - To predict: `python pipeline.py [dataset] predict "sentence 1" "sentence 2" ...`
+    - To evaluate: `pipeline [dataset] evaluate`
+    - To predict: `pipeline [dataset] predict "sentence 1" "sentence 2" ...`
 
 where `dataset` is either `conll04`, `scierc`, or `internal` and `checkpoint` is the model checkpoint number used 
 for evaluation (for pretrained models, choose 19). Example:
 
 ### SpERT
+
 From the command line, once the package is installed:
 
-- To retrain model: `python spert.py [dataset] train`
-- To evaluate model: `python spert.py [dataset] evaluate [checkpoint]`
-- To predict: `python spert.py [dataset] predict [checkpoint] "sentence 1" "sentence 2" ...`
+- To retrain model: `spert [dataset] train`
+- To evaluate model: `spert [dataset] evaluate [checkpoint]`
+- To predict: `spert [dataset] predict [checkpoint] "sentence 1" "sentence 2" ...`
 
 where `dataset` is either `conll04`, `scierc`, or `internal` and `checkpoint` is the model checkpoint number used 
 for evaluation (for pretrained models, choose 19). Example:
@@ -75,6 +78,7 @@ python spert.py conLL04 predict 19 "However, the Rev. Jesse Jackson, a native of
 Note: The hyperparameters for retraining can be modified in the `[dataset]_constants.py` files.
 
 ## Reference
+
 <a id="1">[1]</a> Eberts, M., & Ulges, A. (2019). Span-based joint entity and relation extraction with transformer pre-training. arXiv preprint arXiv:1909.07755.
 
 <a id="2">[2]</a> Wang, H., Tan, M., Yu, M., Chang, S., Wang, D., Xu, K., ... & Potdar, S. (2019). Extracting multiple-relations in one-pass with pre-trained transformers. arXiv preprint arXiv:1902.01030.
