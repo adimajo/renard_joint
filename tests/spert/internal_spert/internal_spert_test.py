@@ -2,7 +2,7 @@ import pytest
 
 import renard_joint.spert.internal_constants as constants
 import renard_joint.spert.internal_input_generator as input_generator
-import scripts.spert as spert
+import renard_joint._scripts.spert as spert
 
 entity_label_map, \
     entity_classes, \

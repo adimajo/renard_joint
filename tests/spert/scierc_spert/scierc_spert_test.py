@@ -2,7 +2,7 @@ import pytest
 
 import renard_joint.spert.scierc_constants as constants
 import renard_joint.spert.scierc_input_generator as input_generator
-import scripts.spert as spert
+import renard_joint._scripts.spert as spert
 
 try:
     entity_label_map, \
