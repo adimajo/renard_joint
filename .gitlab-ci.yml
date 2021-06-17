@@ -82,9 +82,10 @@ test:
 #      - data_harvesting_docs.tar
 #    expire_in: 1 week
 #  needs: ["test"]
+
 document:
   extends: .before_script_template
-  stage: test
+  stage: document
   variables:
     DATA: "/the_data/data/"
     MODEL: "/the_data/model/"
