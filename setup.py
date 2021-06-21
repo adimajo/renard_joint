@@ -134,8 +134,8 @@ if __name__ == "__main__":
         # },
         entry_points={
             'console_scripts': [
-                'pipeline=_scripts.pipeline:main',
-                'spert=_scripts.spert:main',
+                'pipeline=renard_joint._scripts.pipeline:main',
+                'spert=renard_joint._scripts.spert:main',
             ],
         }
     )
