@@ -102,7 +102,7 @@ if __name__ == "__main__":
             "Programming Language :: Python :: 3.8",
         ],
         keywords="nlp text entity recognition relation extraction",
-        packages=find_packages(exclude=["contrib", "docs", "tests", "examples", "venv", "scripts"]),
+        packages=find_packages(exclude=["contrib", "docs", "tests", "examples", "venv"]),
         install_requires=install_requires,
         test_suite="pytest-runner",
         tests_require=[],
@@ -120,8 +120,8 @@ if __name__ == "__main__":
         #
         # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
         # data_files=[('my_data', ['data/data_file'])],  # Optional
-        # To provide executable scripts, use entry points in preference to the
-        # "scripts" keyword. Entry points provide cross-platform support and allow
+        # To provide executable _scripts, use entry points in preference to the
+        # "_scripts" keyword. Entry points provide cross-platform support and allow
         # `pip` to create the appropriate form of executable for the target
         # platform.
         #
@@ -134,8 +134,8 @@ if __name__ == "__main__":
         # },
         entry_points={
             'console_scripts': [
-                'pipeline=scripts.pipeline:main',
-                'spert=scripts.spert:main',
+                'pipeline=_scripts.pipeline:main',
+                'spert=_scripts.spert:main',
             ],
         }
     )

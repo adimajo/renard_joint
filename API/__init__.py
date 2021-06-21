@@ -16,7 +16,7 @@ from flask_restful import reqparse, Resource
 from flask.json import jsonify
 from loguru import logger
 from renard_joint.spert import SpertConfig
-from scripts import spert
+from renard_joint._scripts import spert
 
 str_required = {
     'type': str,
