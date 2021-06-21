@@ -1,9 +1,10 @@
+import os
+
 import pytest
 
+import renard_joint._scripts.spert as spert
 import renard_joint.spert.conll04_constants as constants
 import renard_joint.spert.conll04_input_generator as input_generator
-import renard_joint._scripts.spert as spert
-
 
 try:
     entity_label_map, \
@@ -18,7 +19,7 @@ except:
     pass
 
 
-@pytest.mark.xfail
+@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1)
 def test_evaluate_conll_spert():
     spert.evaluate(entity_label_map,
                    entity_classes,
@@ -30,7 +31,7 @@ def test_evaluate_conll_spert():
                    constants.test_dataset)
 
 
-@pytest.mark.xfail
+@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1)
 def test_predict_conll_spert():
     spert.predict(entity_label_map,
                   relation_label_map,

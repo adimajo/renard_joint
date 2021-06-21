@@ -6,7 +6,7 @@ if os.environ.get("GITLAB", 0) == 1:
     import renard_joint.relation_extraction.conll04_pipeline as pipeline
 
 
-@pytest.mark.xfail
+@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1)
 def test_evaluate_conll_pipeline():
     pipeline.evaluate("test",
                       pipeline.bert_model,
@@ -18,7 +18,7 @@ def test_evaluate_conll_pipeline():
                       pipeline.relation_classes)
 
 
-@pytest.mark.xfail
+@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1)
 def test_predict_conll_pipeline():
     pipeline.predict(["Adrien is testing the Data Harvesting prototype"],
                      pipeline.bert_model,
