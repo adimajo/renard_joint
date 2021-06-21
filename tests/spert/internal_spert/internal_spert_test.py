@@ -16,7 +16,7 @@ entity_label_map, \
 spert_model = spert.load_model(relation_possibility, constants, 26)
 
 
-@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1)
+@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
 def test_evaluate_internal_spert():
     spert.evaluate(entity_label_map,
                    entity_classes,
@@ -28,7 +28,7 @@ def test_evaluate_internal_spert():
                    constants.test_dataset)
 
 
-@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1)
+@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
 def test_predict_internal_spert():
     spert.predict(entity_label_map,
                   relation_label_map,
@@ -39,7 +39,7 @@ def test_predict_internal_spert():
                   ["Adrien is testing the Data Harvesting prototype"])
 
 
-@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1)
+@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
 def test_spert_config():
     with pytest.raises(ValueError):
         spert.SpertConfig(dataset=None)

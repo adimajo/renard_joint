@@ -19,7 +19,7 @@ except:
     pass
 
 
-@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1)
+@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
 def test_evaluate_conll_spert():
     spert.evaluate(entity_label_map,
                    entity_classes,
@@ -31,7 +31,7 @@ def test_evaluate_conll_spert():
                    constants.test_dataset)
 
 
-@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1)
+@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
 def test_predict_conll_spert():
     spert.predict(entity_label_map,
                   relation_label_map,
