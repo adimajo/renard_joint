@@ -117,6 +117,9 @@ build:
 test_install:
   extends: .before_script_template
   stage: test installed scripts
+  variables:
+    DATA: "/the_data/data/"
+    MODEL: "/the_data/model/"
   script:
   - pipenv install --skip-lock
   - pipenv run pip freeze > requirements.txt
