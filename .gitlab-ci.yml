@@ -11,6 +11,8 @@ stages:
 
 variables:
   the_proxy: "http://host.docker.internal:3128"
+  DATA: "/the_data/data/"
+  MODEL: "/the_data/model/"
 
 .before_script_template:
   before_script:
@@ -30,12 +32,11 @@ test:
   extends: .before_script_template
   stage: test
   variables:
-    DATA: "/the_data/data/"
-    MODEL: "/the_data/model/"
     PYTHONPATH: '.'
     GITLAB: 1
   script:
   - pipenv install -d --skip-lock
+  - pipenv run echo $GITLAB
   - pipenv run coverage run --source renard_joint,_scripts -m pytest -rxXs
   - pipenv run coverage report
   - pipenv run bandit -r renard_joint
@@ -87,10 +88,6 @@ test:
 document:
   extends: .before_script_template
   stage: document
-  variables:
-    DATA: "/the_data/data/"
-    MODEL: "/the_data/model/"
-    PYTHONPATH: '.'
   script:
     - pipenv install -d --skip-lock
     - cd docs
@@ -117,9 +114,6 @@ build:
 test_install:
   extends: .before_script_template
   stage: test installed scripts
-  variables:
-    DATA: "/the_data/data/"
-    MODEL: "/the_data/model/"
   script:
   - pipenv install --skip-lock
   - pipenv run pip freeze > requirements.txt

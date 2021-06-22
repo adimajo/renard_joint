@@ -8,6 +8,7 @@ if os.environ.get("GITLAB", 0) == 1:
 
 # @pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
 def test_evaluate_conll_pipeline():
+    print(os.environ.get("GITLAB", 0))
     pipeline.evaluate("test",
                       pipeline.bert_model,
                       pipeline.ner_model,
