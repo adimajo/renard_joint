@@ -90,7 +90,10 @@ def transform_doc(
     return pd.DataFrame(transformed_tokens), pd.DataFrame(list(zip(labels, words)), columns=["labels", "words"])
 
 
-def predict_entity(ner_model, tokens, labels,
+def predict_entity(ner_model,
+                   tokens,
+                   labels,
+                   label_map_bio,
                    ignore_index=CrossEntropyLoss().ignore_index):
     """Given a document, runs entity recognition, returns the predicted entity embedding and spans"""
     true_entity_embedding = np.zeros(tokens.shape[0])
@@ -226,9 +229,15 @@ def predict_relation(re_model, doc, pred_entity_span, max_entity_pair=1000):
     return pred_relation_span
 
 
-def evaluate(group, bert_model, ner_model, re_model,
-             entity_label_map, entity_classes,
-             relation_label_map, relation_classes,
+def evaluate(group,
+             bert_model,
+             ner_model,
+             re_model,
+             label_map_bio,
+             entity_label_map,
+             entity_classes,
+             relation_label_map,
+             relation_classes,
              max_entity_pair=1000):
     true_entity_embeddings = []
     pred_entity_embeddings = []
@@ -243,7 +252,7 @@ def evaluate(group, bert_model, ner_model, re_model,
 
         # entity recognition
         true_entity_embedding, pred_entity_embedding, true_entity_span, pred_entity_span \
-            = predict_entity(ner_model, token_df, label_df)
+            = predict_entity(ner_model, token_df, label_df, label_map_bio)
         true_entity_embeddings += true_entity_embedding.tolist()
         pred_entity_embeddings += pred_entity_embedding.tolist()
         true_entity_spans.append(true_entity_span)
@@ -268,7 +277,11 @@ def evaluate(group, bert_model, ner_model, re_model,
     print(results)
 
 
-def predict(sentences, bert_model, ner_model, re_model,
+def predict(sentences,
+            bert_model,
+            ner_model,
+            re_model,
+            label_map_bio,
             entity_label_map,
             relation_label_map,
             max_entity_pair=1000):
@@ -298,7 +311,7 @@ def predict(sentences, bert_model, ner_model, re_model,
 
         # entity recognition
         true_entity_embedding, pred_entity_embedding, true_entity_span, pred_entity_span \
-            = predict_entity(ner_model, token_df, label_df)
+            = predict_entity(ner_model, token_df, label_df, label_map_bio)
 
         # relation extraction
         pred_relation_span = predict_relation(re_model, doc, pred_entity_span,

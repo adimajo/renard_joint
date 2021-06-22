@@ -1,28 +1,27 @@
-import os
-import sys
 import pytest
 
 
-# @pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
+@pytest.mark.xfail(reason="Not on Gitlab")
 def test_evaluate_conll_pipeline():
-    print(os.environ.get("GITLAB", 0), file=sys.stderr)
-    import renard_joint.relation_extraction.conll04_pipeline as pipeline
-    pipeline.evaluate("test",
-                      pipeline.bert_model,
-                      pipeline.ner_model,
-                      pipeline.re_model,
-                      pipeline.entity_label_map,
-                      pipeline.entity_classes,
-                      pipeline.relation_label_map,
-                      pipeline.relation_classes)
+    from renard_joint.relation_extraction import conll04_pipeline
+    conll04_pipeline.evaluate("test",
+                              conll04_pipeline.bert_model,
+                              conll04_pipeline.ner_model,
+                              conll04_pipeline.re_model,
+                              conll04_pipeline.label_map_bio,
+                              conll04_pipeline.entity_label_map,
+                              conll04_pipeline.entity_classes,
+                              conll04_pipeline.relation_label_map,
+                              conll04_pipeline.relation_classes)
 
 
-# @pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
+@pytest.mark.xfail(reason="Not on Gitlab")
 def test_predict_conll_pipeline():
-    import renard_joint.relation_extraction.conll04_pipeline as pipeline
-    pipeline.predict(["Adrien is testing the Data Harvesting prototype"],
-                     pipeline.bert_model,
-                     pipeline.ner_model,
-                     pipeline.re_model,
-                     pipeline.entity_label_map,
-                     pipeline.relation_label_map)
+    from renard_joint.relation_extraction import conll04_pipeline
+    conll04_pipeline.predict(["Adrien is testing the Data Harvesting prototype"],
+                             conll04_pipeline.bert_model,
+                             conll04_pipeline.ner_model,
+                             conll04_pipeline.re_model,
+                             conll04_pipeline.label_map_bio,
+                             conll04_pipeline.entity_label_map,
+                             conll04_pipeline.relation_label_map)

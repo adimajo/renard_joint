@@ -37,7 +37,7 @@ test:
   script:
   - pipenv install -d --skip-lock
   - pipenv run echo $GITLAB
-  - pipenv run coverage run --source renard_joint -m pytest -rxXs
+  - pipenv run coverage run --source renard_joint -m pytest -rxXs --runxfail
   - pipenv run coverage report
   - pipenv run bandit -r renard_joint
   - pipenv run python renard_joint/_scripts/pipeline.py conll04 evaluate

@@ -1,27 +1,27 @@
-import os
-
 import pytest
 
 
-# @pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
+@pytest.mark.xfail(reason="Not on Gitlab")
 def test_evaluate_internal_pipeline():
-    import renard_joint.relation_extraction.internal_pipeline as pipeline
-    pipeline.evaluate("test",
-                      pipeline.bert_model,
-                      pipeline.ner_model,
-                      pipeline.re_model,
-                      pipeline.entity_label_map,
-                      pipeline.entity_classes,
-                      pipeline.relation_label_map,
-                      pipeline.relation_classes)
+    from renard_joint.relation_extraction import internal_pipeline
+    internal_pipeline.evaluate("test",
+                               internal_pipeline.bert_model,
+                               internal_pipeline.ner_model,
+                               internal_pipeline.re_model,
+                               internal_pipeline.label_map_bio,
+                               internal_pipeline.entity_label_map,
+                               internal_pipeline.entity_classes,
+                               internal_pipeline.relation_label_map,
+                               internal_pipeline.relation_classes)
 
 
-# @pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
+@pytest.mark.xfail(reason="Not on Gitlab")
 def test_predict_internal_pipeline():
-    import renard_joint.relation_extraction.internal_pipeline as pipeline
-    pipeline.predict(["Adrien is testing the Data Harvesting prototype"],
-                     pipeline.bert_model,
-                     pipeline.ner_model,
-                     pipeline.re_model,
-                     pipeline.entity_label_map,
-                     pipeline.relation_label_map)
+    from renard_joint.relation_extraction import internal_pipeline
+    internal_pipeline.predict(["Adrien is testing the Data Harvesting prototype"],
+                              internal_pipeline.bert_model,
+                              internal_pipeline.ner_model,
+                              internal_pipeline.re_model,
+                              internal_pipeline.label_map_bio,
+                              internal_pipeline.entity_label_map,
+                              internal_pipeline.relation_label_map)
