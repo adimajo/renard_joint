@@ -10,8 +10,10 @@ Social and Governance reports, as well as Corporate Social Responsability (CSR) 
 Agricole, such that these can be analyzed automatically.
 
 For storage reasons on Github, RE models as well as SpERT models for CoNLL04 and SciERC are not hosted here. Hence, lots
-of tests are deactivated for Github, but run on our internal Gitlab platform. If you wish to receive, please email Dr.
-Adrien Ehrhardt at <adrien.ehrhardt _ at _ credit-agricole-sa.fr>. Current test coverage on that platform: 60 %.
+of tests are deactivated for Github, but run on our internal Gitlab platform. If you wish to get them as well, please 
+email Dr. Adrien Ehrhardt at <adrien.ehrhardt _ at _ credit-agricole-sa.fr>.
+
+Current test coverage on that platform: 89 %.
 
 ## Installation
 
@@ -28,11 +30,10 @@ Adrien Ehrhardt at <adrien.ehrhardt _ at _ credit-agricole-sa.fr>. Current test 
 
 ## Directory
 
-- `renard_joint` contains the main package;
-- `notebooks` contains the notebooks to explore the datasets and fine-tune the model;
-- `scripts` contains the command-line tools of the package;
-- `tests` contains the `pytest` tests for `renard_joint` and `scripts`;
-- `docs` contains the utilities to build the Sphinx documentation;
+- `renard_joint/` contains the main package;
+- `notebooks/` contains the notebooks to explore the datasets and fine-tune the model;
+- `tests/` contains the `pytest` tests for `renard_joint` and `scripts`;
+- `docs/` contains the utilities to build the Sphinx documentation;
 - `.gitlab-ci.yml` defines the CI/CD gitlab pipeline;
 - `.github/workflows/python-package.yml` defines the CI/CD github pipeline;
 - `Pipefile(.lock)` are used to manage the dependencies of the project.
@@ -53,8 +54,20 @@ From the command line, once the package is installed:
     - To evaluate: `pipeline [dataset] evaluate`
     - To predict: `pipeline [dataset] predict "sentence 1" "sentence 2" ...`
 
-where `dataset` is either `conll04`, `scierc`, or `internal` and `checkpoint` is the model checkpoint number used 
-for evaluation (for pretrained models, choose 19). Example:
+where `dataset` is either `conll04`, `scierc`, or `internal`. Example:
+
+```
+$ pipeline internal predict "Dirty company does bad coal activity" "Nice company treats people equally"
+
+ Sentence: Dirty company does bad coal activity
+ Entities: ( 2 )
+ Organisation | company
+ CoalActivity | coal
+ Relations: ( 0 )
+ Sentence: Nice company treats people equally
+ Entities: ( 0 )
+ Relations: ( 0 )
+```
 
 ### SpERT
 
@@ -68,11 +81,16 @@ where `dataset` is either `conll04`, `scierc`, or `internal` and `checkpoint` is
 for evaluation (for pretrained models, choose 19). Example:
 
 ```
-python spert.py internal train
+$ pipeline spert predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
 
-python spert.py conll04 evaluate 19
-
-python spert.py conLL04 predict 19 "However, the Rev. Jesse Jackson, a native of South Carolina, joined critics of FEMA's effort." "International Paper spokeswoman Ann Silvernail said that under French law the company was barred from releasing details pending government approval."
+ Sentence: Dirty company does bad coal activity
+ Entities: ( 1 )
+ CoalActivity | coal
+ Relations: ( 0 )
+ Sentence: Nice company treats people equally
+ Entities: ( 1 )
+ Organisation | company
+ Relations: ( 0 )
 ```
 
 Note: The hyperparameters for retraining can be modified in the `[dataset]_constants.py` files.

@@ -33,6 +33,7 @@ test:
     DATA: "/the_data/data/"
     MODEL: "/the_data/model/"
     PYTHONPATH: '.'
+    GITLAB: 1
   script:
   - pipenv install -d --skip-lock
   - pipenv run coverage run --source renard_joint,_scripts -m pytest -rxXs
@@ -90,7 +91,6 @@ document:
     DATA: "/the_data/data/"
     MODEL: "/the_data/model/"
     PYTHONPATH: '.'
-    GITLAB: 1
   script:
     - pipenv install -d --skip-lock
     - cd docs
