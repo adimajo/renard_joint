@@ -1,9 +1,9 @@
 import pytest
+from renard_joint.relation_extraction import conll04_pipeline
 
 
 @pytest.mark.xfail(reason="Not on Gitlab")
 def test_evaluate_conll_pipeline():
-    from renard_joint.relation_extraction import conll04_pipeline
     conll04_pipeline.evaluate("test",
                               conll04_pipeline.bert_model,
                               conll04_pipeline.ner_model,
