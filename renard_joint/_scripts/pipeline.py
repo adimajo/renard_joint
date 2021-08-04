@@ -20,6 +20,7 @@ def main(argv):
                              le_pipeline.bert_model,
                              le_pipeline.ner_model,
                              le_pipeline.re_model,
+                             le_pipeline.label_map_bio,
                              le_pipeline.entity_label_map,
                              le_pipeline.entity_classes,
                              le_pipeline.relation_label_map,
@@ -29,6 +30,7 @@ def main(argv):
                             le_pipeline.bert_model,
                             le_pipeline.ner_model,
                             le_pipeline.re_model,
+                            le_pipeline.label_map_bio,
                             le_pipeline.entity_label_map,
                             le_pipeline.relation_label_map)
     else:
