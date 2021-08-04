@@ -95,12 +95,22 @@ def evaluate(entity_label_map,
         eval_relation_span_true.append(infos["relation_span"])
     # evaluate & save
     results = pd.concat([
-        evaluator.evaluate_span(eval_entity_span_true, eval_entity_span_pred, entity_label_map, entity_classes),
-        evaluator.evaluate_results(eval_entity_embedding_true, eval_entity_embedding_pred, entity_label_map,
+        evaluator.evaluate_span(eval_entity_span_true,
+                                eval_entity_span_pred,
+                                entity_label_map,
+                                entity_classes),
+        evaluator.evaluate_results(eval_entity_embedding_true,
+                                   eval_entity_embedding_pred,
+                                   entity_label_map,
                                    entity_classes),
-        evaluator.evaluate_loose_relation_span(eval_relation_span_true, eval_relation_span_pred, relation_label_map,
+        evaluator.evaluate_loose_relation_span(eval_relation_span_true,
+                                               eval_relation_span_pred,
+                                               relation_label_map,
                                                relation_classes),
-        evaluator.evaluate_span(eval_relation_span_true, eval_relation_span_pred, relation_label_map, relation_classes),
+        evaluator.evaluate_span(eval_relation_span_true,
+                                eval_relation_span_pred,
+                                relation_label_map,
+                                relation_classes),
     ], keys=["Entity span", "Entity embedding", "Loose relation", "Strict relation"])
     results.to_csv(constants.model_save_path + "evaluate_" + group + ".csv")
     print(results)
@@ -217,7 +227,8 @@ def predict(entity_label_map,
                "entities": {},  # Suppose to appear in overlapping dataset
                "relations": {}}
         # predict
-        inputs, infos = input_generator.doc_to_input(doc, device,
+        inputs, infos = input_generator.doc_to_input(doc,
+                                                     device,
                                                      is_training=False,
                                                      max_span_size=constants.max_span_size)
         outputs = spert_model(**inputs, is_training=False)

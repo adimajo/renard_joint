@@ -1,4 +1,7 @@
 import os
+
+import pytest
+
 from renard_joint import PathHandler
 
 

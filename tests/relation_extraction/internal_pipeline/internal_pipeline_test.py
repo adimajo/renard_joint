@@ -1,9 +1,7 @@
-import pytest
+from renard_joint.relation_extraction import internal_pipeline
 
 
-@pytest.mark.xfail(reason="Not on Gitlab")
 def test_evaluate_internal_pipeline():
-    from renard_joint.relation_extraction import internal_pipeline
     internal_pipeline.evaluate("test",
                                internal_pipeline.bert_model,
                                internal_pipeline.ner_model,
@@ -15,9 +13,7 @@ def test_evaluate_internal_pipeline():
                                internal_pipeline.relation_classes)
 
 
-@pytest.mark.xfail(reason="Not on Gitlab")
 def test_predict_internal_pipeline():
-    from renard_joint.relation_extraction import internal_pipeline
     internal_pipeline.predict(["Adrien is testing the Data Harvesting prototype"],
                               internal_pipeline.bert_model,
                               internal_pipeline.ner_model,

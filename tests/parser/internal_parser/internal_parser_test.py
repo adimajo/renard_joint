@@ -2,7 +2,6 @@ import os
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pytest
 import seaborn as sns
 import tikzplotlib
 
@@ -301,7 +300,6 @@ def describe_data(docs):
     print()
 
 
-@pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
 def test_read_all():
     # # Test main functions on the whole dataset (will take a minute)
     print("-----------------------------------------------------------------------------------------------------------")
