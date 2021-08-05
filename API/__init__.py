@@ -12,11 +12,13 @@ serve these predictions.
     wsgi
     gini
 """
-from flask_restful import reqparse, Resource
+
 from flask.json import jsonify
+from flask_restful import reqparse, Resource
 from loguru import logger
-from renard_joint.spert import SpertConfig
+
 from renard_joint._scripts import spert
+from renard_joint.spert import SpertConfig
 
 str_required = {
     'type': str,
@@ -104,6 +106,7 @@ class Predictor(Resource):
             relation_possibility = spert.data_prep(constants, input_generator, kwargs["dataset"])
 
         spert_model = spert.load_model(relation_possibility, constants, kwargs["checkpoint"])
+
 
         result = spert.predict(entity_label_map,
                                relation_label_map,

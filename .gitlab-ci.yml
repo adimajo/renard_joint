@@ -110,7 +110,7 @@ api:
       entrypoint: ["env", "-u", "DOCKER_HOST"]
       command: ["dockerd-entrypoint.sh"]
   script:
-  - cp dist/renard_joint-0.0.1-py3-none-any.whl
+  - cp dist/renard_joint-0.0.1-py3-none-any.whl API/renard_joint-0.0.1-py3-none-any.whl
   - cd API
   - docker build --build-arg the_proxy=$the_proxy -t data_harvesting_api:latest .
   - docker save data_harvesting_api:latest > data_harvesting_api.tar

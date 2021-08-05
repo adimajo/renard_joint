@@ -207,7 +207,14 @@ def predict(entity_label_map,
             constants,
             input_generator,
             spert_model,
-            sentences):
+            sentences,
+            verbose=True):
+    result = {
+        "sentence": {
+            "count": len(sentences),
+            "sentences": []
+        }
+    }
     for sentence in sentences:
         word_list = sentence.split()
         words = []
@@ -237,15 +244,31 @@ def predict(entity_label_map,
         pred_relation_span = [] if outputs["relation"] is None else outputs["relation"]["span"]
         # print the result
         tokens = tokenizer.convert_ids_to_tokens(token_ids)
-        print("Sentence:", sentence)
-        print("Entities: (", len(pred_entity_span), ")")
-        for begin, end, entity_type in pred_entity_span:
-            print(entity_label_map[entity_type], "|", " ".join(tokens[begin:end]))
-        print("Relations: (", len(pred_relation_span), ")")
-        for e1, e2, relation_type in pred_relation_span:
-            print(relation_label_map[relation_type], "|",
-                  " ".join(tokens[e1[0]:e1[1]]), "|",
-                  " ".join(tokens[e2[0]:e2[1]]))
+        result["sentence"]["sentences"].append({
+            "sentence": sentence,
+            "entity": {
+                "counts": len(pred_entity_span),
+                "entities": [entity_label_map[entity_type] + "|" + " ".join(tokens[begin:end]) for
+                             begin, end, entity_type in pred_entity_span]
+            },
+            "relation": {
+                "counts": len(pred_relation_span),
+                "relations": [relation_label_map[relation_type] + "|" +
+                              " ".join(tokens[e1[0]:e1[1]]) + "|" +
+                              " ".join(tokens[e2[0]:e2[1]]) for e1, e2, relation_type in pred_relation_span]
+            }
+        })
+        if verbose:
+            print("Sentence:", sentence)
+            print("Entities: (", len(pred_entity_span), ")")
+            for begin, end, entity_type in pred_entity_span:
+                print(entity_label_map[entity_type], "|", " ".join(tokens[begin:end]))
+            print("Relations: (", len(pred_relation_span), ")")
+            for e1, e2, relation_type in pred_relation_span:
+                print(relation_label_map[relation_type], "|",
+                      " ".join(tokens[e1[0]:e1[1]]), "|",
+                      " ".join(tokens[e2[0]:e2[1]]))
+    return result
 
 
 def load_model(relation_possibility, constants, checkpoint):
