@@ -1,0 +1,29 @@
+# Include the license file
+include LICENSE
+include README.md
+
+# Include the package
+recursive-include renard_joint *
+
+# Exclude the docs
+recursive-exclude docs *
+
+# Exclude the examples
+recursive-exclude notebooks *
+
+# Exclude the model
+recursive-exclude model *
+
+# Exclude the data
+recursive-exclude data *
+
+# Exclude the API
+recursive-exclude API *
+
+# Include the tests
+recursive-include tests *
+
+# Global exclude
+global-exclude .DS_Store
+global-exclude *.bat
+global-exclude *.pyc

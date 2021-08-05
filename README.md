@@ -5,15 +5,12 @@ Renard is an NLP software suite developed internally at Crédit Agricole.
 This open-source project, dubbed `renard_joint`, is a component of this suite which deals with joint entity and relation
 extraction. The repository provides a **pipeline** and an implementation of **SpERT**[[1]](#1) for joint entity and 
 relation extraction. The pipeline consists of a simple entity recognition and a multiple relation extraction[[2]](#2) 
-model. The main contribution, described in upcoming paper, is that we provide a model trained on Environmental,
+model. The main contribution, described in a paper accepted for publication (proceedings to be published later) at 
+[SoGood2021](https://sites.google.com/view/ecmlpkddsogood2021/home), is that we provide a model trained on Environmental,
 Social and Governance reports, as well as Corporate Social Responsability (CSR) reports annotated by analysts at Crédit
 Agricole, such that these can be analyzed automatically.
 
-For storage reasons on Github, RE models as well as SpERT models for CoNLL04 and SciERC are not hosted here. Hence, lots
-of tests are deactivated for Github, but run on our internal Gitlab platform. If you wish to get them as well, please 
-email Dr. Adrien Ehrhardt at <adrien.ehrhardt _ at _ credit-agricole-sa.fr>.
-
-Current test coverage on that platform: 89 %.
+Current test coverage on internal Gitlab platform: 89 %.
 
 ## Installation
 
@@ -146,5 +143,5 @@ Note: The hyperparameters for retraining can be modified in the `[dataset]_const
 The documents presented here reflect the methodologies, calculations, analyses and opinions of theirs authors and 
 are transmitted in a strictly informative aim. Under no circumstances will the abovementioned authors nor the 
 Crédit Agricole be liable for any lost profit, lost opportunity or any indirect, consequential, incidental or
- exemplary damages arising out of any use or misinterpretation of the website's content or any portion thereof, 
+ exemplary damages arising out of any use or misinterpretation of the software's content or any portion thereof, 
  regardless of whether the Crédit Agricole has been apprised of the likelihood of such damages.
