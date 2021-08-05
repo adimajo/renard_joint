@@ -18,15 +18,11 @@ Current test coverage on that platform: 89 %.
 ## Installation
 
 - Clone this repository: `git clone https://github.com/adimajo/renard_joint.git` or `git clone git@github.com:adimajo/renard_joint.git`;
-- The data can be found in the `data` subfolder (stored as LFS);
-- The pretrained models can be found in the `model` subfolder (stored as LFS);
-- If you wish to clone **only** the code, not the datasets nor the models (i.e. to cherry-pick or because they're heavy):
-    - Use `GIT_LFS_SKIP_SMUDGE=1 git clone [...]` (Unix) or `set GIT_LFS_SKIP_SMUDGE=1 && git clone [...]` (Windows);
-    - Optionnally download the dataset(s) and model(s) you'd like to have through Github's GUI;
-    - Set the environment variables `DATA` and `MODEL` to the location of your choice (`data` and `model` by default resp.).
+- Set the environment variables `DATA` and `MODEL` to the location of your choice (`data` and `model` by default resp., see below);
+- Have a working python development environment, including the `pip` package manager;
 - Install `pipenv` with `pip install pipenv`;
-- Install the dependencies using: `pipenv install`;
-- Install the package using: `pip install .`
+- Install the python dependencies of this package using: `pipenv install`;
+- Install the package using: `pip install .` (append `pipenv run` if the virtual environment created by `pipenv` hasn't been activated, e.g. in a script).
 
 ## Directory
 
@@ -37,8 +33,52 @@ Current test coverage on that platform: 89 %.
 - `.gitlab-ci.yml` defines the CI/CD gitlab pipeline;
 - `.github/workflows/python-package.yml` defines the CI/CD github pipeline;
 - `Pipefile(.lock)` are used to manage the dependencies of the project.
-- `data/` contains the public datasets CoNLL04 and SciERC, the internal dataset is kept private as of now (as LFS).
-- `model/` contains the Named Entity Recognition, Relation Extraction and SpERT models (as LFS).
+
+## Models
+
+Models can be downloaded from ufile.io:
+
+### Spert models
+
+- [The ClimLL model](https://ufile.io/dse7uk5v);
+- [The CoNLL04 model](https://ufile.io/0gug8or2);
+- [The SciERC model](https://ufile.io/pf9ks53h).
+
+### NER & RE models
+
+#### NER models
+
+- [The ClimLL model](https://ufile.io/bxsmnvtw);
+- [The CoNLL04 model](https://ufile.io/j0ff5qrz);
+
+#### RE models
+
+- [The ClimLL model]();
+- [The CoNLL04 model]();
+
+### Installation
+
+The models are searched by the package, either in the subfolder `model/`, or in the folder pointed to by the
+environment variable `MODEL`. The organisation of this folder must be the following:
+
+- `ner/`: containing the NER model(s);
+- `re/`: containing the RE model(s);
+- `spert/`: containing the Spert model(s).
+
+## Data
+
+Data, except the ClimLL dataset, can be downloaded from ufile.io:
+
+- [The CoNLL04 dataset](https://ufile.io/vwcg7m9j);
+- [The SciERC dataset](https://ufile.io/4828j92x).
+
+### Installation
+
+The data are searched by the package, either in the subfolder `data/`, or in the folder pointed to by the
+environment variable `data`. The organisation of this folder must be the following:
+
+- `CoNLL04/`: containing the CoNLL04 data;
+- `SciERC/`: containing the SciERC data.
 
 ## Usage
 

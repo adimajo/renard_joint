@@ -12,15 +12,17 @@ Spert command-line tool.
     load_model
 """
 import random
+import sys
+
+import pandas as pd
+import torch
+import transformers
+from tqdm import tqdm
+from transformers import AdamW, BertConfig, BertTokenizer
 
 import renard_joint.spert.evaluator as evaluator
 import renard_joint.spert.model as model
 from renard_joint.spert import SpertConfig
-import pandas as pd
-import torch
-import transformers
-from transformers import AdamW, BertConfig, BertTokenizer
-from tqdm import tqdm
 
 EPOCH_ = "epoch:"
 
@@ -344,7 +346,10 @@ def main(constants, input_generator):
         raise ValueError("Invalid argument(s)")
 
 
-if __name__ == "__main__":
-    import sys
+def main_wrapper():
     constants, input_generator = config(sys.argv)
     main(constants, input_generator)
+
+
+if __name__ == "__main__":
+    main_wrapper()

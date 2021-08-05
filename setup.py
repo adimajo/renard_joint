@@ -135,7 +135,7 @@ if __name__ == "__main__":
         entry_points={
             'console_scripts': [
                 'pipeline=renard_joint._scripts.pipeline:main',
-                'spert=renard_joint._scripts.spert:main',
+                'spert=renard_joint._scripts.spert:main_wrapper',
             ],
         }
     )
