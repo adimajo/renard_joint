@@ -66,7 +66,9 @@ def evaluate(entity_label_map,
              constants,
              input_generator,
              spert_model,
-             group):
+             group,
+             save=True,
+             verbose=True):
     spert_model.eval()
     eval_entity_span_pred = []
     eval_entity_span_true = []
@@ -113,8 +115,11 @@ def evaluate(entity_label_map,
                                 relation_label_map,
                                 relation_classes),
     ], keys=["Entity span", "Entity embedding", "Loose relation", "Strict relation"])
-    results.to_csv(constants.model_save_path + "evaluate_" + group + ".csv")
-    print(results)
+    if save:
+        results.to_csv(constants.model_save_path + "evaluate_" + group + ".csv")
+    if verbose:
+        print(results)
+    return results
 
 
 def train(entity_label_map,
@@ -196,9 +201,11 @@ def train(entity_label_map,
             evaluator.evaluate_results(train_relation_true, train_relation_pred, relation_label_map, relation_classes)
         ], keys=["Entity", "Relation"])
         results.to_csv(constants.model_save_path + "epoch_" + str(epoch) + ".csv")
-    #         evaluate(spert_model, constants.dev_dataset)
 
     torch.save(spert_model.state_dict(), constants.model_save_path + "epoch_" + str(constants.epochs - 1) + ".model")
+    return {"size": train_size,
+            "epochs": constants.epochs,
+            "saved_to": constants.model_save_path + "epoch_" + str(constants.epochs - 1) + ".model"}
 
 
 def predict(entity_label_map,

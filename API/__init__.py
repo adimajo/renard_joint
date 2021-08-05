@@ -13,6 +13,8 @@ serve these predictions.
     gini
 """
 
+import json
+
 from flask.json import jsonify
 from flask_restful import reqparse, Resource
 from loguru import logger
@@ -44,6 +46,9 @@ evaluate_parser = reqparse.RequestParser()
 evaluate_parser.add_argument('dataset',
                              help="The name of the dataset to compute the performance, one of 'conll04', 'scierc', 'internal'.",
                              **str_required)
+evaluate_parser.add_argument('checkpoint',
+                             help="The checkpoint of the model to use for prediction.",
+                             **int_required)
 
 predict_parser = reqparse.RequestParser()
 predict_parser.add_argument('dataset',
@@ -79,7 +84,7 @@ class Predictor(Resource):
                   type: string
                   description: The name of the dataset (associated to a model) to use for prediction.
                 checkpoint:
-                  type: number
+                  type: integer
                   description: The checkpoint of the model to use for prediction.
                 sentence:
                   type: string
@@ -143,15 +148,19 @@ class Evaluator(Resource):
               id: Evaluate
               required:
                 - dataset
+                - checkpoint
               properties:
                 dataset:
                   type: string
                   description: The name of the dataset to compute the performance, one of 'conll04', 'scierc', 'internal'.
+                checkpoint:
+                  type: integer
+                  description: The checkpoint of the model to use for prediction.
         responses:
             200:
                 description: classification metrics.
         """
-        kwargs = train_parser.parse_args(strict=True)
+        kwargs = evaluate_parser.parse_args(strict=True)
         logger.info("Successfully parsed arguments")
 
         spert_config = SpertConfig(kwargs["dataset"])
@@ -176,7 +185,7 @@ class Evaluator(Resource):
                                 constants.test_dataset)
 
         try:
-            response = jsonify(result)
+            response = jsonify(json.loads(result.to_json()))
             response.status_code = 200
         except:
             response = jsonify("Model failed")
