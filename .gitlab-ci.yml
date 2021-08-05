@@ -13,6 +13,7 @@ variables:
   the_proxy: "http://host.docker.internal:3128"
   DATA: "/the_data/data/"
   MODEL: "/the_data/model/"
+  PORT: 8000
 
 .before_script_template:
   before_script:
@@ -75,6 +76,7 @@ build:
   - pipenv install --skip-lock
   - pipenv run pip freeze > requirements.txt
   - pipenv run python3 setup.py sdist bdist_wheel
+  - pipenv run twine check dist/*
   artifacts:
     paths:
       - dist
@@ -112,7 +114,8 @@ api:
   script:
   - cp dist/renard_joint-0.0.1-py3-none-any.whl API/renard_joint-0.0.1-py3-none-any.whl
   - cd API
-  - docker build --build-arg the_proxy=$the_proxy -t data_harvesting_api:latest .
+  - docker build --build-arg the_proxy=$the_proxy --build-arg PORT=$PORT -t data_harvesting_api:latest .
+  - docker run -d -p $PORT:$PORT data_harvesting_api
   - docker save data_harvesting_api:latest > data_harvesting_api.tar
   artifacts:
     paths:
