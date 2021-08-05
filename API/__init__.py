@@ -34,13 +34,13 @@ int_required = {
 
 train_parser = reqparse.RequestParser()
 train_parser.add_argument('dataset',
-                          help="The name of the dataset to train on: conll04, scierc, internal; for now, "
+                          help="The name of the dataset to train on, one of 'conll04', 'scierc', 'internal'; for now, "
                                "hyperparameters not available through API.",
                           **str_required)
 
 evaluate_parser = reqparse.RequestParser()
 evaluate_parser.add_argument('dataset',
-                             help="The name of the dataset to compute the performance: conll04, scierc, internal.",
+                             help="The name of the dataset to compute the performance, one of 'conll04', 'scierc', 'internal'.",
                              **str_required)
 
 predict_parser = reqparse.RequestParser()
@@ -77,10 +77,10 @@ class Predictor(Resource):
                   type: string
                   description: The name of the dataset (associated to a model) to use for prediction.
                 checkpoint:
-                  type: float
+                  type: number
                   description: The checkpoint of the model to use for prediction.
                 sentence:
-                  type: float
+                  type: string
                   description: The sentence to predict entities and relations.
         responses:
             200:
@@ -131,19 +131,19 @@ class Evaluator(Resource):
     """
     def post(self):
         """
-        post method for Trainer resource: will train a new model and store it.
+        post method for Evaluator resource: will return performance metrics.
         ---
         parameters:
           - in: body
             name: body
             schema:
-              id: Predict
+              id: Evaluate
               required:
                 - dataset
               properties:
                 dataset:
                   type: string
-                  description: The name of the dataset to compute the performance: conll04, scierc, internal.
+                  description: The name of the dataset to compute the performance, one of 'conll04', 'scierc', 'internal'.
         responses:
             200:
                 description: classification metrics.
@@ -194,13 +194,13 @@ class Trainer(Resource):
           - in: body
             name: body
             schema:
-              id: Predict
+              id: Train
               required:
                 - dataset
               properties:
                 dataset:
                   type: string
-                  description: The name of the dataset to train on: conll04, scierc, internal; for now,
+                  description: The name of the dataset to train on, one of 'conll04', 'scierc', 'internal'; for now,
                                hyperparameters not available through API.
         responses:
             200:

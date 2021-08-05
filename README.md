@@ -14,12 +14,36 @@ Current test coverage on internal Gitlab platform: 89 %.
 
 ## Installation
 
+### As a Python package
+
 - Clone this repository: `git clone https://github.com/adimajo/renard_joint.git` or `git clone git@github.com:adimajo/renard_joint.git`;
 - Set the environment variables `DATA` and `MODEL` to the location of your choice (`data` and `model` by default resp., see below);
 - Have a working python development environment, including the `pip` package manager;
 - Install `pipenv` with `pip install pipenv`;
 - Install the python dependencies of this package using: `pipenv install`;
 - Install the package using: `pip install .` (append `pipenv run` if the virtual environment created by `pipenv` hasn't been activated, e.g. in a script).
+
+### As a Flask API
+
+
+## Documentation
+
+The Sphinx documentation is available [as a Github Page](https://adimajo.github.io/renard_joint).
+
+It can be built by running:
+```
+$ cd docs
+$ make html
+```
+
+The API's documentation is available as a Swagger, at the `/spec` endpoint.
+
+Thus, once deployed, *e.g.* on localhost, the `/spec` endpoint will return:
+![Swagger input](images/spec_endpoint.png)
+
+Then, a Swagger reader is necessary to turn this json file into a webpage documentation.
+Copy-pasting it on [https://editor.swagger.io/](https://editor.swagger.io/), we get:
+![Swagger output](images/swagger_output.png)
 
 ## Directory
 

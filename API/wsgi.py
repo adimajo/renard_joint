@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 import flask_restful as restful
 from flask_swagger import swagger
 from API import Predictor, Evaluator, Trainer
-from rsenard_joint import __version__
+from renard_joint import __version__
 
 
 def create_app():
