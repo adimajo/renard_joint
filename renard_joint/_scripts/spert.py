@@ -29,23 +29,22 @@ EPOCH_ = "epoch:"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-def config(argv):
-    import sys
+def config():
 
     if len(sys.argv) <= 1:
         raise ValueError("Dataset argument not found")
 
-    spert_config = SpertConfig(argv[1])
+    spert_config = SpertConfig(sys.argv[1])
     constants, input_generator = spert_config.constants, spert_config.input_generator
     return constants, input_generator
 
 
-def get_optimizer_params(model):
+def get_optimizer_params(weight_decay, model):
     param_optimizer = list(model.named_parameters())
     no_decay = ['bias', 'LayerNorm.bias', 'LayerNorm.weight']
     optimizer_params = [
         {'params': [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)],
-         'weight_decay': constants.weight_decay},
+         'weight_decay': weight_decay},
         {'params': [p for n, p in param_optimizer if any(nd in n for nd in no_decay)],
          'weight_decay': 0.0}]
     return optimizer_params
@@ -150,7 +149,7 @@ def train(entity_label_map,
                                               relation_filter_threshold=constants.relation_filter_threshold,
                                               relation_possibility=relation_possibility)
     spert_model.to(device)
-    optimizer_params = get_optimizer_params(spert_model)
+    optimizer_params = get_optimizer_params(constants.weight_decay, spert_model)
     optimizer = AdamW(optimizer_params, lr=constants.lr, weight_decay=constants.weight_decay, correct_bias=False)
     scheduler = transformers.get_linear_schedule_with_warmup(optimizer,
                                                              num_warmup_steps=constants.lr_warmup * train_size * constants.epochs,
@@ -347,7 +346,7 @@ def main(constants, input_generator):
 
 
 def main_wrapper():
-    constants, input_generator = config(sys.argv)
+    constants, input_generator = config()
     main(constants, input_generator)
 
 
