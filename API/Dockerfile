@@ -10,7 +10,7 @@ ARG MODEL
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV HTTP_PROXY=$the_prox
+ENV HTTP_PROXY=$the_proxy
 ENV HTTP_PROXY_AUTH=basic:*::
 ENV PORT=$PORT
 ENV DATA=$DATA
@@ -30,7 +30,7 @@ ENV MODEL=/model
 # install dependencies
 RUN echo $HTTP_PROXY
 RUN echo $HTTP_PROXY_AUTH
-RUN apk update
+RUN http_proxy=$the_proxy && https_proxy=$the_proxy && apk update
 RUN apk add --no-cache libgfortran lapack-dev
 RUN apk add --no-cache libblas3 libblas-dev libatlas-base-dev
 RUN pip install --upgrade pip
