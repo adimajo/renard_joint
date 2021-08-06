@@ -11,16 +11,16 @@ install:
 dependencies:
   - mkdir model && cd model
   - mkdir spert && mkdir ner && mkdir re && cd spert
-  - wget https://ufile.io/dse7uk5v # ClimLL
-  - wget https://ufile.io/0gug8or2 # CoNLL04
-  - wget https://ufile.io/pf9ks53h && cd ../ner # SciERC
-  - wget https://ufile.io/bxsmnvtw # ClimLL
-  - wget https://ufile.io/j0ff5qrz && cd ../re # CoNLL04
-  - wget https://ufile.io/u9vh6pql # ClimLL
-  - wget https://ufile.io/1gz582so && cd ../.. # CoNLL04
+  - wget -O internal_epoch_26.model https://ufile.io/dse7uk5v # ClimLL
+  - wget -O conll04_epoch_19.model https://ufile.io/0gug8or2 # CoNLL04
+  - wget -O scierc_epoch_19.model https://ufile.io/pf9ks53h && cd ../ner # SciERC
+  - wget -O internal_nn_1024.model https://ufile.io/bxsmnvtw # ClimLL
+  - wget -O conll04_nn_1024.model https://ufile.io/j0ff5qrz && cd ../re # CoNLL04
+  - wget -O internal_100.model https://ufile.io/u9vh6pql # ClimLL
+  - wget -O conll04_100.model https://ufile.io/1gz582so && cd ../.. # CoNLL04
   - mkdir data && cd data
-  - mkdir conll04 && cd conll04 && wget https://ufile.io/vwcg7m9j && cd ..
-  - mkdir scierc && cd scierc && wget https://ufile.io/4828j92x && cd ../../..
+  - mkdir conll04 && cd conll04 && wget -O CoNLL04.zip https://ufile.io/vwcg7m9j && unzip CoNLL04.zip && cd ..
+  - mkdir scierc && cd scierc && wget -O sciERC.zip https://ufile.io/4828j92x && unzip sciERC.zip && cd ../../..
 lint:
   - pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
   - pipenv run flake8 . --count --exit-zero --extend-ignore=W504 --max-complexity=10 --max-line-length=120 --statistics
