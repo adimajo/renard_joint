@@ -114,7 +114,7 @@ api:
   script:
   - cp dist/renard_joint-0.0.1-py3-none-any.whl API/renard_joint-0.0.1-py3-none-any.whl
   - cd API
-  - docker build --build-arg the_proxy=$the_proxy --build-arg PORT=$PORT -t data_harvesting_api:latest .
+  - docker build --build-arg DATA=$DATA --build-arg MODEL=$MODEL --build-arg the_proxy=$the_proxy --build-arg PORT=$PORT -t data_harvesting_api:latest .
   - docker run -d -p $PORT:$PORT data_harvesting_api
   - docker save data_harvesting_api:latest > data_harvesting_api.tar
   artifacts:

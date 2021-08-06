@@ -74,21 +74,21 @@ Models can be downloaded from ufile.io:
 
 ### Spert models
 
-- [The ClimLL model](https://ufile.io/dse7uk5v);
-- [The CoNLL04 model](https://ufile.io/0gug8or2);
-- [The SciERC model](https://ufile.io/pf9ks53h).
+- [The ClimLL model](https://cdn-130.anonfiles.com/v9j1F5Aau8/7607feed-1628247205/internal_epoch_26.model);
+- [The CoNLL04 model](https://cdn-107.anonfiles.com/zdi3FbA5u3/f8b9d9fa-1628247235/conll04_epoch_19.model);
+- [The SciERC model](https://cdn-128.anonfiles.com/tcj0F5Aau5/0f85429a-1628247125/scierc_epoch_19.model).
 
 ### NER & RE models
 
 #### NER models
 
-- [The ClimLL model](https://ufile.io/bxsmnvtw);
-- [The CoNLL04 model](https://ufile.io/j0ff5qrz).
+- [The ClimLL model](https://cdn-129.anonfiles.com/Dbo5FaA9u6/165f5ae3-1628247316/internal_nn_1024.model);
+- [The CoNLL04 model](https://cdn-133.anonfiles.com/70ofFcA2uf/fcde85d4-1628247288/conll04_nn_1024.model).
 
 #### RE models
 
-- [The ClimLL model](https://ufile.io/u9vh6pql);
-- [The CoNLL04 model](https://ufile.io/1gz582so).
+- [The ClimLL model](https://cdn-106.anonfiles.com/l8s6F9A9u8/37a2698c-1628259684/internal_100.model);
+- [The CoNLL04 model](https://cdn-131.anonfiles.com/p9u9F8Acu2/db5e65ac-1628259731/conll04_100.model).
 
 ### Installation
 
@@ -104,21 +104,21 @@ All models can be downloaded and stored in the right folders using:
 ```
 mkdir model && cd model
 mkdir spert && mkdir ner && mkdir re && cd spert
-wget https://ufile.io/dse7uk5v # ClimLL
-wget https://ufile.io/0gug8or2 # CoNLL04
-wget https://ufile.io/pf9ks53h && cd ../ner # SciERC
-wget https://ufile.io/bxsmnvtw # ClimLL
-wget https://ufile.io/j0ff5qrz && cd ../re # CoNLL04
-wget https://ufile.io/u9vh6pql # ClimLL
-wget https://ufile.io/1gz582so && cd ../.. # CoNLL04
+wget -O internal_epoch_26.model https://cdn-130.anonfiles.com/v9j1F5Aau8/7607feed-1628247205/internal_epoch_26.model # ClimLL
+wget -O conll04_epoch_19.model https://cdn-107.anonfiles.com/zdi3FbA5u3/f8b9d9fa-1628247235/conll04_epoch_19.model # CoNLL04
+wget -O scierc_epoch_19.model https://cdn-128.anonfiles.com/tcj0F5Aau5/0f85429a-1628247125/scierc_epoch_19.model && cd ../ner # SciERC
+wget -O internal_nn_1024.model https://cdn-129.anonfiles.com/Dbo5FaA9u6/165f5ae3-1628247316/internal_nn_1024.model # ClimLL
+wget -O conll04_nn_1024.model https://cdn-133.anonfiles.com/70ofFcA2uf/fcde85d4-1628247288/conll04_nn_1024.model && cd ../re # CoNLL04
+wget -O internal_100.model https://cdn-106.anonfiles.com/l8s6F9A9u8/37a2698c-1628259684/internal_100.model # ClimLL
+wget -O conll04_100.model https://cdn-131.anonfiles.com/p9u9F8Acu2/db5e65ac-1628259731/conll04_100.model && cd ../.. # CoNLL04
 ```
 
 ## Data
 
 Data, except the ClimLL dataset, can be downloaded from ufile.io:
 
-- [The CoNLL04 dataset](https://ufile.io/vwcg7m9j);
-- [The SciERC dataset](https://ufile.io/4828j92x).
+- [The CoNLL04 dataset](https://cdn-105.anonfiles.com/n6e4H9A6u3/92b41668-1628259818/CoNLL04.zip);
+- [The SciERC dataset](https://cdn-106.anonfiles.com/p5eeH7A1u1/6b5b8428-1628259777/sciERC.zip).
 
 ### Installation
 
@@ -132,8 +132,8 @@ All data can be downloaded and stored in the right folders using:
 
 ```
 mkdir data && cd data
-mkdir conll04 && cd conll04 && wget https://ufile.io/vwcg7m9j && cd ..
-mkdir scierc && cd scierc && wget https://ufile.io/4828j92x && cd ../../..
+mkdir conll04 && cd conll04 && wget -O CoNLL04.zip https://cdn-105.anonfiles.com/n6e4H9A6u3/92b41668-1628259818/CoNLL04.zip && jar xvf CoNLL04.zip && cd ..
+mkdir scierc && cd scierc && wget -O sciERC.zip https://cdn-106.anonfiles.com/p5eeH7A1u1/6b5b8428-1628259777/sciERC.zip && jar xvf sciERC.zip && cd ../..
 ```
 
 ## Usage
