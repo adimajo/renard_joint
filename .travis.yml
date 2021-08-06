@@ -1,0 +1,48 @@
+language: python
+python:
+  - "3.7"
+  - "3.8"
+install:
+  - python -m pip install --upgrade pip
+  - pip install pipenv
+  - pipenv install --dev
+dependencies:
+  - mkdir model && cd model
+  - mkdir spert && mkdir ner && mkdir re && cd spert
+  - wget https://ufile.io/dse7uk5v # ClimLL
+  - wget https://ufile.io/0gug8or2 # CoNLL04
+  - wget https://ufile.io/pf9ks53h && cd ../ner # SciERC
+  - wget https://ufile.io/bxsmnvtw # ClimLL
+  - wget https://ufile.io/j0ff5qrz && cd ../re # CoNLL04
+  - wget https://ufile.io/u9vh6pql # ClimLL
+  - wget https://ufile.io/1gz582so && cd ../.. # CoNLL04
+  - mkdir data && cd data
+  - mkdir conll04 && cd conll04 && wget https://ufile.io/vwcg7m9j && cd ..
+  - mkdir scierc && cd scierc && wget https://ufile.io/4828j92x && cd ../../..
+lint:
+  - pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+  - pipenv run flake8 . --count --exit-zero --extend-ignore=W504 --max-complexity=10 --max-line-length=120 --statistics
+test:
+  - pipenv run coverage run --source renard_joint -m pytest
+  - pipenv run bandit -r renard_joint
+  - pipenv run python renard_joint/_scripts/pipeline.py conll04 evaluate
+  - pipenv run python renard_joint/_scripts/pipeline.py internal evaluate
+  - pipenv run python renard_joint/_scripts/pipeline.py conll04 predict "Adrien tries data harvesting" "It's probably working"
+  - pipenv run python renard_joint/_scripts/pipeline.py internal predict "Dirty company does bad coal activity" "Nice company treats people equally"
+  - pipenv run python renard_joint/_scripts/spert.py conll04 evaluate 19
+  - pipenv run python renard_joint/_scripts/spert.py scierc evaluate 19
+  - pipenv run python renard_joint/_scripts/spert.py internal evaluate 26
+  - pipenv run python renard_joint/_scripts/spert.py conll04 predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
+  - pipenv run python renard_joint/_scripts/spert.py scierc predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
+  - pipenv run python renard_joint/_scripts/spert.py internal predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
+document:
+  - cd docs
+  - pipenv run make html
+build:
+  - pipenv install --skip-lock
+  - pipenv run pip freeze > requirements.txt
+  - pipenv run python3 setup.py sdist bdist_wheel
+  - pipenv run twine check dist/*
+
+after_sucess:
+  codecov

@@ -59,6 +59,7 @@ Copy-pasting it on [https://editor.swagger.io/](https://editor.swagger.io/), we 
 
 ## Directory
 
+- `API/` contains the Flask API development server, its so-called "resources" and the Dockerfile to run it as a container;
 - `renard_joint/` contains the main package;
 - `notebooks/` contains the notebooks to explore the datasets and fine-tune the model;
 - `tests/` contains the `pytest` tests for `renard_joint` and `scripts`;
@@ -82,12 +83,12 @@ Models can be downloaded from ufile.io:
 #### NER models
 
 - [The ClimLL model](https://ufile.io/bxsmnvtw);
-- [The CoNLL04 model](https://ufile.io/j0ff5qrz);
+- [The CoNLL04 model](https://ufile.io/j0ff5qrz).
 
 #### RE models
 
 - [The ClimLL model](https://ufile.io/u9vh6pql);
-- [The CoNLL04 model](https://ufile.io/1gz582so);
+- [The CoNLL04 model](https://ufile.io/1gz582so).
 
 ### Installation
 
@@ -97,6 +98,20 @@ environment variable `MODEL`. The organisation of this folder must be the follow
 - `ner/`: containing the NER model(s);
 - `re/`: containing the RE model(s);
 - `spert/`: containing the Spert model(s).
+
+All models can be downloaded and stored in the right folders using:
+
+```
+mkdir model && cd model
+mkdir spert && mkdir ner && mkdir re && cd spert
+wget https://ufile.io/dse7uk5v # ClimLL
+wget https://ufile.io/0gug8or2 # CoNLL04
+wget https://ufile.io/pf9ks53h && cd ../ner # SciERC
+wget https://ufile.io/bxsmnvtw # ClimLL
+wget https://ufile.io/j0ff5qrz && cd ../re # CoNLL04
+wget https://ufile.io/u9vh6pql # ClimLL
+wget https://ufile.io/1gz582so && cd ../.. # CoNLL04
+```
 
 ## Data
 
@@ -112,6 +127,14 @@ environment variable `data`. The organisation of this folder must be the followi
 
 - `CoNLL04/`: containing the CoNLL04 data;
 - `SciERC/`: containing the SciERC data.
+
+All data can be downloaded and stored in the right folders using:
+
+```
+mkdir data && cd data
+mkdir conll04 && cd conll04 && wget https://ufile.io/vwcg7m9j && cd ..
+mkdir scierc && cd scierc && wget https://ufile.io/4828j92x && cd ../../..
+```
 
 ## Usage
 
