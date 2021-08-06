@@ -47,8 +47,8 @@ jobs:
         wget -O internal_100.model https://ufile.io/u9vh6pql # ClimLL
         wget -O conll04_100.model https://ufile.io/1gz582so && cd ../.. # CoNLL04
         mkdir data && cd data
-        mkdir conll04 && cd conll04 && wget -O CoNLL04.zip https://ufile.io/vwcg7m9j && unzip CoNLL04.zip && cd ..
-        mkdir scierc && cd scierc && wget -O sciERC.zip https://ufile.io/4828j92x && unzip sciERC.zip && cd ../../..
+        mkdir conll04 && cd conll04 && wget -O CoNLL04.zip https://ufile.io/vwcg7m9j && jar xvf CoNLL04.zip && cd ..
+        mkdir scierc && cd scierc && wget -O sciERC.zip https://ufile.io/4828j92x && jar xvf sciERC.zip && cd ../..
         pipenv run coverage run --source renard_joint -m pytest -rxXs
         pipenv run bandit -r renard_joint
         pipenv run python renard_joint/_scripts/pipeline.py conll04 evaluate
