@@ -48,7 +48,7 @@ jobs:
         wget https://ufile.io/1gz582so && cd ../.. # CoNLL04
         mkdir data && cd data
         mkdir conll04 && cd conll04 && wget https://ufile.io/vwcg7m9j && cd ..
-        mkdir scierc && cd scierc && wget https://ufile.io/4828j92x && cd ../../..
+        mkdir scierc && cd scierc && wget https://ufile.io/4828j92x && cd ../..
         pipenv run coverage run --source renard_joint -m pytest -rxXs
         pipenv run bandit -r renard_joint
         pipenv run python renard_joint/_scripts/pipeline.py conll04 evaluate
