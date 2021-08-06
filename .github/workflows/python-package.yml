@@ -42,8 +42,10 @@ jobs:
         mkdir internal && cd internal && wget https://ufile.io/dse7uk5v && cd ..
         mkdir conll04 && cd conll04 && wget https://ufile.io/0gug8or2 && cd ..
         mkdir scierc && cd scierc && wget https://ufile.io/pf9ks53h && cd ../../ner
-        mkdir internal && cd internal && wget https://ufile.io/bxsmnvtw
-        mkdir conll04 && cd conll04 && wget https://ufile.io/j0ff5qrz && cd ../../..
+        mkdir internal && cd internal && wget https://ufile.io/bxsmnvtw && cd ..
+        mkdir conll04 && cd conll04 && wget https://ufile.io/j0ff5qrz && cd ../../re
+        mkdir internal && cd internal && wget https://ufile.io/u9vh6pql && cd ..
+        mkdir conll04 && cd conll04 && wget https://ufile.io/1gz582so && cd ../../..
         pipenv run coverage run --source renard_joint -m pytest -rxXs
         pipenv run bandit -r renard_joint
         pipenv run python renard_joint/_scripts/pipeline.py conll04 evaluate

@@ -25,6 +25,18 @@ Current test coverage on internal Gitlab platform: 89 %.
 
 ### As a Flask API
 
+#### Development server
+
+- Clone this repository: `git clone https://github.com/adimajo/renard_joint.git` or `git clone git@github.com:adimajo/renard_joint.git`;
+- Set the environment variables `DATA` and `MODEL` to the location of your choice (`data` and `model` by default resp., see below);
+- Have a working python development environment, including the `pip` package manager;
+- Install `pipenv` with `pip install pipenv`;
+- Install the python dependencies of this package using: `pipenv install`;
+- Fire up the Flask API locally using `python AIP/wsgi.py`.
+
+#### Production server
+
+TODO
 
 ## Documentation
 
@@ -74,8 +86,8 @@ Models can be downloaded from ufile.io:
 
 #### RE models
 
-- [The ClimLL model]();
-- [The CoNLL04 model]();
+- [The ClimLL model](https://ufile.io/u9vh6pql);
+- [The CoNLL04 model](https://ufile.io/1gz582so);
 
 ### Installation
 
