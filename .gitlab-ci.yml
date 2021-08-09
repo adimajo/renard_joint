@@ -153,10 +153,10 @@ api:
   - cp dist/renard_joint-0.0.1-py3-none-any.whl API/renard_joint-0.0.1-py3-none-any.whl
   - export the_path=$(pwd)
   - echo $the_path
-  - export the_path_docker=$(the_path)/API/Dockerfile
+  - export the_path_docker=$the_path/API/Dockerfile
   - echo $the_path_docker
   - cd /
-  - docker build --build-arg DATA=$DATA --build-arg MODEL=$MODEL --build-arg the_proxy=$the_proxy --build-arg PORT=$PORT -t data_harvesting_api:latest -f $the_path/API/Dockerfile .
+  - docker build --build-arg DATA=$DATA --build-arg MODEL=$MODEL --build-arg the_proxy=$the_proxy --build-arg PORT=$PORT --build-arg the_path=$the_path -t data_harvesting_api:latest -f $the_path/API/Dockerfile .
   - docker run -d -p $PORT:$PORT data_harvesting_api
   - docker save data_harvesting_api:latest > data_harvesting_api.tar
   artifacts:
