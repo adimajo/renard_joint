@@ -68,6 +68,7 @@ test:
     changes:
       - renard_joint/*
       - tests/*
+  needs: ["lint"]
 
 document:
   extends: .before_script_template
@@ -88,6 +89,7 @@ document:
     changes:
       - docs/*
       - renard_joint/*
+  needs: ["lint","test"]
 
 build:
   extends: .before_script_template
@@ -106,6 +108,7 @@ build:
       - branches
     changes:
       - renard_joint/*
+  needs: ["lint","test"]
 
 test_install:
   extends: .before_script_template
@@ -132,6 +135,7 @@ test_install:
       - branches
     changes:
       - renard_joint/*
+  needs: ["build"]
 
 api:
   stage: api
@@ -158,3 +162,4 @@ api:
     changes:
       - API/*
       - renard_joint/*
+  needs: ["build"]
