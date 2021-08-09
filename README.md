@@ -74,8 +74,8 @@ Models can be downloaded from ufile.io:
 
 ### Spert models
 
-- [The ClimLL model](https://cdn-130.anonfiles.com/v9j1F5Aau8/7607feed-1628247205/internal_epoch_26.model);
-- [The CoNLL04 model](https://cdn-107.anonfiles.com/zdi3FbA5u3/f8b9d9fa-1628247235/conll04_epoch_19.model);
+- [The ClimLL model](https://drive.google.com/uc?id=1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx&export=download);
+- [The CoNLL04 model](https://drive.google.com/uc?id=1uf1uD9uxEEu1QxrEMYaZzIjnWZLt_36Q&export=download);
 - [The SciERC model](https://cdn-128.anonfiles.com/tcj0F5Aau5/0f85429a-1628247125/scierc_epoch_19.model).
 
 ### NER & RE models
@@ -104,8 +104,8 @@ All models can be downloaded and stored in the right folders using:
 ```
 mkdir model && cd model
 mkdir spert && mkdir ner && mkdir re && cd spert
-wget -O internal_epoch_26.model https://cdn-130.anonfiles.com/v9j1F5Aau8/7607feed-1628247205/internal_epoch_26.model # ClimLL
-wget -O conll04_epoch_19.model https://cdn-107.anonfiles.com/zdi3FbA5u3/f8b9d9fa-1628247235/conll04_epoch_19.model # CoNLL04
+wget -O internal_epoch_26.model https://drive.google.com/uc?id=1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx&export=download # ClimLL
+wget -O conll04_epoch_19.model https://drive.google.com/uc?id=1uf1uD9uxEEu1QxrEMYaZzIjnWZLt_36Q&export=download # CoNLL04
 wget -O scierc_epoch_19.model https://cdn-128.anonfiles.com/tcj0F5Aau5/0f85429a-1628247125/scierc_epoch_19.model && cd ../ner # SciERC
 wget -O internal_nn_1024.model https://cdn-129.anonfiles.com/Dbo5FaA9u6/165f5ae3-1628247316/internal_nn_1024.model # ClimLL
 wget -O conll04_nn_1024.model https://cdn-133.anonfiles.com/70ofFcA2uf/fcde85d4-1628247288/conll04_nn_1024.model && cd ../re # CoNLL04
@@ -117,8 +117,8 @@ wget -O conll04_100.model https://cdn-131.anonfiles.com/p9u9F8Acu2/db5e65ac-1628
 
 Data, except the ClimLL dataset, can be downloaded from ufile.io:
 
-- [The CoNLL04 dataset](https://cdn-105.anonfiles.com/n6e4H9A6u3/92b41668-1628259818/CoNLL04.zip);
-- [The SciERC dataset](https://cdn-106.anonfiles.com/p5eeH7A1u1/6b5b8428-1628259777/sciERC.zip).
+- [The CoNLL04 dataset](https://drive.google.com/uc?id=1LKAvkgk8ePvERHwh6YtAWF13XJxdRu3K&export=download);
+- [The SciERC dataset](https://drive.google.com/uc?id=1UXkI_Were9LV8nhUkXPZF1oFi7KzBjch&export=download).
 
 ### Installation
 
@@ -132,8 +132,8 @@ All data can be downloaded and stored in the right folders using:
 
 ```
 mkdir data && cd data
-mkdir conll04 && cd conll04 && wget -O CoNLL04.zip https://cdn-105.anonfiles.com/n6e4H9A6u3/92b41668-1628259818/CoNLL04.zip && jar xvf CoNLL04.zip && cd ..
-mkdir scierc && cd scierc && wget -O sciERC.zip https://cdn-106.anonfiles.com/p5eeH7A1u1/6b5b8428-1628259777/sciERC.zip && jar xvf sciERC.zip && cd ../..
+mkdir conll04 && cd conll04 && wget -O CoNLL04.zip https://drive.google.com/uc?id=1LKAvkgk8ePvERHwh6YtAWF13XJxdRu3K&export=download && jar xvf CoNLL04.zip && cd ..
+mkdir scierc && cd scierc && wget -O sciERC.zip https://drive.google.com/uc?id=1UXkI_Were9LV8nhUkXPZF1oFi7KzBjch&export=download && jar xvf sciERC.zip && cd ../..
 ```
 
 ## Usage

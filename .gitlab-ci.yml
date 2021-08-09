@@ -102,7 +102,7 @@ build:
   - pipenv run pip freeze > requirements.txt
   - pipenv run python3 setup.py sdist bdist_wheel
   - pipenv run twine check dist/*
-  - export PACKAGE_VERSION=`python -c 'import renard_joint; print(version=renard_joint.__version__)'` >> build.env
+  - export PACKAGE_VERSION=`python -c 'import renard_joint; print(renard_joint.__version__)'` >> build.env
   artifacts:
     paths:
       - dist
