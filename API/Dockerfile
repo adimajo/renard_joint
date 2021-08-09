@@ -7,6 +7,7 @@ ARG the_path
 ARG PORT
 ARG DATA
 ARG MODEL
+ARG PACKAGE_VERSION
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -16,6 +17,7 @@ ENV the_path=$the_path
 ENV PORT=$PORT
 ENV DATA=$DATA
 ENV MODEL=$MODEL
+ENV PACKAGE_VERSION=$PACKAGE_VERSION
 
 # copy project
 COPY $the_path/API .
@@ -31,6 +33,6 @@ ENV MODEL=model
 # install dependencies
 RUN http_proxy=$the_proxy && https_proxy=$the_proxy && pip install --upgrade pip
 RUN http_proxy=$the_proxy && https_proxy=$the_proxy && pip install gunicorn
-RUN http_proxy=$the_proxy && https_proxy=$the_proxy && pip install renard_joint-0.0.1-py3-none-any.whl
+RUN http_proxy=$the_proxy && https_proxy=$the_proxy && pip install renard_joint-$PACKAGE_VERSION-py3-none-any.whl
 
-CMD gunicorn wsgi:app --bind 0.0.0.0:8000
+CMD gunicorn wsgi:app --bind 0.0.0.0:$PORT
