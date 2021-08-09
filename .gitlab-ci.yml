@@ -36,6 +36,7 @@ lint:
       - docs/**/*
       - renard_joint/**/*
       - tests/**/*
+  when: manual
 
 test:
   extends: .before_script_template
@@ -69,6 +70,7 @@ test:
       - renard_joint/**/*
       - tests/**/*
   needs: ["lint"]
+  when: manual
 
 document:
   extends: .before_script_template
@@ -90,6 +92,7 @@ document:
       - docs/**/*
       - renard_joint/**/*
   needs: ["lint","test"]
+  when: manual
 
 build:
   extends: .before_script_template
@@ -136,6 +139,7 @@ test_install:
     changes:
       - renard_joint/**/*
   needs: ["build"]
+  when: manual
 
 api:
   stage: api
