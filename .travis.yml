@@ -4,6 +4,7 @@ python:
   - "3.8"
 git:
   depth: 3
+  lfs_skip_smudge: true
 install:
   - python -m pip install --upgrade pip
   - pip install pipenv

@@ -161,8 +161,9 @@ api:
   - echo $the_path_docker
   - cd /
   - docker build --build-arg DATA=$DATA --build-arg MODEL=$MODEL --build-arg the_proxy=$the_proxy --build-arg PORT=$PORT --build-arg PACKAGE_VERSION=$PACKAGE_VERSION --build-arg the_path=$the_path -t data_harvesting_api:$PACKAGE_VERSION -f $the_path/API/Dockerfile .
-  - docker run -d -p $PORT:$PORT data_harvesting_api
-  - docker save data_harvesting_api:$PACKAGE_VERSION > data_harvesting_api.tar
+  - docker run -t -i -d -p $PORT:$PORT data_harvesting_api
+  - docker save data_harvesting_api:$PACKAGE_VERSION > data_harvesting_api.tar.
+  - docker rm $(docker stop $(docker ps -a -q --filter ancestor=data_harvesting_api:$PACKAGE_VERSION --format="{{.ID}}"))
   artifacts:
     paths:
       - API/data_harvesting_api.tar

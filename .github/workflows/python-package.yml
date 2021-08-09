@@ -35,11 +35,17 @@ jobs:
         pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         pipenv run flake8 --ignore=W504 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
-    - name: Test with coverage and pytest
+    - name: Create model and download spert internal
       run: |
         mkdir model && cd model
         mkdir spert && mkdir ner && mkdir re && cd spert
-        wget -O internal_epoch_26.model https://drive.google.com/uc?id=1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx&export=download # ClimLL
+        wget -O internal_epoch_26.model https://drive.google.com/uc?id=1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx&export=download
+        ls -a
+    - name: Test with coverage and pytest
+      run: |
+#        mkdir model && cd model
+#        mkdir spert && mkdir ner && mkdir re && cd spert
+#        wget -O internal_epoch_26.model https://drive.google.com/uc?id=1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx&export=download # ClimLL
         wget -O conll04_epoch_19.model https://drive.google.com/uc?id=1uf1uD9uxEEu1QxrEMYaZzIjnWZLt_36Q&export=download # CoNLL04
         wget -O scierc_epoch_19.model https://drive.google.com/uc?id=1go-9ftQS01oAC5FqM6t_I5iQ87nF1hAg&export=download && cd ../ner # SciERC
         wget -O internal_nn_1024.model https://drive.google.com/uc?id=1UjvSVzxEAPBW7fbfL53Ub1kxOKXNEcf5&export=download # ClimLL
