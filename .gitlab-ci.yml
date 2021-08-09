@@ -106,9 +106,8 @@ build:
   artifacts:
     paths:
       - dist
+      - build.env
     expire_in: 1 week
-    reports:
-      dotenv: build.env
 #  only:
 #    refs:
 #      - branches
@@ -153,6 +152,7 @@ api:
       entrypoint: ["env", "-u", "DOCKER_HOST"]
       command: ["dockerd-entrypoint.sh"]
   script:
+  - export PACKAGE_VERSION=$(cat build.env)
   - cp dist/renard_joint-$PACKAGE_VERSION-py3-none-any.whl API/renard_joint-$PACKAGE_VERSION-py3-none-any.whl
   - export the_path=$(pwd)
   - echo $the_path
