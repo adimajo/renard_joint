@@ -76,19 +76,19 @@ Models can be downloaded from ufile.io:
 
 - [The ClimLL model](https://drive.google.com/uc?id=1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx&export=download);
 - [The CoNLL04 model](https://drive.google.com/uc?id=1uf1uD9uxEEu1QxrEMYaZzIjnWZLt_36Q&export=download);
-- [The SciERC model](https://cdn-128.anonfiles.com/tcj0F5Aau5/0f85429a-1628247125/scierc_epoch_19.model).
+- [The SciERC model](https://drive.google.com/uc?id=1go-9ftQS01oAC5FqM6t_I5iQ87nF1hAg&export=download).
 
 ### NER & RE models
 
 #### NER models
 
-- [The ClimLL model](https://cdn-129.anonfiles.com/Dbo5FaA9u6/165f5ae3-1628247316/internal_nn_1024.model);
-- [The CoNLL04 model](https://cdn-133.anonfiles.com/70ofFcA2uf/fcde85d4-1628247288/conll04_nn_1024.model).
+- [The ClimLL model](https://drive.google.com/uc?id=1UjvSVzxEAPBW7fbfL53Ub1kxOKXNEcf5&export=download);
+- [The CoNLL04 model](https://drive.google.com/uc?id=1C5jQc9DUsC_baVQVnETGM5MHTA_P69Wd&export=download).
 
 #### RE models
 
-- [The ClimLL model](https://cdn-106.anonfiles.com/l8s6F9A9u8/37a2698c-1628259684/internal_100.model);
-- [The CoNLL04 model](https://cdn-131.anonfiles.com/p9u9F8Acu2/db5e65ac-1628259731/conll04_100.model).
+- [The ClimLL model](https://drive.google.com/uc?id=1CpZC0TWpN7hXwumCFzGRS5YpJpdQRpQ7&export=download);
+- [The CoNLL04 model](https://drive.google.com/uc?id=1xpjs92IEYpnaHzeLgqy3UsQ1_zxcJ-oL&export=download).
 
 ### Installation
 
@@ -106,11 +106,11 @@ mkdir model && cd model
 mkdir spert && mkdir ner && mkdir re && cd spert
 wget -O internal_epoch_26.model https://drive.google.com/uc?id=1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx&export=download # ClimLL
 wget -O conll04_epoch_19.model https://drive.google.com/uc?id=1uf1uD9uxEEu1QxrEMYaZzIjnWZLt_36Q&export=download # CoNLL04
-wget -O scierc_epoch_19.model https://cdn-128.anonfiles.com/tcj0F5Aau5/0f85429a-1628247125/scierc_epoch_19.model && cd ../ner # SciERC
-wget -O internal_nn_1024.model https://cdn-129.anonfiles.com/Dbo5FaA9u6/165f5ae3-1628247316/internal_nn_1024.model # ClimLL
-wget -O conll04_nn_1024.model https://cdn-133.anonfiles.com/70ofFcA2uf/fcde85d4-1628247288/conll04_nn_1024.model && cd ../re # CoNLL04
-wget -O internal_100.model https://cdn-106.anonfiles.com/l8s6F9A9u8/37a2698c-1628259684/internal_100.model # ClimLL
-wget -O conll04_100.model https://cdn-131.anonfiles.com/p9u9F8Acu2/db5e65ac-1628259731/conll04_100.model && cd ../.. # CoNLL04
+wget -O scierc_epoch_19.model https://drive.google.com/uc?id=1go-9ftQS01oAC5FqM6t_I5iQ87nF1hAg&export=download && cd ../ner # SciERC
+wget -O internal_nn_1024.model https://drive.google.com/uc?id=1UjvSVzxEAPBW7fbfL53Ub1kxOKXNEcf5&export=download # ClimLL
+wget -O conll04_nn_1024.model https://drive.google.com/uc?id=1C5jQc9DUsC_baVQVnETGM5MHTA_P69Wd&export=download && cd ../re # CoNLL04
+wget -O internal_100.model https://drive.google.com/uc?id=1CpZC0TWpN7hXwumCFzGRS5YpJpdQRpQ7&export=download # ClimLL
+wget -O conll04_100.model https://drive.google.com/uc?id=1xpjs92IEYpnaHzeLgqy3UsQ1_zxcJ-oL&export=download && cd ../.. # CoNLL04
 ```
 
 ## Data
