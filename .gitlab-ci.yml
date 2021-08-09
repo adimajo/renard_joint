@@ -106,11 +106,11 @@ build:
     paths:
       - dist
     expire_in: 1 week
-  only:
-    refs:
-      - branches
-    changes:
-      - renard_joint/**/*
+#  only:
+#    refs:
+#      - branches
+#    changes:
+#      - renard_joint/**/*
   needs: ["lint","test"]
 
 test_install:
@@ -165,10 +165,10 @@ api:
     expire_in: 1 week
   dependencies:
     - build
-  only:
-    refs:
-      - branches
-    changes:
-      - API/*
-      - renard_joint/**/*
+#  only:
+#    refs:
+#      - branches
+#    changes:
+#      - API/*
+#      - renard_joint/**/*
   needs: ["build"]
