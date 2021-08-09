@@ -111,7 +111,7 @@ build:
 #      - branches
 #    changes:
 #      - renard_joint/**/*
-  needs: ["lint","test"]
+#  needs: ["lint","test"]
 
 test_install:
   extends: .before_script_template
@@ -165,10 +165,10 @@ api:
     expire_in: 1 week
   dependencies:
     - build
+  needs: ["build"]
 #  only:
 #    refs:
 #      - branches
 #    changes:
 #      - API/*
 #      - renard_joint/**/*
-  needs: ["build"]
