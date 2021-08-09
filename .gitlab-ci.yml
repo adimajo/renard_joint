@@ -33,9 +33,9 @@ lint:
       - branches
     changes:
       - API/*
-      - docs/*
-      - renard_joint/*
-      - tests/*
+      - docs/**/*
+      - renard_joint/**/*
+      - tests/**/*
 
 test:
   extends: .before_script_template
@@ -66,8 +66,8 @@ test:
     refs:
       - branches
     changes:
-      - renard_joint/*
-      - tests/*
+      - renard_joint/**/*
+      - tests/**/*
   needs: ["lint"]
 
 document:
@@ -87,8 +87,8 @@ document:
     refs:
       - branches
     changes:
-      - docs/*
-      - renard_joint/*
+      - docs/**/*
+      - renard_joint/**/*
   needs: ["lint","test"]
 
 build:
@@ -107,7 +107,7 @@ build:
     refs:
       - branches
     changes:
-      - renard_joint/*
+      - renard_joint/**/*
   needs: ["lint","test"]
 
 test_install:
@@ -134,7 +134,7 @@ test_install:
     refs:
       - branches
     changes:
-      - renard_joint/*
+      - renard_joint/**/*
   needs: ["build"]
 
 api:
@@ -148,18 +148,23 @@ api:
   script:
   - cp dist/renard_joint-0.0.1-py3-none-any.whl API/renard_joint-0.0.1-py3-none-any.whl
   - export the_path=$(pwd)
+  - echo $the_path
+  - export the_path_docker=$(the_path)/API/Dockerfile
+  - echo $the_path_docker
   - cd /
-  - docker build --build-arg DATA=$DATA --build-arg MODEL=$MODEL --build-arg the_proxy=$the_proxy --build-arg PORT=$PORT -t data_harvesting_api:latest -f $(the_path)/API/Dockerfile .
+  - docker build --build-arg DATA=$DATA --build-arg MODEL=$MODEL --build-arg the_proxy=$the_proxy --build-arg PORT=$PORT -t data_harvesting_api:latest -f $the_path/API/Dockerfile .
   - docker run -d -p $PORT:$PORT data_harvesting_api
   - docker save data_harvesting_api:latest > data_harvesting_api.tar
   artifacts:
     paths:
       - API/data_harvesting_api.tar
     expire_in: 1 week
+  dependencies:
+    - build
   only:
     refs:
       - branches
     changes:
       - API/*
-      - renard_joint/*
+      - renard_joint/**/*
   needs: ["build"]
