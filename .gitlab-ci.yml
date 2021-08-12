@@ -156,9 +156,10 @@ api:
   - source build.env
   - cp dist/renard_joint-$PACKAGE_VERSION-py3-none-any.whl API/renard_joint-$PACKAGE_VERSION-py3-none-any.whl
   - export the_path=$(pwd)
-  - echo $the_path
-  - export the_path_docker=$the_path/API/Dockerfile
-  - echo $the_path_docker
+  - echo !$the_path/API >> .dockerignore
+  - echo !$DATA >> .dockerignore
+  - echo !$MODEL >> .dockerignore
+  - cp .dockerignore /
   - cd /
   - docker build --build-arg DATA=$DATA --build-arg MODEL=$MODEL --build-arg the_proxy=$the_proxy --build-arg PORT=$PORT --build-arg PACKAGE_VERSION=$PACKAGE_VERSION --build-arg the_path=$the_path -t data_harvesting_api:$PACKAGE_VERSION -f $the_path/API/Dockerfile .
   - docker run -t -i -d -p $PORT:$PORT data_harvesting_api
