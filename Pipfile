@@ -5,7 +5,7 @@ verify_ssl = true
 
 [[source]]
 name = "artifactory"
-url = "https://registry.saas.cagip.gca/api/pypi/pypi-remote/simple"
+url = "https://registry.saas.cagip.group.gca/api/pypi/pypi-remote/simple"
 verify_ssl = true
 
 [dev-packages]
