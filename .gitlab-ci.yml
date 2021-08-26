@@ -166,7 +166,7 @@ api:
   - docker rm $(docker stop $(docker ps -a -q --filter ancestor=data_harvesting_api:$PACKAGE_VERSION --format="{{.ID}}"))
   artifacts:
     paths:
-      - API/data_harvesting_api.tar
+      - data_harvesting_api.tar
     expire_in: 1 week
   dependencies:
     - build
