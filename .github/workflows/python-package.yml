@@ -72,12 +72,22 @@ jobs:
     - name: Vulnerability
       run: |
         pipenv run bandit -r renard_joint
-    - name: Document
+    - name: Install
       run: |
-        cd docs
-        pipenv run make html
+        pipenv run pip freeze > requirements.txt
+        pipenv install .
+        pipenv run pipeline conll04 evaluate
+        pipenv run pipeline conll04 predict "Adrien tries data harvesting" "It's probably working"
+        pipenv run pipeline internal predict "Dirty company does bad coal activity" "Nice company treats people equally"
+        pipenv run spert conll04 evaluate 19
+        pipenv run spert scierc evaluate 19
+        pipenv run spert conll04 predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
+        pipenv run spert scierc predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
+        pipenv run spert internal predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
     - name: Build and Commit documentation to gh-pages branch
       uses: sphinx-notes/pages@master
+      with:
+        documentation_path: 'docs/source'
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:

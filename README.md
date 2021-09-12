@@ -18,6 +18,7 @@ Current test coverage on internal Gitlab platform: 89 %.
 - [Documentation](#documentation)
 - [Structure](#structure)
 - [Usage](#usage)
+- [References](#references)
 - [Disclaimer](#disclaimer)
 
 ## Installation
@@ -210,7 +211,7 @@ $ pipeline spert predict 26 "Dirty company does bad coal activity" "Nice company
 
 Note: The hyperparameters for retraining can be modified in the `[dataset]_constants.py` files.
 
-## Reference
+## References
 
 <a id="1">[1]</a> Eberts, M., & Ulges, A. (2019). Span-based joint entity and relation extraction with transformer pre-training. arXiv preprint arXiv:1909.07755.
 
