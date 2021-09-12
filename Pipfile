@@ -25,6 +25,7 @@ numpy = "*"
 pandas = ">=0.25.1"
 scikit-learn = "*"
 matplotlib = "*"
+pillow = ">=8.3.2"  # Required by Seaborn & Github vulnerability alert
 seaborn = "*"
 transformers = "*"
 tikzplotlib = "*"

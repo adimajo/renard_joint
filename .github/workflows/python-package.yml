@@ -35,14 +35,13 @@ jobs:
         pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         pipenv run flake8 --ignore=W504 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
-    - name: Create model and download spert internal
+    - name: Download all
+      env:
+        DRIVE_API_KEY: ${{ workflow.DRIVE_API_KEY }}
       run: |
         mkdir model && cd model
         mkdir spert && mkdir ner && mkdir re && cd spert
         wget -O internal_epoch_26.model https://www.googleapis.com/drive/v3/files/1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx?alt=media\&key=$DRIVE_API_KEY  # ClimLL
-        ls -a
-    - name: Test with coverage and pytest
-      run: |
         wget -O conll04_epoch_19.model https://www.googleapis.com/drive/v3/files/1uf1uD9uxEEu1QxrEMYaZzIjnWZLt_36Q?alt=media\&key=$DRIVE_API_KEY # CoNLL04
         wget -O scierc_epoch_19.model https://www.googleapis.com/drive/v3/files/1go-9ftQS01oAC5FqM6t_I5iQ87nF1hAg?alt=media\&key=$DRIVE_API_KEY && cd ../ner # SciERC
         wget -O internal_nn_1024.model https://www.googleapis.com/drive/v3/files/1UjvSVzxEAPBW7fbfL53Ub1kxOKXNEcf5?alt=media\&key=$DRIVE_API_KEY # ClimLL
@@ -52,6 +51,8 @@ jobs:
         mkdir data && cd data
         mkdir conll04 && cd conll04 && wget -O CoNLL04.zip https://www.googleapis.com/drive/v3/files/1LKAvkgk8ePvERHwh6YtAWF13XJxdRu3K?alt=media\&key=$DRIVE_API_KEY && jar xvf CoNLL04.zip && cd ..
         mkdir scierc && cd scierc && wget -O sciERC.zip https://www.googleapis.com/drive/v3/files/1UXkI_Were9LV8nhUkXPZF1oFi7KzBjch?alt=media\&key=$DRIVE_API_KEY && jar xvf sciERC.zip && cd ../..
+    - name: Test coverage
+      run: |
         pipenv run coverage run --source renard_joint -m pytest -rxXs
         pipenv run bandit -r renard_joint
         pipenv run python renard_joint/_scripts/pipeline.py conll04 evaluate
