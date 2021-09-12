@@ -58,12 +58,10 @@ jobs:
         pipenv run bandit -r renard_joint
         export PYTHONPATH=.
         pipenv run python renard_joint/_scripts/pipeline.py conll04 evaluate
-        pipenv run python renard_joint/_scripts/pipeline.py internal evaluate
         pipenv run python renard_joint/_scripts/pipeline.py conll04 predict "Adrien tries data harvesting" "It's probably working"
         pipenv run python renard_joint/_scripts/pipeline.py internal predict "Dirty company does bad coal activity" "Nice company treats people equally"
         pipenv run python renard_joint/_scripts/spert.py conll04 evaluate 19
         pipenv run python renard_joint/_scripts/spert.py scierc evaluate 19
-        pipenv run python renard_joint/_scripts/spert.py internal evaluate 26
         pipenv run python renard_joint/_scripts/spert.py conll04 predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
         pipenv run python renard_joint/_scripts/spert.py scierc predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
         pipenv run python renard_joint/_scripts/spert.py internal predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
@@ -78,7 +76,7 @@ jobs:
       run: |
         cd docs
         pipenv run make html
-    - name: Build and Commit
+    - name: Build and Commit documentation to gh-pages branch
       uses: sphinx-notes/pages@master
     - name: Push changes
       uses: ad-m/github-push-action@master

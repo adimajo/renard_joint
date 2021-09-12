@@ -26,8 +26,8 @@ Current test coverage on internal Gitlab platform: 89 %.
 
 - Clone this repository: `git clone https://github.com/adimajo/renard_joint.git` or `git clone git@github.com:adimajo/renard_joint.git`;
 - Set the environment variables `DATA` and `MODEL` to the location of your choice (`data` and `model` by default resp., see below);
-- Have a working python development environment, including the `pip` package manager;
-- Install `pipenv` with `pip install pipenv`;
+- Have a [working python development environment](https://www.python.org/), including the `pip` package manager;
+- Install [`pipenv`](https://pipenv.pypa.io/en/latest/) with `pip install pipenv`;
 - Install the python dependencies of this package using: `pipenv install`;
 - If not on Linux, install Torch following [their instructions](https://pytorch.org/get-started/locally/);
 - Install the package using: `pip install .` (append `pipenv run` if the virtual environment created by `pipenv` hasn't been activated, e.g. in a script).
@@ -47,13 +47,13 @@ Current test coverage on internal Gitlab platform: 89 %.
 
 ##### Locally - gunicorn
 
-Alongside the project's dependencies, the `gunicorn` server should have 
-been installed. To use it:
+Alongside the project's dependencies, the [`gunicorn` server](https://gunicorn.org/) can be installed using
+`pip install gunicorn`. To use it:
 `gunicorn API/wsgi:app --bind 0.0.0.0:8000`
 
 ##### Docker container
 
-A docker container .
+A docker container is available in .
 
 ## Documentation
 
