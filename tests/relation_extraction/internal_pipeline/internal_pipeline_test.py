@@ -1,6 +1,9 @@
+import pytest
+
 from renard_joint.relation_extraction import internal_pipeline
 
 
+@pytest.mark.xfail(raises=FileNotFoundError, reason="Undisclosed dataset")
 def test_evaluate_internal_pipeline():
     internal_pipeline.evaluate("test",
                                internal_pipeline.bert_model,

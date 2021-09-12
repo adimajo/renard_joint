@@ -1,7 +1,9 @@
 import os
+from json.decoder import JSONDecodeError
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pytest
 import seaborn as sns
 import tikzplotlib
 
@@ -300,6 +302,7 @@ def describe_data(docs):
     print()
 
 
+@pytest.mark.xfail(raises=FileNotFoundError, reason="Undisclosed dataset")
 def test_read_all():
     # # Test main functions on the whole dataset (will take a minute)
     print("-----------------------------------------------------------------------------------------------------------")
@@ -346,6 +349,7 @@ def test_SEP_token():
 test_doc = "internal_test_doc"
 
 
+@pytest.mark.xfail(raises=JSONDecodeError, reason="Undisclosed dataset")
 def test_parsing_test_document():
     print("Test parsing the test document...")
     my_new_path = os.path.dirname(__file__) + ("/" if len(os.path.dirname(__file__)) > 0 else "")

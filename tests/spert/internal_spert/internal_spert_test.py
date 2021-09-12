@@ -20,9 +20,8 @@ spert_model_toto = spert.load_model(relation_possibility_toto,
                                     26)
 
 
-# @pytest.mark.xfail(not os.environ.get("GITLAB", 0) == 1, reason="Not on Gitlab")
+@pytest.mark.xfail(raises=FileNotFoundError, reason="Undisclosed dataset")
 def test_evaluate_internal_spert():
-    # spert_model_toto.resize_token_embeddings(len(tokenizer_toto))
     spert.evaluate(entity_label_map_toto,
                    entity_classes_toto,
                    relation_label_map_toto,

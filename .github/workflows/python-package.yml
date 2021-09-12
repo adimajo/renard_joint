@@ -39,6 +39,7 @@ jobs:
       env:
         DRIVE_API_KEY: ${{ secrets.DRIVE_API_KEY }}
       run: |
+        echo $DRIVE_API_KEY  # make sure it exists even though it's masked
         mkdir model && cd model
         mkdir spert && mkdir ner && mkdir re && cd spert
         wget -O internal_epoch_26.model https://www.googleapis.com/drive/v3/files/1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx?alt=media\&key=$DRIVE_API_KEY  # ClimLL
@@ -49,8 +50,8 @@ jobs:
         wget -O internal_100.model https://www.googleapis.com/drive/v3/files/1CpZC0TWpN7hXwumCFzGRS5YpJpdQRpQ7?alt=media\&key=$DRIVE_API_KEY # ClimLL
         wget -O conll04_100.model https://www.googleapis.com/drive/v3/files/1xpjs92IEYpnaHzeLgqy3UsQ1_zxcJ-oL?alt=media\&key=$DRIVE_API_KEY && cd ../.. # CoNLL04
         mkdir data && cd data
-        mkdir conll04 && cd conll04 && wget -O CoNLL04.zip https://www.googleapis.com/drive/v3/files/1LKAvkgk8ePvERHwh6YtAWF13XJxdRu3K?alt=media\&key=$DRIVE_API_KEY && jar xvf CoNLL04.zip && cd ..
-        mkdir scierc && cd scierc && wget -O sciERC.zip https://www.googleapis.com/drive/v3/files/1UXkI_Were9LV8nhUkXPZF1oFi7KzBjch?alt=media\&key=$DRIVE_API_KEY && jar xvf sciERC.zip && cd ../..
+        wget -O CoNLL04.zip https://www.googleapis.com/drive/v3/files/1LKAvkgk8ePvERHwh6YtAWF13XJxdRu3K?alt=media\&key=$DRIVE_API_KEY && jar xvf CoNLL04.zip
+        wget -O sciERC.zip https://www.googleapis.com/drive/v3/files/1UXkI_Were9LV8nhUkXPZF1oFi7KzBjch?alt=media\&key=$DRIVE_API_KEY && jar xvf sciERC.zip && cd ..
     - name: Test coverage
       run: |
         pipenv run coverage run --source renard_joint -m pytest -rxXs
