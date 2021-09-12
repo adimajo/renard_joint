@@ -12,6 +12,14 @@ Agricole, such that these can be analyzed automatically.
 
 Current test coverage on internal Gitlab platform: 89 %.
 
+**Table of contents:**
+
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [Structure](#structure)
+- [Usage](#usage)
+- [Disclaimer](#disclaimer)
+
 ## Installation
 
 ### As a Python package
@@ -21,6 +29,7 @@ Current test coverage on internal Gitlab platform: 89 %.
 - Have a working python development environment, including the `pip` package manager;
 - Install `pipenv` with `pip install pipenv`;
 - Install the python dependencies of this package using: `pipenv install`;
+- If not on Linux, install Torch following [their instructions](https://pytorch.org/get-started/locally/);
 - Install the package using: `pip install .` (append `pipenv run` if the virtual environment created by `pipenv` hasn't been activated, e.g. in a script).
 
 ### As a Flask API
@@ -32,11 +41,19 @@ Current test coverage on internal Gitlab platform: 89 %.
 - Have a working python development environment, including the `pip` package manager;
 - Install `pipenv` with `pip install pipenv`;
 - Install the python dependencies of this package using: `pipenv install`;
-- Fire up the Flask API locally using `python AIP/wsgi.py`.
+- Fire up the Flask API locally using `python API/wsgi.py`.
 
 #### Production server
 
-TODO
+##### Locally - gunicorn
+
+Alongside the project's dependencies, the `gunicorn` server should have 
+been installed. To use it:
+`gunicorn API/wsgi:app --bind 0.0.0.0:8000`
+
+##### Docker container
+
+A docker container .
 
 ## Documentation
 
@@ -57,7 +74,9 @@ Then, a Swagger reader is necessary to turn this json file into a webpage docume
 Copy-pasting it on [https://editor.swagger.io/](https://editor.swagger.io/), we get:
 ![Swagger output](images/swagger_output.png)
 
-## Directory
+## Structure
+
+### Directory
 
 - `API/` contains the Flask API development server, its so-called "resources" and the Dockerfile to run it as a container;
 - `renard_joint/` contains the main package;
@@ -68,29 +87,29 @@ Copy-pasting it on [https://editor.swagger.io/](https://editor.swagger.io/), we 
 - `.github/workflows/python-package.yml` defines the CI/CD github pipeline;
 - `Pipefile(.lock)` are used to manage the dependencies of the project.
 
-## Models
+### Models
 
 Models can be downloaded from ufile.io:
 
-### Spert models
+#### Spert models
 
 - [The ClimLL model](https://drive.google.com/uc?id=1k6CZ74uJSJgwCCk-fUTouEWy4PK2W0bx&export=download);
 - [The CoNLL04 model](https://drive.google.com/uc?id=1uf1uD9uxEEu1QxrEMYaZzIjnWZLt_36Q&export=download);
 - [The SciERC model](https://drive.google.com/uc?id=1go-9ftQS01oAC5FqM6t_I5iQ87nF1hAg&export=download).
 
-### NER & RE models
+#### NER & RE models
 
-#### NER models
+##### NER models
 
 - [The ClimLL model](https://drive.google.com/uc?id=1UjvSVzxEAPBW7fbfL53Ub1kxOKXNEcf5&export=download);
 - [The CoNLL04 model](https://drive.google.com/uc?id=1C5jQc9DUsC_baVQVnETGM5MHTA_P69Wd&export=download).
 
-#### RE models
+##### RE models
 
 - [The ClimLL model](https://drive.google.com/uc?id=1CpZC0TWpN7hXwumCFzGRS5YpJpdQRpQ7&export=download);
 - [The CoNLL04 model](https://drive.google.com/uc?id=1xpjs92IEYpnaHzeLgqy3UsQ1_zxcJ-oL&export=download).
 
-### Installation
+#### Installation
 
 The models are searched by the package, either in the subfolder `model/`, or in the folder pointed to by the
 environment variable `MODEL`. The organisation of this folder must be the following:
@@ -113,14 +132,14 @@ wget -O internal_100.model https://drive.google.com/uc?id=1CpZC0TWpN7hXwumCFzGRS
 wget -O conll04_100.model https://drive.google.com/uc?id=1xpjs92IEYpnaHzeLgqy3UsQ1_zxcJ-oL&export=download && cd ../.. # CoNLL04
 ```
 
-## Data
+### Data
 
 Data, except the ClimLL dataset, can be downloaded from ufile.io:
 
 - [The CoNLL04 dataset](https://drive.google.com/uc?id=1LKAvkgk8ePvERHwh6YtAWF13XJxdRu3K&export=download);
 - [The SciERC dataset](https://drive.google.com/uc?id=1UXkI_Were9LV8nhUkXPZF1oFi7KzBjch&export=download).
 
-### Installation
+#### Installation
 
 The data are searched by the package, either in the subfolder `data/`, or in the folder pointed to by the
 environment variable `data`. The organisation of this folder must be the following:

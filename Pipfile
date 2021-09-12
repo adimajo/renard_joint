@@ -19,6 +19,7 @@ numpydoc = "*"
 wheel = "*"
 codecov = "*"
 bandit = "*"
+twine = "*"
 
 [packages]
 numpy = "*"
@@ -30,9 +31,8 @@ seaborn = "*"
 transformers = "*"
 tikzplotlib = "*"
 torch = {version = "*",markers="sys_platform == 'linux'"}
-# "torch_win" = {file="https://download.pytorch.org/whl/cpu/torch-1.8.1%2Bcpu-cp38-cp38-win_amd64.whl",markers="sys_platform == 'win32'"}
 flask = "*"
 flask_restful = "*"
 flask_swagger = "*"
 loguru = "*"
-twine = "*"
+gunicorn = {version = "*",markers="sys_platform == 'linux'"}

@@ -56,6 +56,7 @@ jobs:
       run: |
         pipenv run coverage run --source renard_joint -m pytest -rxXs
         pipenv run bandit -r renard_joint
+        export PYTHONPATH=.
         pipenv run python renard_joint/_scripts/pipeline.py conll04 evaluate
         pipenv run python renard_joint/_scripts/pipeline.py internal evaluate
         pipenv run python renard_joint/_scripts/pipeline.py conll04 predict "Adrien tries data harvesting" "It's probably working"
@@ -66,6 +67,7 @@ jobs:
         pipenv run python renard_joint/_scripts/spert.py conll04 predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
         pipenv run python renard_joint/_scripts/spert.py scierc predict 19 "Dirty company does bad coal activity" "Nice company treats people equally"
         pipenv run python renard_joint/_scripts/spert.py internal predict 26 "Dirty company does bad coal activity" "Nice company treats people equally"
+        export PYTHONPATH=
 #       pipenv run python _scripts/spert.py conll04 train
 #       pipenv run python _scripts/spert.py scierc train
 #       pipenv run python _scripts/spert.py internal train
