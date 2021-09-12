@@ -37,7 +37,7 @@ jobs:
         pipenv run flake8 --ignore=W504 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
     - name: Download all
       env:
-        DRIVE_API_KEY: ${{ workflow.DRIVE_API_KEY }}
+        DRIVE_API_KEY: ${{ secrets.DRIVE_API_KEY }}
       run: |
         mkdir model && cd model
         mkdir spert && mkdir ner && mkdir re && cd spert
